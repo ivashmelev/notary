@@ -1,5 +1,5 @@
 <?php
-// Получить все разделы и получить тарифы этого раздела по id раздела
+// Запись на прием и получить список заявок
 header('Access-Control-Allow-Origin: *');
 
 require_once ('../../../config.php');
@@ -11,13 +11,19 @@ if (!$connect) {
 } else {
 
   switch($_SERVER['REQUEST_METHOD']){
-    case 'GET':
-      if(isset($_GET['id'])){
-        $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_get_section_id($1)', [$_GET['id']]);
-      } else {
-        $result = pg_query($connect, 'SELECT * FROM func_api_v1_get_section()');
+    case 'POST':
+      if(isset($_POST['date']) && isset($_POST['name']) && isset($_POST['phone']) && isset($_POST['mail'])){
+        $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_post_reception($1, $2, $3, $4)', [
+          $_POST['date'],
+          $_POST['name'],
+          $_POST['phone'],
+          $_POST['mail']
+        ]);
       }
     break;
+    case 'GET':
+      //api admin
+      $result = pg_query($connect, 'SELECT * FROM func_api_v1_get_reception()');
   }
 
   if($result == ''){

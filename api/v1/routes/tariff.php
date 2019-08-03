@@ -1,6 +1,5 @@
 <?php
-//Получить все услуги и услуги по id и изменить услугу
-
+// Получить тариф по id и изменить тариф
 header('Access-Control-Allow-Origin: *');
 
 require_once ('../../../config.php');
@@ -14,19 +13,19 @@ if (!$connect) {
   switch($_SERVER['REQUEST_METHOD']){
     case 'GET':
       if(isset($_GET['id'])){
-        $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_get_service_id($1)', [$_GET['id']]);
-      } else {
-        $result = pg_query($connect, 'SELECT * FROM func_api_v1_get_service()');
+        $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_get_tariff_id($1)', [$_GET['id']]);
       }
     break;
     case 'PATCH':
       //api admin
       parse_str(file_get_contents('php://input'), $_PATCH);
-      if(isset($_PATCH['id']) && isset($_PATCH['title']) && isset($_PATCH['description'])){
-        $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_patch_service_id($1, $2, $3)', [
-          $_PATCH['id'], 
+      if(isset($_PATCH['id']) && isset($_PATCH['title']) && isset($_PATCH['subtitle']) && isset($_PATCH['tariff']) && isset($_PATCH['price'])){
+        $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_patch_tariff_id($1, $2, $3, $4, $5)', [
+          $_PATCH['id'],
           $_PATCH['title'], 
-          $_PATCH['description']
+          $_PATCH['subtitle'], 
+          $_PATCH['tariff'], 
+          $_PATCH['price']
         ]);
       }
     break;
