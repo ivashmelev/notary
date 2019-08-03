@@ -1,6 +1,5 @@
 <?php
-//Получить все услуги и услуги по id и изменить услугу
-
+// Регистрация нового админа и изменение текущих
 header('Access-Control-Allow-Origin: *');
 
 require_once ('../../../config.php');
@@ -11,24 +10,25 @@ $connect = pg_connect("host=".$HOST." options='--client_encoding=UTF8' port=".$P
 if (!$connect) {
   die("Ошибка: Невозможно установить соединение с MySQL.");
 } else {
+  
+  auth($connect);
 
   switch($_SERVER['REQUEST_METHOD']){
-    case 'GET':
-      
-      if(isset($_GET['id'])){
-        $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_get_service_id($1)', [$_GET['id']]);
-      } else {
-        $result = pg_query($connect, 'SELECT * FROM func_api_v1_get_service()');
+    case 'POST':
+      if(isset($_POST['login']) && isset($_POST['password'])){
+        $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_post_admin($1, $2)', [
+          $_POST['login'],
+          md5($_POST['password'])
+        ]);
       }
     break;
     case 'PATCH':
-      auth($connect);
       parse_str(file_get_contents('php://input'), $_PATCH);
-      if(isset($_PATCH['id']) && isset($_PATCH['title']) && isset($_PATCH['description'])){
-        $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_patch_service_id($1, $2, $3)', [
-          $_PATCH['id'], 
-          $_PATCH['title'], 
-          $_PATCH['description']
+      if(isset($_PATCH['login']) && isset($_PATCH['new_login']) && isset($_PATCH['password'])){
+        $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_patch_admin_login($1, $2, $3)', [
+          $_PATCH['login'], 
+          $_PATCH['new_login'], 
+          md5($_PATCH['password'])
         ]);
       }
     break;

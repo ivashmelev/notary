@@ -29,7 +29,7 @@ if (!$connect) {
   }
 
   if($result == ''){
-    die('401 Bad Request');
+    die('403 Bad Request');
   }
 
   $data = json_encode(pg_fetch_all($result));
