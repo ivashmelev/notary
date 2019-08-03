@@ -1,5 +1,5 @@
 <?php
-
+// Получить все разделы и получить тарифы этого раздела по id раздела
 header('Access-Control-Allow-Origin: *');
 
 require_once ('../../../config.php');

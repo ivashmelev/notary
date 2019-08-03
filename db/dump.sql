@@ -12,7 +12,7 @@
  Target Server Version : 90303
  File Encoding         : 65001
 
- Date: 03/08/2019 17:47:50
+ Date: 03/08/2019 19:16:58
 */
 
 
@@ -21,6 +21,17 @@
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."contact_autoincrement";
 CREATE SEQUENCE "public"."contact_autoincrement" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 1;
+
+-- ----------------------------
+-- Sequence structure for reception_autoincrement
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."reception_autoincrement";
+CREATE SEQUENCE "public"."reception_autoincrement" 
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -73,6 +84,19 @@ CREATE TABLE "public"."contact" (
 ;
 
 -- ----------------------------
+-- Table structure for reception
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."reception";
+CREATE TABLE "public"."reception" (
+  "id" int4 NOT NULL DEFAULT nextval('reception_autoincrement'::regclass),
+  "date" date NOT NULL,
+  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+  "phone" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+  "mail" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+)
+;
+
+-- ----------------------------
 -- Table structure for section
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."section";
@@ -81,12 +105,6 @@ CREATE TABLE "public"."section" (
   "title" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
-
--- ----------------------------
--- Records of section
--- ----------------------------
-INSERT INTO "public"."section" VALUES (1, 'sec1');
-INSERT INTO "public"."section" VALUES (2, 'sec2');
 
 -- ----------------------------
 -- Table structure for service
@@ -98,12 +116,6 @@ CREATE TABLE "public"."service" (
   "description" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
 )
 ;
-
--- ----------------------------
--- Records of service
--- ----------------------------
-INSERT INTO "public"."service" VALUES (1, 'title1', 'des1');
-INSERT INTO "public"."service" VALUES (2, 'title2', 'des2');
 
 -- ----------------------------
 -- Table structure for tariff
@@ -120,10 +132,29 @@ CREATE TABLE "public"."tariff" (
 ;
 
 -- ----------------------------
--- Records of tariff
+-- Function structure for func_api_v1_get_contact
 -- ----------------------------
-INSERT INTO "public"."tariff" VALUES ('1', '1', '1', '1', 5, 1);
-INSERT INTO "public"."tariff" VALUES ('2', '2', '2', '2', 6, 1);
+DROP FUNCTION IF EXISTS "public"."func_api_v1_get_contact"();
+CREATE OR REPLACE FUNCTION "public"."func_api_v1_get_contact"()
+  RETURNS TABLE("id" int4, "address" varchar, "phone" varchar, "mail" varchar) AS $BODY$BEGIN
+	RETURN QUERY SELECT * FROM contact;
+END$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
+
+-- ----------------------------
+-- Function structure for func_api_v1_get_reception
+-- ----------------------------
+DROP FUNCTION IF EXISTS "public"."func_api_v1_get_reception"();
+CREATE OR REPLACE FUNCTION "public"."func_api_v1_get_reception"()
+  RETURNS TABLE("id" int4, "date" date, "name" varchar, "phone" varchar, "mail" varchar) AS $BODY$BEGIN
+	
+	RETURN QUERY SELECT * FROM reception;
+END$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
 
 -- ----------------------------
 -- Function structure for func_api_v1_get_section
@@ -142,12 +173,12 @@ END$BODY$
 -- ----------------------------
 DROP FUNCTION IF EXISTS "public"."func_api_v1_get_section_id"("arg_id" int4);
 CREATE OR REPLACE FUNCTION "public"."func_api_v1_get_section_id"("arg_id" int4)
-  RETURNS TABLE("id" int4, "title" varchar, "section" varchar, "subtitle" varchar, "tariff" varchar, "price" varchar) AS $BODY$BEGIN
+  RETURNS TABLE("id" int4, "title" varchar) AS $BODY$BEGIN
 	RETURN QUERY 
-		SELECT tariff."id", tariff."title", section."title", tariff."subtitle", tariff."tariff", tariff."price"
+		SELECT tariff."id", tariff."title"
 		FROM "public".tariff 
 		JOIN "public"."section" 
-		ON (tariff."section_id" = "section"."id") 
+		ON (tariff."section_id" = "section"."id")
 		WHERE tariff.section_id = arg_id;
 END$BODY$
   LANGUAGE plpgsql VOLATILE
@@ -183,18 +214,87 @@ END$BODY$
 -- ----------------------------
 DROP FUNCTION IF EXISTS "public"."func_api_v1_get_tariff_id"("arg_id" int4);
 CREATE OR REPLACE FUNCTION "public"."func_api_v1_get_tariff_id"("arg_id" int4)
-  RETURNS "pg_catalog"."void" AS $BODY$BEGIN
-	RETURN;
+  RETURNS TABLE("id" int4, "title" varchar, "subtitle" varchar, "tariff" varchar, "price" varchar) AS $BODY$BEGIN
+	RETURN QUERY SELECT tariff."id", tariff."title", tariff."subtitle", tariff."tariff", tariff."price"
+		FROM "public".tariff 
+		WHERE tariff."id" = arg_id;
 END$BODY$
   LANGUAGE plpgsql VOLATILE
-  COST 100;
+  COST 100
+  ROWS 1000;
+
+-- ----------------------------
+-- Function structure for func_api_v1_patch_contact_id
+-- ----------------------------
+DROP FUNCTION IF EXISTS "public"."func_api_v1_patch_contact_id"("arg_id" int4, "arg_address" varchar, "arg_phone" varchar, "arg_mail" varchar);
+CREATE OR REPLACE FUNCTION "public"."func_api_v1_patch_contact_id"("arg_id" int4, "arg_address" varchar, "arg_phone" varchar, "arg_mail" varchar)
+  RETURNS TABLE("id" int4, "address" varchar, "phone" varchar, "mail" varchar) AS $BODY$BEGIN
+	
+	UPDATE contact SET address=arg_address, phone=arg_phone, mail=arg_mail WHERE contact."id" = arg_id;
+	
+	RETURN QUERY SELECT * FROM contact WHERE contact."id" = arg_id;
+END$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
+
+-- ----------------------------
+-- Function structure for func_api_v1_patch_service_id
+-- ----------------------------
+DROP FUNCTION IF EXISTS "public"."func_api_v1_patch_service_id"("arg_id" int4, "arg_title" varchar, "arg_description" varchar);
+CREATE OR REPLACE FUNCTION "public"."func_api_v1_patch_service_id"("arg_id" int4, "arg_title" varchar, "arg_description" varchar)
+  RETURNS TABLE("id" int4, "title" varchar, "description" varchar) AS $BODY$BEGIN
+	
+	UPDATE service SET title=arg_title, description=arg_description WHERE service."id" = arg_id;
+	
+	RETURN QUERY SELECT * FROM service WHERE service."id" = arg_id;
+	
+END$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
+
+-- ----------------------------
+-- Function structure for func_api_v1_patch_tariff_id
+-- ----------------------------
+DROP FUNCTION IF EXISTS "public"."func_api_v1_patch_tariff_id"("arg_id" int4, "arg_title" varchar, "arg_subtitle" varchar, "arg_tariff" varchar, "arg_price" varchar);
+CREATE OR REPLACE FUNCTION "public"."func_api_v1_patch_tariff_id"("arg_id" int4, "arg_title" varchar, "arg_subtitle" varchar, "arg_tariff" varchar, "arg_price" varchar)
+  RETURNS TABLE("id" int4, "title" varchar, "subtitle" varchar, "tariff" varchar, "price" varchar) AS $BODY$BEGIN
+	
+	UPDATE tariff SET title=arg_title, subtitle=arg_subtitle, tariff=arg_tariff, price=arg_price WHERE tariff."id" = arg_id;
+	
+	RETURN QUERY SELECT tariff."id", tariff."title", tariff."subtitle", tariff."tariff", tariff."price"
+		FROM "public".tariff 
+		WHERE tariff."id" = arg_id;
+END$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
+
+-- ----------------------------
+-- Function structure for func_api_v1_post_reception
+-- ----------------------------
+DROP FUNCTION IF EXISTS "public"."func_api_v1_post_reception"("arg_date" date, "arg_name" varchar, "arg_phone" varchar, "arg_mail" varchar);
+CREATE OR REPLACE FUNCTION "public"."func_api_v1_post_reception"("arg_date" date, "arg_name" varchar, "arg_phone" varchar, "arg_mail" varchar)
+  RETURNS TABLE("id" int4, "date" date, "name" varchar, "phone" varchar, "mail" varchar) AS $BODY$BEGIN
+	
+	INSERT INTO reception VALUES(NEXTVAL('reception_autoincrement'), arg_date, arg_name, arg_phone, arg_mail);
+	
+	RETURN QUERY SELECT * FROM reception order by id desc limit 1;
+END$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
 
 -- ----------------------------
 -- Alter sequences owned by
 -- ----------------------------
 ALTER SEQUENCE "public"."contact_autoincrement"
 OWNED BY "public"."contact"."id";
-SELECT setval('"public"."contact_autoincrement"', 2, false);
+SELECT setval('"public"."contact_autoincrement"', 2, true);
+ALTER SEQUENCE "public"."reception_autoincrement"
+OWNED BY "public"."reception"."id";
+SELECT setval('"public"."reception_autoincrement"', 6, true);
 ALTER SEQUENCE "public"."section_autoincrement"
 OWNED BY "public"."section"."id";
 SELECT setval('"public"."section_autoincrement"', 3, true);
@@ -209,6 +309,11 @@ SELECT setval('"public"."tariff_autoincrement"', 7, true);
 -- Primary Key structure for table contact
 -- ----------------------------
 ALTER TABLE "public"."contact" ADD CONSTRAINT "contact_pkey" PRIMARY KEY ("id");
+
+-- ----------------------------
+-- Primary Key structure for table reception
+-- ----------------------------
+ALTER TABLE "public"."reception" ADD CONSTRAINT "reception_pkey" PRIMARY KEY ("id");
 
 -- ----------------------------
 -- Primary Key structure for table section

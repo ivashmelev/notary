@@ -1,4 +1,5 @@
 <?php
+//Получить все услуги и услуги по id
 
 header('Access-Control-Allow-Origin: *');
 
