@@ -12,9 +12,20 @@
  Target Server Version : 90303
  File Encoding         : 65001
 
- Date: 03/08/2019 19:16:58
+ Date: 04/08/2019 23:48:11
 */
 
+
+-- ----------------------------
+-- Sequence structure for admin_autoincrement
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."admin_autoincrement";
+CREATE SEQUENCE "public"."admin_autoincrement" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 1;
 
 -- ----------------------------
 -- Sequence structure for contact_autoincrement
@@ -70,6 +81,17 @@ MINVALUE  1
 MAXVALUE 9223372036854775807
 START 1
 CACHE 1;
+
+-- ----------------------------
+-- Table structure for admin
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."admin";
+CREATE TABLE "public"."admin" (
+  "id" int4 NOT NULL DEFAULT nextval('admin_autoincrement'::regclass),
+  "login" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+  "password" varchar(255) COLLATE "pg_catalog"."default" NOT NULL
+)
+;
 
 -- ----------------------------
 -- Table structure for contact
@@ -130,6 +152,18 @@ CREATE TABLE "public"."tariff" (
   "section_id" int4 NOT NULL
 )
 ;
+
+-- ----------------------------
+-- Function structure for func_api_v1_admin_auth
+-- ----------------------------
+DROP FUNCTION IF EXISTS "public"."func_api_v1_admin_auth"("arg_login" varchar);
+CREATE OR REPLACE FUNCTION "public"."func_api_v1_admin_auth"("arg_login" varchar)
+  RETURNS TABLE("id" int4, "login" varchar, "password" varchar) AS $BODY$BEGIN
+	RETURN QUERY SELECT * FROM admin WHERE admin."login" = arg_login;
+END$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
 
 -- ----------------------------
 -- Function structure for func_api_v1_get_contact
@@ -224,6 +258,21 @@ END$BODY$
   ROWS 1000;
 
 -- ----------------------------
+-- Function structure for func_api_v1_patch_admin_login
+-- ----------------------------
+DROP FUNCTION IF EXISTS "public"."func_api_v1_patch_admin_login"("arg_login" varchar, "arg_new_login" varchar, "arg_password" varchar);
+CREATE OR REPLACE FUNCTION "public"."func_api_v1_patch_admin_login"("arg_login" varchar, "arg_new_login" varchar, "arg_password" varchar)
+  RETURNS TABLE("id" int4, "login" varchar, "password" varchar) AS $BODY$BEGIN
+	
+	UPDATE admin SET login=arg_new_login, password=arg_password WHERE "admin"."login" = arg_login;
+	
+	RETURN QUERY SELECT * FROM "admin" WHERE "admin"."login" = arg_new_login;
+END$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
+
+-- ----------------------------
 -- Function structure for func_api_v1_patch_contact_id
 -- ----------------------------
 DROP FUNCTION IF EXISTS "public"."func_api_v1_patch_contact_id"("arg_id" int4, "arg_address" varchar, "arg_phone" varchar, "arg_mail" varchar);
@@ -272,6 +321,21 @@ END$BODY$
   ROWS 1000;
 
 -- ----------------------------
+-- Function structure for func_api_v1_post_admin
+-- ----------------------------
+DROP FUNCTION IF EXISTS "public"."func_api_v1_post_admin"("arg_login" varchar, "arg_password" varchar);
+CREATE OR REPLACE FUNCTION "public"."func_api_v1_post_admin"("arg_login" varchar, "arg_password" varchar)
+  RETURNS TABLE("id" int4, "login" varchar, "password" varchar) AS $BODY$BEGIN
+	
+	INSERT INTO admin VALUES(NEXTVAL('admin_autoincrement'), arg_login, arg_password);
+	
+	RETURN QUERY SELECT * FROM admin order by id desc limit 1;
+END$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
+
+-- ----------------------------
 -- Function structure for func_api_v1_post_reception
 -- ----------------------------
 DROP FUNCTION IF EXISTS "public"."func_api_v1_post_reception"("arg_date" date, "arg_name" varchar, "arg_phone" varchar, "arg_mail" varchar);
@@ -289,12 +353,15 @@ END$BODY$
 -- ----------------------------
 -- Alter sequences owned by
 -- ----------------------------
+ALTER SEQUENCE "public"."admin_autoincrement"
+OWNED BY "public"."admin"."id";
+SELECT setval('"public"."admin_autoincrement"', 8, true);
 ALTER SEQUENCE "public"."contact_autoincrement"
 OWNED BY "public"."contact"."id";
 SELECT setval('"public"."contact_autoincrement"', 2, true);
 ALTER SEQUENCE "public"."reception_autoincrement"
 OWNED BY "public"."reception"."id";
-SELECT setval('"public"."reception_autoincrement"', 6, true);
+SELECT setval('"public"."reception_autoincrement"', 8, true);
 ALTER SEQUENCE "public"."section_autoincrement"
 OWNED BY "public"."section"."id";
 SELECT setval('"public"."section_autoincrement"', 3, true);
@@ -304,6 +371,11 @@ SELECT setval('"public"."service_autoincrement"', 3, true);
 ALTER SEQUENCE "public"."tariff_autoincrement"
 OWNED BY "public"."tariff"."id";
 SELECT setval('"public"."tariff_autoincrement"', 7, true);
+
+-- ----------------------------
+-- Primary Key structure for table admin
+-- ----------------------------
+ALTER TABLE "public"."admin" ADD CONSTRAINT "admin_pkey" PRIMARY KEY ("id");
 
 -- ----------------------------
 -- Primary Key structure for table contact

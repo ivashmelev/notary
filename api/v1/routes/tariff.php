@@ -3,6 +3,7 @@
 header('Access-Control-Allow-Origin: *');
 
 require_once ('../../../config.php');
+require_once ('../../../modules/auth.php');
 
 $connect = pg_connect("host=".$HOST." options='--client_encoding=UTF8' port=".$PORT." dbname=".$DATABASE." user=".$USERNAME." password=".$PASSWORD."");
 
@@ -17,7 +18,7 @@ if (!$connect) {
       }
     break;
     case 'PATCH':
-      //api admin
+      auth($connect);
       parse_str(file_get_contents('php://input'), $_PATCH);
       if(isset($_PATCH['id']) && isset($_PATCH['title']) && isset($_PATCH['subtitle']) && isset($_PATCH['tariff']) && isset($_PATCH['price'])){
         $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_patch_tariff_id($1, $2, $3, $4, $5)', [

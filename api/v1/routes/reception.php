@@ -3,6 +3,7 @@
 header('Access-Control-Allow-Origin: *');
 
 require_once ('../../../config.php');
+require_once ('../../../modules/auth.php');
 
 $connect = pg_connect("host=".$HOST." options='--client_encoding=UTF8' port=".$PORT." dbname=".$DATABASE." user=".$USERNAME." password=".$PASSWORD."");
 
@@ -22,7 +23,7 @@ if (!$connect) {
       }
     break;
     case 'GET':
-      //api admin
+      auth($connect);
       $result = pg_query($connect, 'SELECT * FROM func_api_v1_get_reception()');
   }
 
