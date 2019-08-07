@@ -20,6 +20,7 @@ export default class Header extends Component {
         <Menu />
         <ContactLine phone='8 (831) 999-99-99' mail='notary@gmail.com' />
       </HeaderWrapper>
+
     )
   }
 }
@@ -34,10 +35,13 @@ const HeaderWrapper = styled.div`
   margin: auto;
   position: relative;
   z-index: 20;
-  background-image: url(${backgroundImgAbout});
+  background-image: url(${aboutImg});
 `;
 
 const HeaderBackgroundImg = styled.img`
   filter: brightness(.7);
   position: absolute;
 `;
+
+
+

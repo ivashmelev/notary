@@ -7,6 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding: 0;
   box-sizing: border-box;
+  max-width: 1440px;
+  margin: auto;
 }
 
 code {
@@ -23,6 +25,11 @@ code {
 @font-face{
   font-family: 'Montserrat Bold';
   src: url(./assets/fonts/Montserrat/Montserrat-Bold.ttf);
+}
+
+@font-face{
+  font-family: 'Montserrat Regular Italic';
+  src: url(./assets/fonts/Montserrat/Montserrat-RegularItalic.ttf);
 }
 
 @font-face{

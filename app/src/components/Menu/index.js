@@ -21,8 +21,8 @@ export default class Menu extends Component {
           <MenuHamburgerLine></MenuHamburgerLine>
         </MenuHamburger>
         <MenuLinkWrapper>
-          <MenuLink href="">Главная</MenuLink>
-          <MenuLink href="">О нас</MenuLink>
+          <MenuLink href="/">Главная</MenuLink>
+          <MenuLink href="/about">О нас</MenuLink>
           <MenuLink href="">Услуги</MenuLink>
           <MenuLink href="">Тарифы</MenuLink>
           <MenuLink href="">Контакты</MenuLink>
@@ -55,6 +55,7 @@ const MenuWrapper = styled.div`
       height: 359px;
       position: absolute;
       background-color: #2D2D2D;
+      margin-bottom: 50px;
     }
   }
 `;

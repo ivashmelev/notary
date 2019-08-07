@@ -28,6 +28,7 @@ const ButtonWrapper = styled.div`
 
   &:hover{
     cursor: pointer;
+    background-color: ${props => props.color === 'grey' ? '#2D2D2D' : '#f7b158'};
   }
 
   @media ${responsive.tablet} {

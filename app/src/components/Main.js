@@ -55,7 +55,6 @@ const MainContent = styled.div`
 
   @media ${responsive.tablet} {
     width: 100%;
-    margin-top: 50px;
   }
 `;
 
