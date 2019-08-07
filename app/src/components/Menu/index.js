@@ -26,7 +26,9 @@ export default class Menu extends Component {
           <MenuLink href="">Услуги</MenuLink>
           <MenuLink href="">Тарифы</MenuLink>
           <MenuLink href="">Контакты</MenuLink>
-          <Button name="Запись на прием" link="" color="grey" size="small" />
+          <MenuButton>
+            <Button name="Запись на прием" link="" color="grey" size="small" />
+          </MenuButton>
         </MenuLinkWrapper>
       </MenuWrapper >
     )
@@ -35,8 +37,10 @@ export default class Menu extends Component {
 
 const MenuWrapper = styled.div`
   display: flex;
-  width: 1140px;
+  max-width: 720px;
   height: 50px;
+  position: relative;
+  z-index: 50;
   justify-content: space-between;
   align-items: center;
 
@@ -45,6 +49,13 @@ const MenuWrapper = styled.div`
     max-width: 678px;
     width: 100%;
     align-items: flex-end;
+
+    
+    &.open {
+      height: 359px;
+      position: absolute;
+      background-color: #2D2D2D;
+    }
   }
 `;
 
@@ -54,6 +65,7 @@ const MenuHamburger = styled.div`
   height: 40px;
   position: relative;
   display: none;
+  padding: 10px;
 
   @media ${responsive.tablet} {
     display: block;
@@ -64,7 +76,7 @@ const MenuHamburger = styled.div`
 const MenuHamburgerLine = styled.span`
   width: 40px;
   height: 4px;
-  background-color: #2D2D2D;
+  background-color: #ffffff;
   border-radius: 6px;
   display: block;
   padding: -5px 0;
@@ -106,13 +118,14 @@ const MenuLinkWrapper = styled.div`
     width: 100%;
     align-items: flex-end;
     opacity: 0;
-    transition: .5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    /* transition: .5s cubic-bezier(0.18, 0.89, 0.32, 1.28); */
 
 
     .${MenuWrapper.componentStyle.componentId}.open &{
       opacity: 1;
+      height: 359px;
       z-index: 50;
-      transition: 1s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+      /* transition: 1s cubic-bezier(0.18, 0.89, 0.32, 1.28); */
     }
   }
 `;
@@ -127,5 +140,15 @@ const MenuLink = styled.a`
 
   @media ${responsive.tablet} {
     padding: 15.5px;
+  }
+`;
+
+const MenuButton = styled.div`
+  @media ${responsive.tablet} {
+    margin-top: 100px;
+  }
+
+  @media ${responsive.mobileS} {
+    margin-top: 0;
   }
 `;

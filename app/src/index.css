@@ -7,7 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding: 0;
   box-sizing: border-box;
-  background-color: rgb(128, 128, 128);
 }
 
 code {
@@ -24,4 +23,9 @@ code {
 @font-face{
   font-family: 'Montserrat Bold';
   src: url(./assets/fonts/Montserrat/Montserrat-Bold.ttf);
+}
+
+@font-face{
+  font-family: 'Montserrat_Alternates Bold';
+  src: url(./assets/fonts/Montserrat_Alternates/MontserratAlternates-Bold.ttf);
 }
