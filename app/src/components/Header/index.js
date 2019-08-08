@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Menu from '../Menu/index'
 import ContactLine from '../ContactLine/index'
 import aboutImg from '../../assets/img/backgroundImgAbout.png'
+import serviceImg from '../../assets/img/backgroundImgService.png'
 
 
 export default class Header extends Component {
@@ -16,7 +17,8 @@ export default class Header extends Component {
     console.log(this.props);
     return (
       <HeaderWrapper>
-        <HeaderBackgroundImg src={backgroundImg === 'about' ? aboutImg : ''} />
+        <HeaderBackgroundImg src={backgroundImg === 'about' ? aboutImg :
+          backgroundImg === 'service' ? serviceImg : null} />
         <Menu />
         <ContactLine phone='8 (831) 999-99-99' mail='notary@gmail.com' />
       </HeaderWrapper>
@@ -28,7 +30,7 @@ export default class Header extends Component {
 const HeaderWrapper = styled.div`
   display: flex;
   max-width: 1440px;
-  height: 540px;
+  height: 530px;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;

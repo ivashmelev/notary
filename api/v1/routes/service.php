@@ -1,7 +1,7 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 //Получить все услуги и услуги по id и изменить услугу
 
-header('Access-Control-Allow-Origin: *');
 
 require_once ('../../../config.php');
 require_once ('../../../modules/auth.php');

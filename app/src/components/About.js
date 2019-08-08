@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from './Header'
 import Title from './Title'
 import Button from './Button'
+import Navigation from './Navigation'
 import styled from 'styled-components'
 import responsive from '../responsive'
 import openCite from '../assets/img/openCite.svg';
@@ -33,6 +34,7 @@ export default class About extends Component {
             <Button name='Запись на прием' />
           </AboutButton>
         </AboutContent>
+        <Navigation title='УСЛУГИ' subtitle='СЛЕДУЮЩИЙ РАЗДЕЛ' />
       </AboutWrapper>
     )
   }
@@ -42,6 +44,7 @@ const AboutWrapper = styled.div``;
 const AboutContent = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 1440px;
   width: 80%;
   margin: auto;
 `;
@@ -50,6 +53,10 @@ const AboutContentText = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media ${responsive.tablet} {
+    flex-direction: column;
+  }
 `;
 
 const AboutContentColumn = styled.div`
@@ -64,20 +71,21 @@ const AboutParagraph = styled.span`
   color: #2D2D2D;
   line-height: 34px;
   letter-spacing: 0.05em;
-  text-align: justify;
+  text-align: left;
   margin-top: 20px;
 `;
 
 const AboutCite = styled.span`
-  width: 400px;
+  width: 100%;
   font-family: Montserrat Regular Italic;
   font-size: 18px;
   color: #2D2D2D;
   line-height: 34px;
   letter-spacing: 0.05em;
-  text-align: justify;
+  text-align: left;
   margin-top: 20px;
   font-weight: 600;
+  margin-left: 50px;
 
   &::before{
     content: '';
@@ -98,8 +106,13 @@ const AboutCite = styled.span`
     height: 25px;
     display: block;
     background-repeat: no-repeat;
-    left: 400px;
+    left: 100%;
   }
+
+  @media ${responsive.tablet} {
+    margin-left: 0;
+  }
+
 `;
 
 const AboutCiteAuthor = styled.span`
@@ -109,10 +122,21 @@ const AboutCiteAuthor = styled.span`
   line-height: 34px;
   letter-spacing: 0.05em;
   color: #2D2D2D;
+  margin-left: 50px;
+
+  @media ${responsive.tablet} {
+    margin-left: 0;
+  }
 `;
 
 
 const AboutButton = styled.div`
   margin-top: 50px;
+
+  @media ${responsive.tablet} {
+    display: flex;
+    justify-content: center;
+    
+  }
 `;
 

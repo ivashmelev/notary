@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import responsive from '../../responsive'
 
 
 export default class Title extends Component {
@@ -17,6 +18,10 @@ const TitleWrapper = styled.div`
   margin: 64px 0 100px;
   display: flex;
   justify-content: center;
+
+  @media ${responsive.tablet} {
+    margin: 64px 0 0;
+  }
 `;
 
 const TitleText = styled.h2`

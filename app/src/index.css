@@ -7,8 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding: 0;
   box-sizing: border-box;
-  max-width: 1440px;
-  margin: auto;
+  /* max-width: 1440px;
+  margin: auto; */
 }
 
 code {
@@ -33,6 +33,18 @@ code {
 }
 
 @font-face{
+  font-family: 'Montserrat Thin';
+  src: url(./assets/fonts/Montserrat/Montserrat-Thin.ttf);
+}
+
+@font-face{
   font-family: 'Montserrat_Alternates Bold';
   src: url(./assets/fonts/Montserrat_Alternates/MontserratAlternates-Bold.ttf);
 }
+
+@font-face{
+  font-family: 'Montserrat_Alternates Bold';
+  src: url(./assets/fonts/Montserrat_Alternates/MontserratAlternates-Bold.ttf);
+}
+
+
