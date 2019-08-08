@@ -9,9 +9,9 @@ export default class Button extends Component {
     this.state = {}
   }
   render() {
-    const { name, link, color, size } = this.props;
+    const { name, link, color, size, margin } = this.props;
     return (
-      <ButtonWrapper color={color} size={size}>
+      <ButtonWrapper color={color} size={size} margin={margin}>
         <ButtonLink href={link}>{name}</ButtonLink>
       </ButtonWrapper>
     )
@@ -23,8 +23,11 @@ const ButtonWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: ${props => props.size === 'big' ? '520px' : '225px'};
-  height: 50px;
+  height: ${props => props.size === 'big' ? '100px' : '50px'};
   background-color: ${props => props.color === 'grey' ? '#2D2D2D' : '#E6B980'};
+  margin: ${props => props.margin};
+  box-sizing: border-box;
+  text-align: center;
 
   &:hover{
     cursor: pointer;
@@ -33,6 +36,8 @@ const ButtonWrapper = styled.div`
 
   @media ${responsive.tablet} {
     padding: 15.5px;
+    width: ${props => props.size === 'big' ? '300px' : '225px'};
+
   }
 
 `;

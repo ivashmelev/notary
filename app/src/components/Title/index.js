@@ -21,6 +21,7 @@ const TitleWrapper = styled.div`
 
   @media ${responsive.tablet} {
     margin: 64px 0 0;
+    text-align: center;
   }
 `;
 

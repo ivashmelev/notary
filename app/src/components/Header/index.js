@@ -4,6 +4,7 @@ import Menu from '../Menu/index'
 import ContactLine from '../ContactLine/index'
 import aboutImg from '../../assets/img/backgroundImgAbout.png'
 import serviceImg from '../../assets/img/backgroundImgService.png'
+import tariffImg from '../../assets/img/backgroundImgTariff.png'
 
 
 export default class Header extends Component {
@@ -17,8 +18,10 @@ export default class Header extends Component {
     console.log(this.props);
     return (
       <HeaderWrapper>
-        <HeaderBackgroundImg src={backgroundImg === 'about' ? aboutImg :
-          backgroundImg === 'service' ? serviceImg : null} />
+        <HeaderBackgroundImg src={
+          backgroundImg === 'about' ? aboutImg :
+            backgroundImg === 'service' ? serviceImg :
+              backgroundImg === 'tariff' ? tariffImg : null} />
         <Menu />
         <ContactLine phone='8 (831) 999-99-99' mail='notary@gmail.com' />
       </HeaderWrapper>

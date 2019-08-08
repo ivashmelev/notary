@@ -24,8 +24,8 @@ export default class Menu extends Component {
           <MenuLink href="/">Главная</MenuLink>
           <MenuLink href="/about">О нас</MenuLink>
           <MenuLink href="/service">Услуги</MenuLink>
-          <MenuLink href="">Тарифы</MenuLink>
-          <MenuLink href="">Контакты</MenuLink>
+          <MenuLink href="/tariff">Тарифы</MenuLink>
+          <MenuLink href="/contact">Контакты</MenuLink>
           <MenuButton>
             <Button name="Запись на прием" link="" color="grey" size="small" />
           </MenuButton>
