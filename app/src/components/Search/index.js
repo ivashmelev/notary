@@ -16,7 +16,7 @@ export default class Search extends Component {
 
 const SearchWrapper = styled.div`
   display: flex;
-  width: 720px;
+  width: ${props => props.width};
   height: 80px;
   position: relative;
   @media ${responsive.notebook} {
@@ -33,6 +33,7 @@ const SearchInput = styled.input`
   flex: 1 1 auto;
   outline: none;
   border: none;
+
   @media ${responsive.notebook} {
     font-size: 14px;
   }
