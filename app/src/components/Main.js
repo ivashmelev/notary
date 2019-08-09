@@ -24,7 +24,7 @@ export default class Main extends Component {
             <MainTitle>Нотариальная контора</MainTitle>
             <MainTitle>Нижнего Новгорода</MainTitle>
           </MainTitleContainer>
-          <Search />
+          <Search width='720px' />
         </MainContent>
         <ContactLine phone='8 (831) 999-99-99' mail='notary@gmail.com' />
       </MainWrapper>
