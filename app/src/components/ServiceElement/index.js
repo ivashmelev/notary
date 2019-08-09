@@ -56,6 +56,6 @@ const ServiceElementButton = styled.div`
 
   @media ${responsive.tablet} {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
 `;

@@ -82,6 +82,7 @@ const TariffListContainer = styled.div`
 
   @media ${responsive.tablet} {
     flex-direction: column;
+    flex-flow: column-reverse;
   }
 `;
 
@@ -95,11 +96,17 @@ const TariffListTitle = styled.div`
   /* height: 780px; */
   background: #2D2D2D;
   box-sizing: border-box;
+
+  @media ${responsive.tablet} {
+    margin-top: 130px;
+    max-width: 100%;
+    align-items: flex-start;
+  }
 `;
 
 const TariffListTitleElement = styled.span`
   font-size: 16px;
-  height: 60px;
+  min-height: 60px;
   line-height: 30px;
   font-family: Montserrat Bold;
   text-align: right;
@@ -113,6 +120,10 @@ const TariffListTitleElement = styled.span`
   &:hover{
     color: #E6B980;
     cursor: pointer;
+  }
+
+  @media ${responsive.tablet} {
+    height: 0;
   }
   
 `;

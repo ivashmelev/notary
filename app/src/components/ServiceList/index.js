@@ -39,7 +39,7 @@ export default class ServiceList extends Component {
                 onClick={() => {
                   this.setState({ current: element.id });
                   console.log(window.innerWidth)
-                  if (window.innerWidth < 720) { window.scrollTo(10, 1600) }
+                  if (window.innerWidth < 720) { window.scrollTo(10, 542) }
                 }}
               >
                 {element.title}
@@ -50,7 +50,7 @@ export default class ServiceList extends Component {
                 onClick={() => {
                   this.setState({ current: element.id });
                   console.log(window.innerWidth)
-                  if (window.innerWidth < 720) { window.scrollTo(10, 1600) }
+                  if (window.innerWidth < 720) { window.scrollTo(10, 542) }
                 }}
               >
                 {element.title}
@@ -79,6 +79,7 @@ const ServiceListWrapper = styled.div`
 
   @media ${responsive.tablet} {
     flex-direction: column;
+    flex-flow: column-reverse;
   }
 `;
 
@@ -88,9 +89,14 @@ const ServiceListTitle = styled.div`
   flex-direction: column;
   align-items: flex-end;
   max-width: 600px;
-  /* height: 780px; */
   background: #2D2D2D;
   box-sizing: border-box;
+
+  @media ${responsive.tablet} {
+    margin-top: 150px;
+    align-items: flex-start;
+    max-width: unset;
+  }
 `;
 
 const ServiceListTitleElement = styled.span`
@@ -110,7 +116,12 @@ const ServiceListTitleElement = styled.span`
     color: #E6B980;
     cursor: pointer;
   }
-  
+
+  @media ${responsive.tablet} {
+    align-items: flex-start;
+    text-align: left;
+    height: unset;
+  }
 `;
 
 const ServiceListDescription = styled.div`

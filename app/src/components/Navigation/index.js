@@ -88,7 +88,7 @@ const NavigationWrapper = styled.div`
   }
 
   @media ${responsive.tablet} {
-    margin-top: 100px;
+    margin-top: 0;
   }
 
   
