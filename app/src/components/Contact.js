@@ -38,6 +38,13 @@ export default class Contact extends Component {
           <Form />
           <MapContact contact={this.state.contact} />
         </ContactContainer>
+        <ContactLinkContainer>
+          <ContactLinkTitle>Полезные ссылки</ContactLinkTitle>
+          <ContactLink href='https://minjust.ru/ '>Министерство юстиций Российской Федерации</ContactLink>
+          <ContactLink href='https://to52.minjust.ru/'>Главное управление министерства юстиции РФ по Нижегородской области</ContactLink>
+          <ContactLink href='https://notariat.ru'>Федеральная нотариальная палата</ContactLink>
+          <ContactLink href='http://www.nnp52.ru'>Нижегородская областная нотариальная палата</ContactLink>
+        </ContactLinkContainer>
       </ContactWrapper>
     )
   }
@@ -61,3 +68,33 @@ const ContactContainer = styled.div`
     align-items: center;
   }
 `;
+
+const ContactLinkContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 83px;
+`;
+const ContactLinkTitle = styled.span`
+  font-family: Montserrat Bold;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #000000;
+  margin-bottom: 50px;
+`;
+
+const ContactLink = styled.a`
+  font-family: Montserrat Regular;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #000000;
+  margin-bottom: 30px;
+  text-decoration: none;
+`;
+
+
