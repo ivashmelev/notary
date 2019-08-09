@@ -5,6 +5,7 @@ import Main from './Main'
 import About from './About'
 import Service from './Service'
 import Tariff from './Tariff'
+import Contact from './Contact'
 
 const Site = () => {
   return (
@@ -49,6 +50,7 @@ export default class App extends Component {
           <Route exact path="/about" component={About} />
           <Route exact path="/service" component={Service} />
           <Route exact path="/tariff" component={Tariff} />
+          <Route exact path="/contact" component={Contact} />
         </Switch>
       </Router>
     )

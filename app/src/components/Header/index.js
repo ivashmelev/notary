@@ -5,6 +5,7 @@ import ContactLine from '../ContactLine/index'
 import aboutImg from '../../assets/img/backgroundImgAbout.png'
 import serviceImg from '../../assets/img/backgroundImgService.png'
 import tariffImg from '../../assets/img/backgroundImgTariff.png'
+import contactImg from '../../assets/img/backgroundImgContact.png'
 
 
 export default class Header extends Component {
@@ -21,7 +22,8 @@ export default class Header extends Component {
         <HeaderBackgroundImg src={
           backgroundImg === 'about' ? aboutImg :
             backgroundImg === 'service' ? serviceImg :
-              backgroundImg === 'tariff' ? tariffImg : null} />
+              backgroundImg === 'tariff' ? tariffImg :
+                backgroundImg === 'contact' ? contactImg : null} />
         <Menu />
         <ContactLine phone='8 (831) 999-99-99' mail='notary@gmail.com' />
       </HeaderWrapper>
