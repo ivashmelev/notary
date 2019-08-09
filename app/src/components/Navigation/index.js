@@ -19,40 +19,39 @@ export default class Navigation extends Component {
 
 
 const NavigationLink = styled.a`
+  width: 100%;
+  height: 100%;
   text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform: translateY(25%);
-  
+  justify-content: center;
+  transform: translateY(50%);
   transition: all .5s cubic-bezier(0.77,0,0.175,1);
-
   @media ${responsive.tablet} {
-    transform: translateY(-80%);
+    transform: translateY(0);
   }
 `;
 
-const NavigationSubTitle = styled.span`
-  color: #D7D7D7;
+const NavigationSubTitle = styled.div`
+  color: #FFFFFF;
   font-family: Montserrat Regular;
-  font-size: 13px;
+  font-size: 16px;
   letter-spacing: 0.13px;
   line-height: 18px;
   text-align: center;
   position: relative;
   opacity: 0.4;
   transition: all .5s cubic-bezier(0.77,0,0.175,1);
-
   @media ${responsive.tablet} {
-    opacity: 1;
+    
   }
 `;
 
-const NavigationTitle = styled.span`
-  color: #D7D7D7;
+const NavigationTitle = styled.div`
+  color: #FFFFFF;
   font-family: Montserrat Thin;
-  font-size: 149px;
-  line-height: 139px;
+  font-size: 144px;
   text-align: center;
   position: relative;
   margin: 0;
@@ -60,26 +59,26 @@ const NavigationTitle = styled.span`
   color: #FFFFFF;
   opacity: 0.4;
   transition: all .5s cubic-bezier(0.77,0,0.175,1);
-
+  @media ${responsive.notebookS} {
+    font-size: 100px;
+  }
   @media ${responsive.tablet} {
-    opacity: 1;
-    font-size: 69px
+    font-size: 48px;
   }
 `;
 
 const NavigationWrapper = styled.div`
-  height: 406px;
+  height: 369px;
   display: flex;
-  align-items: flex-end;
-  background: linear-gradient(180deg, #363030 0%, #181616 100%);
+  background: #2D2D2D;
   cursor: pointer;
   overflow: hidden;
   justify-content: center;
   transition: all .5s cubic-bezier(0.77,0,0.175,1);
 
   &:hover .${NavigationLink.componentStyle.componentId}{
-    transform: translateY(-80%);
     margin-bottom: 0;
+    transform: translateY(0);
   }
 
   &:hover .${NavigationSubTitle.componentStyle.componentId},
@@ -88,10 +87,8 @@ const NavigationWrapper = styled.div`
   }
 
   @media ${responsive.tablet} {
-    margin-top: 0;
+    height: 218px;
   }
-
-  
 `;
 
 

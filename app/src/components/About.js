@@ -64,7 +64,7 @@ const AboutContentText = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  @media ${responsive.tablet} {
+  @media ${responsive.notebookS} {
     flex-direction: column;
   }
 `;
@@ -75,6 +75,10 @@ const AboutContentColumn = styled.div`
   max-width: 560px;
   width: 100%;
   align-items: flex-end;
+  @media ${responsive.notebookS} {
+    max-width: 100%;
+    align-items: center;
+  }
 `;
 
 const AboutParagraph = styled.p`
@@ -85,6 +89,11 @@ const AboutParagraph = styled.p`
   letter-spacing: 0.05em;
   text-align: left;
   margin: 0 0 20px 0;
+  @media ${responsive.tablet} {
+    font-size: 16px;
+    line-height: 25px;
+    letter-spacing: 0;
+  }
 `;
 
 const AboutCite = styled.div`
@@ -124,7 +133,12 @@ const AboutCite = styled.div`
   }
 
   @media ${responsive.tablet} {
-    margin-left: 0;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 25px 15px;
+    max-width: 400px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
 `;
@@ -140,13 +154,18 @@ const AboutCiteAuthor = styled.p`
   margin: 0;
 
   @media ${responsive.tablet} {
-    margin-left: 0;
+    padding: 0 15px;
+    max-width: 400px;
+    width: 100%;
   }
 `;
 
 
 const AboutButton = styled.div`
   width: 100%;
-  margin-top: 30px;
+  margin: 30px 0 0 0;
+  @media ${responsive.notebookS} {
+    margin: 30px 0 65px 0;
+  }
 `;
 

@@ -52,7 +52,7 @@ const MainBackgroundImg = styled.div`
   margin: auto;
   filter: brightness(.7);
   @media ${responsive.tablet} {
-    height: 50vh;
+    height: 55vh;
     bottom: 0;
     filter: brightness(1);
     display: flex;
@@ -80,7 +80,7 @@ const MainContent = styled.div`
 
   @media ${responsive.tablet} {
     width: 100%;
-    height: 50vh;
+    height: 45vh;
   }
 `;
 
