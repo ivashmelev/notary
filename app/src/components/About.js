@@ -42,6 +42,7 @@ export default class About extends Component {
 }
 
 const AboutWrapper = styled.div``;
+
 const AboutContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -52,6 +53,9 @@ const AboutContent = styled.div`
   margin: auto;
   @media ${responsive.notebook} {
     width: 100%
+  }
+  @media ${responsive.mobileS} {
+    padding: 0 15px 150px 15px;
   }
 `;
 
@@ -144,10 +148,5 @@ const AboutCiteAuthor = styled.p`
 const AboutButton = styled.div`
   width: 100%;
   margin-top: 30px;
-
-  @media ${responsive.tablet} {
-    display: flex;
-    justify-content: center;
-  }
 `;
 
