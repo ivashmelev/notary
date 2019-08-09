@@ -68,7 +68,6 @@ const NavigationTitle = styled.span`
 `;
 
 const NavigationWrapper = styled.div`
-  margin-top: 190px;
   height: 406px;
   display: flex;
   align-items: flex-end;

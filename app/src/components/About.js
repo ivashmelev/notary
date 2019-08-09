@@ -20,19 +20,20 @@ export default class About extends Component {
             <AboutContentColumn>
               <AboutParagraph>Повседневная практика показывает, что дальнейшее развитие различных форм деятельности способствует подготовки и реализации существенных финансовых и административных условий. С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности играет важную роль в формировании дальнейших направлений развития. Задача организации, в особенности же новая модель организационной деятельности обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития.</AboutParagraph>
               <AboutParagraph>Значимость этих проблем настолько очевидна, что постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет выполнять важные задания по разработке модели развития. Задача организации, в особенности же укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании новых предложений. Разнообразный и богатый опыт сложившаяся структура организации требуют определения и уточнения систем массового участия.</AboutParagraph>
+              <AboutButton>
+                <Button name='Запись на прием' />
+              </AboutButton>
             </AboutContentColumn>
             <AboutContentColumn>
               <AboutCite>
                 Задача организации, в особенности же укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании новых предложений.
-            </AboutCite>
+              </AboutCite>
               <AboutCiteAuthor>
                 Пережогина А. Ю.
               </AboutCiteAuthor>
             </AboutContentColumn>
           </AboutContentText>
-          <AboutButton>
-            <Button name='Запись на прием' />
-          </AboutButton>
+          
         </AboutContent>
         <Navigation title='УСЛУГИ' subtitle='СЛЕДУЮЩИЙ РАЗДЕЛ' />
       </AboutWrapper>
@@ -44,9 +45,14 @@ const AboutWrapper = styled.div``;
 const AboutContent = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1440px;
-  width: 80%;
+  max-width: 1260px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 30px 200px 30px;
   margin: auto;
+  @media ${responsive.notebook} {
+    width: 100%
+  }
 `;
 
 const AboutContentText = styled.div`
@@ -62,51 +68,55 @@ const AboutContentText = styled.div`
 const AboutContentColumn = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 529px;
+  max-width: 560px;
+  width: 100%;
+  align-items: flex-end;
 `;
 
-const AboutParagraph = styled.span`
+const AboutParagraph = styled.p`
   font-family: Montserrat Regular;
   font-size: 18px;
   color: #2D2D2D;
   line-height: 34px;
   letter-spacing: 0.05em;
   text-align: left;
-  margin-top: 20px;
+  margin: 0 0 20px 0;
 `;
 
-const AboutCite = styled.span`
-  width: 100%;
+const AboutCite = styled.div`
+  width: 400px;
   font-family: Montserrat Regular Italic;
   font-size: 18px;
   color: #2D2D2D;
   line-height: 34px;
   letter-spacing: 0.05em;
   text-align: left;
-  margin-top: 20px;
   font-weight: 600;
-  margin-left: 50px;
+  padding: 25px 40px;
+  position: relative;
 
   &::before{
     content: '';
-    position: relative;
+    position: absolute;
     background-image: url(${openCite});
-    width: 33px;
+    width: 35px;
     height: 25px;
     display: block;
     background-repeat: no-repeat;
-    left: -40px;
+    left: 0;
+    top: 0;
   }
 
   &::after{
     content: '';
-    position: relative;
+    position: absolute;
     background-image: url(${closeCite});
-    width: 33px;
+    width: 35px;
     height: 25px;
     display: block;
     background-repeat: no-repeat;
-    left: 100%;
+    bottom: 0;
+    right: 0;
   }
 
   @media ${responsive.tablet} {
@@ -115,14 +125,15 @@ const AboutCite = styled.span`
 
 `;
 
-const AboutCiteAuthor = styled.span`
-  margin-top: 25px;
+const AboutCiteAuthor = styled.p`
+  width: 400px;
   font-family: Montserrat Bold;
   font-size: 20px;
   line-height: 34px;
   letter-spacing: 0.05em;
   color: #2D2D2D;
-  margin-left: 50px;
+  padding: 0 40px;
+  margin: 0;
 
   @media ${responsive.tablet} {
     margin-left: 0;
@@ -131,12 +142,12 @@ const AboutCiteAuthor = styled.span`
 
 
 const AboutButton = styled.div`
-  margin-top: 50px;
+  width: 100%;
+  margin-top: 30px;
 
   @media ${responsive.tablet} {
     display: flex;
     justify-content: center;
-    
   }
 `;
 

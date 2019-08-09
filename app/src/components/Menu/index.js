@@ -15,10 +15,16 @@ export default class Menu extends Component {
           const menu = document.querySelector(`.${MenuWrapper.componentStyle.componentId}`);
           menu.classList.toggle('open');
         }}>
-          <MenuHamburgerLine></MenuHamburgerLine>
-          <MenuHamburgerLine></MenuHamburgerLine>
-          <MenuHamburgerLine></MenuHamburgerLine>
-          <MenuHamburgerLine></MenuHamburgerLine>
+          <MenuHamburgerBox>
+            <MenuHamburgerBoxLine />
+          </MenuHamburgerBox>
+          <MenuHamburgerBox>
+            <MenuHamburgerBoxLine />
+            <MenuHamburgerBoxLine />
+          </MenuHamburgerBox>
+          <MenuHamburgerBox>
+            <MenuHamburgerBoxLine />
+          </MenuHamburgerBox>
         </MenuHamburger>
         <MenuLinkWrapper>
           <MenuLink href="/">Главная</MenuLink>
@@ -35,97 +41,101 @@ export default class Menu extends Component {
   }
 }
 
+
 const MenuWrapper = styled.div`
   display: flex;
-  max-width: 720px;
-  height: 50px;
+  width: 100%;
   position: relative;
-  z-index: 50;
-  justify-content: space-between;
+  z-index: 99;
+  justify-content: flex-end;
   align-items: center;
 
   @media ${responsive.tablet} {
+    position: absolute;
     flex-direction: column;
-    max-width: 678px;
     width: 100%;
     align-items: flex-end;
-
-    
+    transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
     &.open {
-      height: 359px;
-      position: absolute;
-      background-color: #2D2D2D;
-      margin-bottom: 50px;
+      position: fixed;
+      top: 0;
+      height: 100vh;
     }
   }
 `;
 
 const MenuHamburger = styled.div`
-  display: block;
-  width: 50px;
-  height: 40px;
-  position: relative;
   display: none;
-  padding: 10px;
-
+  width: 30px;
+  height: 16px;
+  position: absolute;
+  z-index: 100;
+  flex-direction: column;
+  justify-content: space-between;
+  top: 30px;
+  right: 15px;
   @media ${responsive.tablet} {
-    display: block;
+    display: flex;
   }
 
 `;
 
-const MenuHamburgerLine = styled.span`
-  width: 40px;
-  height: 4px;
+
+const MenuHamburgerBoxLine = styled.div`
+  width: 30px;
+  height: 2px;
   background-color: #ffffff;
-  border-radius: 6px;
-  display: block;
-  padding: -5px 0;
-  margin: 7px 0;
-  left: 0;
-  transition: .5s cubic-bezier(0.075, 0.82, 0.165, 1);
-
-  &:nth-child(3){
-    margin-top: -11px;
+  position: absolute;
+  transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
+`
+const MenuHamburgerBox = styled.div`
+  width: 100%;
+  position: relative;
+  .${MenuWrapper.componentStyle.componentId}.open &:nth-child(1) ${MenuHamburgerBoxLine},
+  .${MenuWrapper.componentStyle.componentId}.open &:nth-child(3) ${MenuHamburgerBoxLine}{
+    opacity: 0;
   }
-
-  .${MenuWrapper.componentStyle.componentId}.open &:nth-child(1),
-  .${MenuWrapper.componentStyle.componentId}.open &:nth-child(4){
-    width: 0;
-    left: 50px;
-  }
-
-  .${MenuWrapper.componentStyle.componentId}.open &:nth-child(2){
-    transform: rotate(-45deg);
-  }
-
-  .${MenuWrapper.componentStyle.componentId}.open &:nth-child(3){
+  .${MenuWrapper.componentStyle.componentId}.open &:nth-child(2) ${MenuHamburgerBoxLine}:nth-child(1){
     transform: rotate(45deg);
   }
-`;
+  .${MenuWrapper.componentStyle.componentId}.open &:nth-child(2) ${MenuHamburgerBoxLine}:nth-child(2){
+    transform: rotate(-45deg);
+  }
+`
 
 const MenuLinkWrapper = styled.div`
   display: flex;
-  width: 1140px;
   height: 50px;
   justify-content: space-between;
   align-items: center;
+  margin: 30px 0 0 0;
 
   @media ${responsive.tablet} {
-    position: relative;
+    /* position: relative;
     z-index: -1;
-    flex-direction: column;
-    max-width: 678px;
-    width: 100%;
+    flex-direction: column; */
+    /* max-width: 678px; */
+    /* width: 100%;
     align-items: flex-end;
-    opacity: 0;
+    opacity: 0; */
     /* transition: .5s cubic-bezier(0.18, 0.89, 0.32, 1.28); */
-
+    width: 100%;
+    height: 0;
+    background: #2D2D2D;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0 0 0 0;
+    position: fixed;
+    top: 0;
+    padding: 0;
+    transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
+    overflow: auto;
+    box-sizing: border-box;
 
     .${MenuWrapper.componentStyle.componentId}.open &{
-      opacity: 1;
-      height: 359px;
-      z-index: 50;
+      height: 100%;
+      padding: 115px 0 30px 0;
       /* transition: 1s cubic-bezier(0.18, 0.89, 0.32, 1.28); */
     }
   }
@@ -138,15 +148,20 @@ const MenuLink = styled.a`
   color: #ffffff;
   text-align: center;
   text-decoration: none;
-
+  padding: 15px 15px;
+  letter-spacing: 0.05em;
   @media ${responsive.tablet} {
-    padding: 15.5px;
+    padding: 15px 30px;
+    font-size: 24px;
   }
 `;
 
 const MenuButton = styled.div`
+  margin: 0 0 0 15px;
   @media ${responsive.tablet} {
-    margin-top: 100px;
+    margin: 0;
+    position: absolute;
+    top: 15px;
   }
 
   @media ${responsive.mobileS} {

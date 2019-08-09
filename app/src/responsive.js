@@ -1,4 +1,5 @@
 export default {
-  mobileS: `(max-width: 320px)`,
-  tablet: `(max-width: 720px)`
+  mobileS: `(max-width: 375px)`,
+  tablet: `(max-width: 768px)`,
+  notebook: `(max-width: 1200px)`
 }

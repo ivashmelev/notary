@@ -5,6 +5,7 @@ import ContactLine from '../ContactLine/index'
 import aboutImg from '../../assets/img/backgroundImgAbout.png'
 import serviceImg from '../../assets/img/backgroundImgService.png'
 import tariffImg from '../../assets/img/backgroundImgTariff.png'
+import responsive from '../../responsive'
 
 
 export default class Header extends Component {
@@ -14,11 +15,9 @@ export default class Header extends Component {
   }
   render() {
     const { backgroundImg } = this.props;
-
-    console.log(this.props);
     return (
       <HeaderWrapper>
-        <HeaderBackgroundImg src={
+        <HeaderBackgroundImg url={
           backgroundImg === 'about' ? aboutImg :
             backgroundImg === 'service' ? serviceImg :
               backgroundImg === 'tariff' ? tariffImg : null} />
@@ -32,20 +31,33 @@ export default class Header extends Component {
 
 const HeaderWrapper = styled.div`
   display: flex;
-  max-width: 1440px;
-  height: 530px;
+  width: 100%;
+  height: 60vh;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
   margin: auto;
   position: relative;
   z-index: 20;
-  background-image: url(${aboutImg});
+  @media ${responsive.notebook} {
+    height: 50vh;
+  }
+  @media ${responsive.tablet} {
+    height: 320px;
+  }
+  @media ${responsive.mobileS} {
+    height: 270px;
+  }
 `;
 
-const HeaderBackgroundImg = styled.img`
-  filter: brightness(.7);
+const HeaderBackgroundImg = styled.div`
+  width: 100%;
+  height: 100%;
   position: absolute;
+  background-image: url(${props => props.url});
+  background-position: center;
+  background-size: cover;
+  filter: brightness(.7);
 `;
 
 

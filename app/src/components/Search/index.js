@@ -16,9 +16,13 @@ export default class Search extends Component {
 
 const SearchWrapper = styled.div`
   display: flex;
-  max-width: 720px;
+  width: 720px;
   height: 80px;
   position: relative;
+  @media ${responsive.notebook} {
+    width: 100%;
+    height: 65px;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -26,11 +30,15 @@ const SearchInput = styled.input`
   font-size: 16px;
   padding: 30px 26px; 
   color: #000000;
-  width: 100%;
+  flex: 1 1 auto;
   outline: none;
+  border: none;
+  @media ${responsive.notebook} {
+    font-size: 14px;
+  }
 `;
 
-const SearchButton = styled.button`
+const SearchButton = styled.div`
   width: 80px;
   height: 80px;
   background: #E6B980;
@@ -40,4 +48,9 @@ const SearchButton = styled.button`
   background-repeat: no-repeat;
   background-position: center;
   outline: none;
+  cursor: pointer;
+  @media ${responsive.notebook} {
+    width: 65px;
+    height: 65px;
+  }
 `;

@@ -37,7 +37,7 @@ const ButtonWrapper = styled.div`
   @media ${responsive.tablet} {
     padding: 15.5px;
     width: ${props => props.size === 'big' ? '300px' : '225px'};
-
+    background-color: ${props => props.color === 'grey' ? '#E6B980' : '#E6B980'};
   }
 
 `;
@@ -46,5 +46,6 @@ const ButtonLink = styled.div`
   font-size: 16px;
   font-family: Montserrat Bold;
   color: #ffffff;
+  letter-spacing: 0.05em;
 `;
 

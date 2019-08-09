@@ -28,6 +28,7 @@ const ContactLineWrapper = styled.div`
   @media ${responsive.tablet} {
     flex-direction: column;
     align-items: flex-end;
+    display: none;
   }
 `;
 
