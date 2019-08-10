@@ -17,6 +17,14 @@ code {
     
 }
 
+.react-calendar__tile--active {
+  background: #E6B980 !important;
+  color: white;
+}
+.react-calendar__tile--hasActive {
+  background: #E6B980 !important;
+}
+
 @font-face{
   font-family: 'Montserrat Regular';
   src: url(./assets/fonts/Montserrat/Montserrat-Regular.ttf);
