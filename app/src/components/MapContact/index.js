@@ -47,29 +47,30 @@ export default class MapContact extends Component {
 }
 
 const MapWrapper = styled.div`
-  max-width: 800px;
-  height: 986px;
+  width: 55vw;
   display: flex;
-  width: 100%;
   flex-direction: column;
+  @media ${responsive.notebookS} {
+    width: 100%;
+  }
 `;
 
 const MapContainer = styled.div`
-  max-width: 800px;
+  width: 100%;
   height: 800px;
-
-  @media ${responsive.tablet} {
-    max-width: 100%;
+  @media ${responsive.notebookS} {
+    height: 550px;
   }
 `;
 
 const MapInfo = styled.div`
-  max-width: 800px;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   background: #E6B980;
   padding-left: 20px;
+  box-sizing: border-box;
 
   @media ${responsive.tablet} {
     height: unset;
@@ -90,6 +91,9 @@ const MapAddresText = styled.a`
   letter-spacing: 0.05em;
   color: #FFFFFF;
   text-decoration: none;
+  @media ${responsive.tablet} {
+    font-size: 16px;
+  }
 `;
 
 const MapPhoneMail = styled.div`

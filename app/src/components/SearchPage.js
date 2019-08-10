@@ -17,10 +17,10 @@ export default class SearchPage extends Component {
           <SearchResult>
             <SearchTitleContainer>
               <SearchResultSection></SearchResultSection>
-              <SearchResultTitle></SearchResultTitle>/
-              <SearchResultTitle></SearchResultTitle>
+              {/* <SearchResultTitle></SearchResultTitle>/
+              <SearchResultTitle></SearchResultTitle> */}
             </SearchTitleContainer>
-            <SearchResultText></SearchResultText>
+            {/* <SearchResultText></SearchResultText> */}
           </SearchResult>
         </SearchResultContainer>
       </SearchWrapper>

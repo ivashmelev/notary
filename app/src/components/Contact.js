@@ -34,36 +34,39 @@ export default class Contact extends Component {
       <ContactWrapper>
         <Header backgroundImg='contact' />
         <Title text='КОНТАКТЫ' />
-        <ContactContainer>
-          <Form />
-          <MapContact contact={this.state.contact} />
-        </ContactContainer>
-        <ContactLinkContainer>
-          <ContactLinkTitle>Полезные ссылки</ContactLinkTitle>
-          <ContactLink href='https://minjust.ru/ '>Министерство юстиций Российской Федерации</ContactLink>
-          <ContactLink href='https://to52.minjust.ru/'>Главное управление министерства юстиции РФ по Нижегородской области</ContactLink>
-          <ContactLink href='https://notariat.ru'>Федеральная нотариальная палата</ContactLink>
-          <ContactLink href='http://www.nnp52.ru'>Нижегородская областная нотариальная палата</ContactLink>
-        </ContactLinkContainer>
+        <ContactPageWrap>
+          <ContactContainer>
+            <Form />
+            <MapContact contact={this.state.contact} />
+          </ContactContainer>
+          <ContactLinkContainer>
+            <ContactLinkTitle>Полезные ссылки</ContactLinkTitle>
+            <ContactLink href='https://minjust.ru/' target='_blank'>Министерство юстиций Российской Федерации</ContactLink>
+            <ContactLink href='https://to52.minjust.ru/' target='_blank'>Главное управление министерства юстиции РФ по Нижегородской области</ContactLink>
+            <ContactLink href='https://notariat.ru' target='_blank'>Федеральная нотариальная палата</ContactLink>
+            <ContactLink href='http://www.nnp52.ru' target='_blank'>Нижегородская областная нотариальная палата</ContactLink>
+          </ContactLinkContainer>
+        </ContactPageWrap>
       </ContactWrapper>
     )
   }
 }
 
-const ContactWrapper = styled.div`
-  max-width: 1440px;
-  margin: auto;
-  margin-bottom: 134px;
-
+const ContactPageWrap = styled.div`
+  width: 100%;
+  padding: 0 0 185px 0;
   @media ${responsive.tablet} {
-    margin-bottom: 0;
+    padding: 0 0 50px 0;
   }
 `;
+
+const ContactWrapper = styled.div``;
+
 const ContactContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media ${responsive.tablet} {
+  @media ${responsive.notebookS} {
     flex-direction: column;
     align-items: center;
   }
@@ -75,6 +78,7 @@ const ContactLinkContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 83px;
+  padding: 0 15px;
 `;
 const ContactLinkTitle = styled.span`
   font-family: Montserrat Bold;
@@ -84,6 +88,9 @@ const ContactLinkTitle = styled.span`
   letter-spacing: 0.05em;
   color: #000000;
   margin-bottom: 50px;
+  @media ${responsive.tablet} {
+    font-size: 16px;
+  }
 `;
 
 const ContactLink = styled.a`
@@ -95,6 +102,9 @@ const ContactLink = styled.a`
   color: #000000;
   margin-bottom: 30px;
   text-decoration: none;
+  @media ${responsive.tablet} {
+    font-size: 16px;
+  }
 `;
 
 
