@@ -33,8 +33,8 @@ export default class Menu extends Component {
           <MenuLink onClick={() => history.push({ pathname: '/service' })}>Услуги</MenuLink>
           <MenuLink onClick={() => history.push({ pathname: '/tariff' })}>Тарифы</MenuLink>
           <MenuLink onClick={() => history.push({ pathname: '/contact' })}>Контакты</MenuLink>
-          <MenuButton>
-            <Button name="Запись на прием" link="" color="grey" size="small" />
+          <MenuButton onClick={() => history.push({ pathname: '/appointment' })}>
+            <Button name="Запись на прием" link="" color="grey" size="small"  />
           </MenuButton>
         </MenuLinkWrapper>
       </MenuWrapper >
