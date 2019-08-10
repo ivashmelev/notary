@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import responsive from '../../responsive'
+import history from '../../helpers/history'
 
 
 export default class Navigation extends Component {
@@ -8,7 +9,15 @@ export default class Navigation extends Component {
     const { title, subtitle } = this.props;
     return (
       <NavigationWrapper>
-        <NavigationLink>
+        <NavigationLink
+          onClick={
+            title === 'НАЗАД' ? () => this.props.onReturnBack(false) :
+            title === 'УСЛУГИ' ? () => history.push({ pathname: '/service' }) :
+            title === 'ТАРИФЫ' ? () => history.push({ pathname: '/tariff' }) :
+            title === 'КОНТАКТЫ' ? () => history.push({ pathname: '/contact' }) :
+            null
+          }
+        >
           <NavigationSubTitle>{subtitle}</NavigationSubTitle>
           <NavigationTitle>{title}</NavigationTitle>
         </NavigationLink>
@@ -34,6 +43,7 @@ const NavigationLink = styled.a`
 `;
 
 const NavigationSubTitle = styled.div`
+  text-transform: uppercase;
   color: #FFFFFF;
   font-family: Montserrat Regular;
   font-size: 16px;
@@ -49,6 +59,7 @@ const NavigationSubTitle = styled.div`
 `;
 
 const NavigationTitle = styled.div`
+  text-transform: uppercase;
   color: #FFFFFF;
   font-family: Montserrat Thin;
   font-size: 144px;

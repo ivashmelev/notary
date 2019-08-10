@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import responsive from '../../responsive'
 import Button from '../Button'
+import history from '../../helpers/history'
 
 export default class Menu extends Component {
   constructor(props) {
@@ -27,11 +28,11 @@ export default class Menu extends Component {
           </MenuHamburgerBox>
         </MenuHamburger>
         <MenuLinkWrapper>
-          <MenuLink href="/">Главная</MenuLink>
-          <MenuLink href="/about">О нас</MenuLink>
-          <MenuLink href="/service">Услуги</MenuLink>
-          <MenuLink href="/tariff">Тарифы</MenuLink>
-          <MenuLink href="/contact">Контакты</MenuLink>
+          <MenuLink onClick={() => history.push({ pathname: '/' })}>Главная</MenuLink>
+          <MenuLink onClick={() => history.push({ pathname: '/about' })}>О нас</MenuLink>
+          <MenuLink onClick={() => history.push({ pathname: '/service' })}>Услуги</MenuLink>
+          <MenuLink onClick={() => history.push({ pathname: '/tariff' })}>Тарифы</MenuLink>
+          <MenuLink onClick={() => history.push({ pathname: '/contact' })}>Контакты</MenuLink>
           <MenuButton>
             <Button name="Запись на прием" link="" color="grey" size="small" />
           </MenuButton>
@@ -150,6 +151,7 @@ const MenuLink = styled.a`
   text-decoration: none;
   padding: 15px 15px;
   letter-spacing: 0.05em;
+  cursor: pointer;
   @media ${responsive.tablet} {
     padding: 15px 30px;
     font-size: 24px;

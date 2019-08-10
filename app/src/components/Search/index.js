@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import responsive from '../../responsive'
 import searchIco from '../../assets/img/search.png'
+import history from '../../helpers/history'
 
 export default class Search extends Component {
   render() {
     return (
       <SearchWrapper>
         <SearchInput type='text' name='search' placeholder='ПОИСК ПО САЙТУ' />
-        <SearchButton></SearchButton>
+        <SearchButton onClick={() => history.push({ pathname: '/search' })}></SearchButton>
       </SearchWrapper>
     )
   }

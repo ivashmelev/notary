@@ -6,17 +6,14 @@ import backgroundImgMain from '../assets/img/backgroundImgMain.png'
 import Search from './Search'
 import responsive from '../responsive'
 import arrowIco from '../assets/img/arrow.png'
-
-
+import history from '../helpers/history'
 
 export default class Main extends Component {
   render() {
     return (
       <MainWrapper>
         <MainBackgroundImg>
-          <MainBackgroundButton>
-
-          </MainBackgroundButton>
+          <MainBackgroundButton onClick={() => history.push({ pathname: '/about' })} />
         </MainBackgroundImg>
         <Menu />
         <MainContent>
@@ -72,7 +69,7 @@ const MainBackgroundButton = styled.div`
     background-repeat: no-repeat;
     background-position: center;
   }
-`
+`;
 
 const MainContent = styled.div`
   display: flex;

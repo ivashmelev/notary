@@ -12,7 +12,7 @@ export default class Button extends Component {
     const { name, link, color, size, margin } = this.props;
     return (
       <ButtonWrapper color={color} size={size} margin={margin}>
-        <ButtonLink href={link}>{name}</ButtonLink>
+        <ButtonLink size={size} href={link}>{name}</ButtonLink>
       </ButtonWrapper>
     )
   }
@@ -36,16 +36,20 @@ const ButtonWrapper = styled.div`
 
   @media ${responsive.tablet} {
     padding: 15.5px;
-    width: ${props => props.size === 'big' ? '300px' : '225px'};
+    width: ${props => props.size === 'big' ? '100%' : '225px'};
     background-color: ${props => props.color === 'grey' ? '#E6B980' : '#E6B980'};
   }
 
 `;
 
 const ButtonLink = styled.div`
-  font-size: 16px;
+  font-size: ${props => props.size === 'big' ? '18px' : '16px'} ;
   font-family: Montserrat Bold;
   color: #ffffff;
   letter-spacing: 0.05em;
+  @media ${responsive.tablet} {
+    font-size: 16px;
+    letter-spacing: ${props => props.size === 'big' ? '0' : '0.05em'};
+  }
 `;
 
