@@ -1,9 +1,9 @@
 <?php
 
 $HOST = 'localhost';
-$PORT = 5432;
+$PORT = 3306;
 $DATABASE = 'notaryDB';
-$USERNAME = 'postgres';
-$PASSWORD = 'postgres';
+$USERNAME = 'root';
+$PASSWORD = '';
 
 ?>
