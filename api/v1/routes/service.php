@@ -3,8 +3,8 @@ header('Access-Control-Allow-Origin: *');
 //Получить все услуги и услуги по id и изменить услугу
 
 
-require_once ('../../../config.php');
-require_once ('../../../modules/auth.php');
+require_once ('../../../modules/sql/config.php');
+require_once ('../../../modules/pgsql/auth.php');
 
 $connect = pg_connect("host=".$HOST." options='--client_encoding=UTF8' port=".$PORT." dbname=".$DATABASE." user=".$USERNAME." password=".$PASSWORD."");
 

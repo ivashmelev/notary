@@ -2,7 +2,7 @@
 // Получить все разделы и получить тарифы этого раздела по id раздела
 header('Access-Control-Allow-Origin: *');
 
-require_once ('../../../config.php');
+require_once ('../../../modules/sql/config.php');
 
 $connect = pg_connect("host=".$HOST." options='--client_encoding=UTF8' port=".$PORT." dbname=".$DATABASE." user=".$USERNAME." password=".$PASSWORD."");
 
