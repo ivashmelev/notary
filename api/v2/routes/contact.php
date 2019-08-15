@@ -15,11 +15,14 @@ if (!$connect) {
     case 'GET':
       $result = mysqli_query($connect, 'CALL func_api_v1_get_contact()');
     break;
-    case 'PATCH':
+    case 'POST':
       // auth($connect);
-      parse_str(file_get_contents('php://input'), $_PATCH);
-      if(isset($_PATCH['id']) && isset($_PATCH['address']) && isset($_PATCH['phone']) && isset($_PATCH['mail'])){
-        $result = mysqli_query($connect, 'CALL func_api_v1_patch_contact_id('.$_PATCH['id'].', '.$_PATCH['address'].', '.$_PATCH['phone'].', '.$_PATCH['mail'].')');
+     $id = $_POST['id'];
+     $address = $_POST['address'];
+     $phone = $_POST['phone'];
+     $mail = $_POST['mail'];
+      if(isset($_POST['id']) && isset($_POST['address']) && isset($_POST['phone']) && isset($_POST['mail'])){
+        $result = mysqli_query($connect, "CALL func_api_v1_patch_contact_id($id, '$address', '$phone', '$mail')");
       }
     break;
   }

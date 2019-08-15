@@ -17,16 +17,16 @@ if (!$connect) {
         $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_get_tariff_id($1)', [$_GET['id']]);
       }
     break;
-    case 'PATCH':
+    case 'POST':
       // auth($connect);
-      parse_str(file_get_contents('php://input'), $_PATCH);
-      if(isset($_PATCH['id']) && isset($_PATCH['title']) && isset($_PATCH['subtitle']) && isset($_PATCH['tariff']) && isset($_PATCH['price'])){
+     
+      if(isset($_POST['id']) && isset($_POST['title']) && isset($_POST['subtitle']) && isset($_POST['tariff']) && isset($_POST['price'])){
         $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_patch_tariff_id($1, $2, $3, $4, $5)', [
-          $_PATCH['id'],
-          $_PATCH['title'], 
-          $_PATCH['subtitle'], 
-          $_PATCH['tariff'], 
-          $_PATCH['price']
+          $_POST['id'],
+          $_POST['title'], 
+          $_POST['subtitle'], 
+          $_POST['tariff'], 
+          $_POST['price']
         ]);
       }
     break;

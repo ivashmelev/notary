@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import Service from '../Service'
+
 
 class Services extends Component {
   render() {
     return (
       <ServicesWrapper>
-        УСЛУГИ
+        <Service />
       </ServicesWrapper>
     );
   }

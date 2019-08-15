@@ -16,16 +16,20 @@ if (!$connect) {
 
   switch($_SERVER['REQUEST_METHOD']){
     case 'POST':
+      $login = $_POST['login'];
+      $password = md5($_POST['password']);
       if(isset($_POST['login']) && isset($_POST['password'])){
-        $result = mysqli_query($connect, 'CALL func_api_v1_post_admin('.$_POST['login'].', '.md5($_POST['password']).')');
+        $result = mysqli_query($connect, "CALL func_api_v1_post_admin('$login', '$password)");
       }
     break;
-    case 'PATCH':
-      parse_str(file_get_contents('php://input'), $_PATCH);
-      if(isset($_PATCH['login']) && isset($_PATCH['new_login']) && isset($_PATCH['password'])){
-        $result = mysqli_query($connect, 'CALL func_api_v1_patch_admin_login('.$_PATCH['login'].', '.$_PATCH['new_login'].', '.md5($_PATCH['password']).')');
-      }
-    break;
+    // case 'POST':
+    //   $login = $_POST['login'];
+    //   $newLogin = $_POST['new_login'];
+    //   $password = md5($_POST['password']);
+    //   if(isset($_POST['login']) && isset($_POST['new_login']) && isset($_POST['password'])){
+    //     $result = mysqli_query($connect, "CALL func_api_v1_patch_admin_login('$login', '$newLogin', '$password')");
+    //   }
+    // break;
   }
 
   if($result == ''){

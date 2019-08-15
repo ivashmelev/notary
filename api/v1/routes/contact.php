@@ -15,15 +15,15 @@ if (!$connect) {
     case 'GET':
       $result = pg_query($connect, 'SELECT * FROM func_api_v1_get_contact()');
     break;
-    case 'PATCH':
+    case 'POST':
       // auth($connect);
-      parse_str(file_get_contents('php://input'), $_PATCH);
-      if(isset($_PATCH['id']) && isset($_PATCH['address']) && isset($_PATCH['phone']) && isset($_PATCH['mail'])){
+     
+      if(isset($_POST['id']) && isset($_POST['address']) && isset($_POST['phone']) && isset($_POST['mail'])){
         $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_patch_contact_id($1, $2, $3, $4)', [
-          $_PATCH['id'],
-          $_PATCH['address'], 
-          $_PATCH['phone'], 
-          $_PATCH['mail']
+          $_POST['id'],
+          $_POST['address'], 
+          $_POST['phone'], 
+          $_POST['mail']
         ]);
       }
     break;

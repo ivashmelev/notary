@@ -17,14 +17,14 @@ export default class Element extends Component {
   sendRequest(id, title, description) {
     try {
       (async () => {
-        const response = await fetch('http://foxstudio.site/api/v2/routes/section.php', {
+        const response = await fetch('https://foxstudio.site/api/v2/routes/service.php', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            // 'Content-Type': 'application/x-www-form-urlencoded',
+            // 'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `id=${id}, title=${title}, description=${description}`,
+          body: `id=${id}&title=${title}&description=${description}`,
           mode: 'no-cors'
         });
       })();
@@ -36,7 +36,7 @@ export default class Element extends Component {
   onKeyPress = event => {
     if (event.key === 'Enter') {
       this.setState({ view: 'text', value: event.target.value });
-      this.sendRequest(event.target.id, event.target.value, '');
+      this.sendRequest(event.target.id, event.target.value, 'description');
     }
     console.log(this.state.value);
   }
