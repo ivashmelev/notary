@@ -10,12 +10,30 @@ import TwoPage from './Pages/TwoPage'
 import Service from './Service'
 
 const Site = () => {
+  const navigation = [
+    {
+      title: 'Услуги',
+      link: ''
+    },
+    {
+      title: 'Тарифа',
+      link: ''
+    },
+    {
+      title: 'Записи на прием',
+      link: ''
+    },
+    {
+      title: 'Пользователи',
+      link: ''
+    }
+  ]
   return (
     <RootContainer>
       <Header />
       <Container>
         <ContainerNavigation>
-          <Navigation />
+          <Navigation navigation={navigation}/>
         </ContainerNavigation>
         <ContainerContent>
           <Service />
@@ -34,7 +52,9 @@ const Site = () => {
 export default class Root extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      
+    }
   }
 
   render() {
