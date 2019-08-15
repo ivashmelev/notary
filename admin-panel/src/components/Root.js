@@ -39,14 +39,12 @@ const Site = () => {
           <Navigation navigation={navigation}/>
         </ContainerNavigation>
         <ContainerContent>
-          {/* <Service /> */}
           <Router history={history}>
             <Switch>
               <Route exact path="/services" component={Services} />
               <Route exact path="/tariffs" component={Tariffs} />
               <Route exact path="/appointment" component={Appointment} />
               <Route exact path="/users" component={Users} />
-
             </Switch>
           </Router>
         </ContainerContent>
