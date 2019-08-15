@@ -1,7 +1,6 @@
 <?php
 // Получить контакты и изменить контакт по id
 header('Access-Control-Allow-Origin: *');
-
 require_once ('../../../modules/sql/config.php');
 require_once ('../../../modules/sql/auth.php');
 
@@ -13,7 +12,6 @@ if (!$connect) {
 
   switch($_SERVER['REQUEST_METHOD']){
     case 'GET':
-    auth($connect);
       $result = mysqli_query($connect, 'CALL func_api_v1_get_contact()');
     break;
     case 'PATCH':

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100138
 File Encoding         : 65001
 
-Date: 2019-08-10 22:23:13
+Date: 2019-08-14 16:35:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,11 +24,12 @@ CREATE TABLE `admin` (
   `login` varchar(20) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
+INSERT INTO `admin` VALUES ('3', 'admin', '81dc9bdb52d04dc20036dbd8313ed055');
 
 -- ----------------------------
 -- Table structure for contact
@@ -46,7 +47,7 @@ CREATE TABLE `contact` (
 -- Records of contact
 -- ----------------------------
 INSERT INTO `contact` VALUES ('1', '1', '1', '1');
-INSERT INTO `contact` VALUES ('2', null, 'phone2', 'mail2');
+INSERT INTO `contact` VALUES ('2', '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for reception
@@ -59,11 +60,12 @@ CREATE TABLE `reception` (
   `phone` varchar(255) NOT NULL,
   `mail` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of reception
 -- ----------------------------
+INSERT INTO `reception` VALUES ('1', '0000-00-00', '2', '3', '4');
 
 -- ----------------------------
 -- Table structure for section
@@ -125,7 +127,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_admin_auth`(arg_login V
 BEGIN
   SELECT *
   FROM admin
-  WHERE admin.login = arg_login;
+  WHERE admin.login = 'arg_login';
 END
 ;;
 DELIMITER ;
