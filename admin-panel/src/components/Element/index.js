@@ -18,7 +18,7 @@ export default class Element extends Component {
     try {
       (async () => {
         const response = await fetch('http://foxstudio.site/api/v2/routes/service.php', {
-          method: 'PATCH',
+          method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
