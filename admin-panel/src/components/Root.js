@@ -9,8 +9,9 @@ import Services from './Pages/Services'
 import Tariffs from './Pages/Tarrifs'
 import Appointment from './Pages/Appointment'
 import Users from './Pages/Users'
+import Contacts from './Pages/Contacts'
 
-import Service from './Service'
+// import Service from './Service'
 
 const Site = () => {
   const navigation = [
@@ -21,6 +22,10 @@ const Site = () => {
     {
       title: 'Тарифы',
       link: '/tariffs'
+    },
+    {
+      title: 'Контакты',
+      link: '/contacts'
     },
     {
       title: 'Записи на прием',
@@ -43,6 +48,7 @@ const Site = () => {
             <Switch>
               <Route exact path="/services" component={Services} />
               <Route exact path="/tariffs" component={Tariffs} />
+              <Route exact path="/contacts" component={Contacts} />
               <Route exact path="/appointment" component={Appointment} />
               <Route exact path="/users" component={Users} />
             </Switch>
