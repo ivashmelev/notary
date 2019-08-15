@@ -27,7 +27,7 @@ if (!$connect) {
     die('403 Bad Request');
   }
 
-  $data = json_encode(pg_fetch_all($result));
+  $data = json_encode(mysqli_fetch_all($result, MYSQLI_ASSOC));
   echo $data;
 }
 
