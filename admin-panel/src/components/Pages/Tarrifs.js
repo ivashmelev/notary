@@ -5,7 +5,7 @@ class Tariffs extends Component {
   render() {
     return (
       <TariffsWrapper>
-        ТАРИФЫ
+
       </TariffsWrapper>
     );
   }
