@@ -9,12 +9,30 @@ import MainPage from './Pages/MainPage'
 import TwoPage from './Pages/TwoPage'
 
 const Site = () => {
+  const navigation = [
+    {
+      title: 'Услуги',
+      link: ''
+    },
+    {
+      title: 'Тарифа',
+      link: ''
+    },
+    {
+      title: 'Записи на прием',
+      link: ''
+    },
+    {
+      title: 'Пользователи',
+      link: ''
+    }
+  ]
   return (
     <RootContainer>
       <Header />
       <Container>
         <ContainerNavigation>
-          <Navigation />
+          <Navigation navigation={navigation}/>
         </ContainerNavigation>
       </Container>
       {/* <Router history={history}>
@@ -30,7 +48,9 @@ const Site = () => {
 export default class Root extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      
+    }
   }
 
   render() {
