@@ -2,21 +2,21 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Element from '../Element'
 
-export default class Service extends Component {
+export default class Tariff extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      services: []
+      section: []
     }
   }
 
   componentDidMount() {
     try {
       (async () => {
-        const response = await fetch('http://foxstudio.site/api/v2/routes/service.php');
+        const response = await fetch('http://foxstudio.site/api/v2/routes/contact.php');
         if (await response.ok) {
-          this.setState({ services: await response.json() });
-          console.log(this.state.services);
+          this.setState({ section: await response.json() });
+          console.log(this.state.section);
         }
       })();
     } catch (err) {
@@ -26,22 +26,22 @@ export default class Service extends Component {
 
   render() {
     return (
-      <ServiceWrapper>
-        {this.state.services.map((element, index) =>
-          <ServiceContainer key={index}>
+      <TariffWrapper>
+        {this.state.section.map((element, index) =>
+          <TariffContainer key={index}>
             <Element id={element.id} text={element.title} />
-          </ServiceContainer>
+          </TariffContainer>
         )}
-      </ServiceWrapper>
+      </TariffWrapper>
     )
   }
 }
 
-const ServiceWrapper = styled.div`
+const TariffWrapper = styled.div`
 
 `;
 
-const ServiceContainer = styled.div`
+const TariffContainer = styled.div`
   margin-bottom: 15px;
   height: 60px;
   background: #FFFFFF;
@@ -56,6 +56,6 @@ const ServiceContainer = styled.div`
   }
 `;
 
-const ServiceElement = styled.span`
+const TariffElement = styled.span`
   
 `;

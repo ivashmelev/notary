@@ -7,7 +7,7 @@ import Navigation from './Navigation';
 
 import MainPage from './Pages/MainPage'
 import TwoPage from './Pages/TwoPage'
-import Service from './Service'
+import Tariff from './Tariff'
 
 const Site = () => {
   const navigation = [
@@ -36,8 +36,8 @@ const Site = () => {
           <Navigation navigation={navigation}/>
         </ContainerNavigation>
         <ContainerContent>
-          <Service />
-        </ContainerContent>
+          <Tariff />
+        </ContainerContent>   
       </Container>
       {/* <Router history={history}>
         <Switch>

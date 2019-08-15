@@ -17,7 +17,7 @@ export default class Element extends Component {
   sendRequest(id, title, description) {
     try {
       (async () => {
-        const response = await fetch('http://foxstudio.site/api/v2/routes/service.php', {
+        const response = await fetch('http://foxstudio.site/api/v2/routes/section.php', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -25,7 +25,7 @@ export default class Element extends Component {
             // 'Content-Type': 'application/x-www-form-urlencoded',
           },
           body: `id=${id}, title=${title}, description=${description}`,
-          // mode: 'cors'
+          mode: 'no-cors'
         });
       })();
     } catch (err) {
@@ -40,8 +40,6 @@ export default class Element extends Component {
     }
     console.log(this.state.value);
   }
-
-
 
   render() {
     const { text, id } = this.props;
