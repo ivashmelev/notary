@@ -5,10 +5,12 @@ import history from '../../../helpers/history'
 class LinkNavigation extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+    }
   }
   
   render() {
+    console.log(history.location.pathname)
     const { title, link, active } = this.props
     return (
       <LinkNavigationWrapper onClick={() => history.push({ pathname: `${link}` })}>
@@ -24,7 +26,8 @@ const LinkNavigationWrapper = styled.div`
   max-width: 220px;
   width: 100%;
   height: 40px;
-  background: rgba(223, 223, 223, 0.5);
+  background: ${props => props.active ? '#FFFFFF' : 'rgba(223, 223, 223, 0.5)'};
+  box-shadow: ${props => props.active ? '0px 2px 8px rgba(0, 0, 0, 0.25)' : 'none'};
   border-radius: 12px;
   transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
   margin: 5px 0 10px 0;

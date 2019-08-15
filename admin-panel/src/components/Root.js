@@ -9,43 +9,51 @@ import Services from './Pages/Services'
 import Tariffs from './Pages/Tarrifs'
 import Appointment from './Pages/Appointment'
 import Users from './Pages/Users'
+import Contacts from './Pages/Contacts'
 
-  
+
+// import Service from './Service'
+
 const Site = () => {
   const navigation = [
-  {
-    title: 'Услуги',
-    link: '/services'
+    {
+      title: 'Услуги',
+      link: '/services'
     },
-  {
-    title: 'Тарифы',
-    link: '/tariffs'
+    {
+      title: 'Тарифы',
+      link: '/tariffs'
     },
-  {
-    title: 'Записи на прием',
-    link: '/appointment'
+    {
+      title: 'Контакты',
+      link: '/contacts'
     },
-  {
+    {
+      title: 'Записи на прием',
+      link: '/appointment'
+    },
+    {
       title: 'Пользователи',
-    link: '/users'
-  }
-    ]
-    return (
-      <RootContainer>
-      <Header />  
+      link: '/users'
+    }
+  ]
+  return (
+    <RootContainer>
+      <Header />
       <Container>
         <ContainerNavigation>
-        <Navigation navigation={navigation}/>
-      </ContainerNavigation>
+          <Navigation navigation={navigation} />
+        </ContainerNavigation>
         <ContainerContent>
-        <Router history={history}>
+          <Router history={history}>
             <Switch>
               <Route exact path="/services" component={Services} />
               <Route exact path="/tariffs" component={Tariffs} />
+              <Route exact path="/contacts" component={Contacts} />
               <Route exact path="/appointment" component={Appointment} />
               <Route exact path="/users" component={Users} />
-          </Switch>
-        </Router>
+            </Switch>
+          </Router>
         </ContainerContent>
       </Container>
     </RootContainer>
@@ -56,7 +64,7 @@ export default class Root extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      
+
     }
   }
 
