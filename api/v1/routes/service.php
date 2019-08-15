@@ -22,7 +22,7 @@ if (!$connect) {
       }
     break;
     case 'PATCH':
-      auth($connect);
+      // auth($connect);
       parse_str(file_get_contents('php://input'), $_PATCH);
       if(isset($_PATCH['id']) && isset($_PATCH['title']) && isset($_PATCH['description'])){
         $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_patch_service_id($1, $2, $3)', [

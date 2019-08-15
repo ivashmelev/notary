@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import User from '../CommonUI/UserNavigation'
+import Option from '../CommonUI/OptionNavigation'
 
 class Navigation extends Component {
   render() {
     return (
       <NavigationWrapper>
         <User />
+        <Option title='Услуги' />
       </NavigationWrapper>
     );
   }
 }
 
-export default Navigation
+export default Navigation;
 
 const NavigationWrapper = styled.div`
   width: 100%;

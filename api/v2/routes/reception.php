@@ -6,6 +6,7 @@ require_once ('../../../modules/sql/config.php');
 require_once ('../../../modules/sql/auth.php');
 
 $connect = mysqli_connect($HOST, $USERNAME, $PASSWORD ,$DATABASE);
+mysqli_set_charset($connect, 'utf8');
 
 if (!$connect) {
   die("Ошибка: Невозможно установить соединение с MySQL.");
@@ -19,7 +20,7 @@ if (!$connect) {
       }
     break;
     case 'GET':
-      auth($connect);
+      // auth($connect);
       $result = mysqli_query($connect, 'CALL func_api_v1_get_reception()');
   }
 

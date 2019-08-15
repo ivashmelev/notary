@@ -5,6 +5,7 @@ header('Access-Control-Allow-Origin: *');
 require_once ('../../../modules/sql/config.php');
 
 $connect = mysqli_connect($HOST, $USERNAME, $PASSWORD ,$DATABASE);
+mysqli_set_charset($connect, 'utf8');
 
 if (!$connect) {
   die("Ошибка: Невозможно установить соединение с MySQL.");

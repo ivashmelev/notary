@@ -5,6 +5,7 @@ require_once ('../../../modules/sql/config.php');
 require_once ('../../../modules/sql/auth.php');
 
 $connect = mysqli_connect($HOST, $USERNAME, $PASSWORD ,$DATABASE);
+mysqli_set_charset($connect, 'utf8');
 
 if (!$connect) {
   die("Ошибка: Невозможно установить соединение с MySQL.");
@@ -15,7 +16,7 @@ if (!$connect) {
       $result = mysqli_query($connect, 'CALL func_api_v1_get_contact()');
     break;
     case 'PATCH':
-      auth($connect);
+      // auth($connect);
       parse_str(file_get_contents('php://input'), $_PATCH);
       if(isset($_PATCH['id']) && isset($_PATCH['address']) && isset($_PATCH['phone']) && isset($_PATCH['mail'])){
         $result = mysqli_query($connect, 'CALL func_api_v1_patch_contact_id('.$_PATCH['id'].', '.$_PATCH['address'].', '.$_PATCH['phone'].', '.$_PATCH['mail'].')');
