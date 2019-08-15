@@ -3,11 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "lodash": "^4.17.15",
-=======
     "history": "^4.9.0",
->>>>>>> 7d3e64c773f1ef924fad6e013470ee13ad7b05bc
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",

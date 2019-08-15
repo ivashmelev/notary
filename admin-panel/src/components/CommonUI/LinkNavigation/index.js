@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import history from '../../../helpers/history'
 
 class LinkNavigation extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class LinkNavigation extends Component {
   render() {
     const { title, link, active } = this.props
     return (
-      <LinkNavigationWrapper>
+      <LinkNavigationWrapper onClick={() => history.push({ pathname: `${link}` })}>
         {title}
       </LinkNavigationWrapper>
     );

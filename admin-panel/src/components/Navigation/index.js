@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import User from '../CommonUI/UserNavigation'
 import Link from '../CommonUI/LinkNavigation'
 import _ from 'lodash'
+import history from '../../helpers/'
 // import Option from '../CommonUI/OptionNavigation'
 
 class Navigation extends Component {
@@ -20,7 +21,7 @@ class Navigation extends Component {
           {
             _.map(navigation, (item, index) => {
               return (
-                <Link title={item.title} link={item.link} key={index} />
+                <Link title={item.title} link={item.link} key={index}/>
               )
             })
           }

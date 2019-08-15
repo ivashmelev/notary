@@ -5,27 +5,30 @@ import styled from 'styled-components'
 import Header from './Header'
 import Navigation from './Navigation';
 
-import MainPage from './Pages/MainPage'
-import TwoPage from './Pages/TwoPage'
+import Services from './Pages/Services'
+import Tariffs from './Pages/Tarrifs'
+import Appointment from './Pages/Appointment'
+import Users from './Pages/Users'
+
 import Service from './Service'
 
 const Site = () => {
   const navigation = [
     {
       title: 'Услуги',
-      link: ''
+      link: '/services'
     },
     {
-      title: 'Тарифа',
-      link: ''
+      title: 'Тарифы',
+      link: '/tariffs'
     },
     {
       title: 'Записи на прием',
-      link: ''
+      link: '/appointment'
     },
     {
       title: 'Пользователи',
-      link: ''
+      link: '/users'
     }
   ]
   return (
@@ -36,15 +39,18 @@ const Site = () => {
           <Navigation navigation={navigation}/>
         </ContainerNavigation>
         <ContainerContent>
-          <Service />
+          {/* <Service /> */}
+          <Router history={history}>
+            <Switch>
+              <Route exact path="/services" component={Services} />
+              <Route exact path="/tariffs" component={Tariffs} />
+              <Route exact path="/appointment" component={Appointment} />
+              <Route exact path="/users" component={Users} />
+
+            </Switch>
+          </Router>
         </ContainerContent>
       </Container>
-      {/* <Router history={history}>
-        <Switch>
-          <Route exact path="/" component={MainPage} />
-          <Route exact path="/1" component={TwoPage} />
-        </Switch>
-      </Router> */}
     </RootContainer>
   )
 }
@@ -68,7 +74,9 @@ const ContainerNavigation = styled.div`
   position: relative;
 `
 const ContainerContent = styled.div`
-  margin: 15px;
+  width: 100%;
+  padding: 15px 15px;
+  background: #FFFFFF;
 `;
 
 const Container = styled.div`
