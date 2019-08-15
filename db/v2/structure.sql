@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : default
-Source Server Version : 100138
-Source Host           : localhost:3306
-Source Database       : notarydb
+Source Server         : fstudio.ru
+Source Server Version : 50723
+Source Host           : server156.hosting.reg.ru:3306
+Source Database       : u0721110_default
 
 Target Server Type    : MYSQL
-Target Server Version : 100138
+Target Server Version : 50723
 File Encoding         : 65001
 
-Date: 2019-08-10 22:22:55
+Date: 2019-08-15 14:09:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,7 @@ CREATE TABLE `admin` (
   `login` varchar(20) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for contact
@@ -49,7 +49,7 @@ CREATE TABLE `reception` (
   `phone` varchar(255) NOT NULL,
   `mail` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for section
@@ -59,7 +59,7 @@ CREATE TABLE `section` (
   `id` int(32) NOT NULL AUTO_INCREMENT,
   `title` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for service
@@ -70,7 +70,7 @@ CREATE TABLE `service` (
   `title` varchar(255) NOT NULL,
   `description` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for tariff
@@ -87,14 +87,14 @@ CREATE TABLE `tariff` (
   KEY `tariff_id_idx` (`id`) USING BTREE,
   KEY `section_id` (`section_id`),
   CONSTRAINT `tariff_ibfk_1` FOREIGN KEY (`section_id`) REFERENCES `section` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Procedure structure for func_api_v1_admin_auth
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_admin_auth`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_admin_auth`(arg_login VARCHAR
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_admin_auth`(arg_login VARCHAR
 (20))
 BEGIN
   SELECT *
@@ -109,7 +109,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_get_contact`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_contact`()
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_get_contact`()
 BEGIN
   SELECT *
   FROM contact;
@@ -122,7 +122,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_get_reception`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_reception`()
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_get_reception`()
 BEGIN
   SELECT *
   FROM reception;
@@ -135,7 +135,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_get_section`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_section`()
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_get_section`()
 BEGIN
   SELECT *
   FROM section;
@@ -148,7 +148,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_get_section_id`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_section_id`(arg_id int)
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_get_section_id`(arg_id int)
 BEGIN
   SELECT tariff.id, tariff.title, tariff.subtitle, tariff.tariff, tariff.price
   FROM tariff
@@ -164,7 +164,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_get_service`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_service`()
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_get_service`()
 BEGIN
   SELECT *
   FROM service
@@ -178,7 +178,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_get_service_id`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_service_id`(arg_id int)
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_get_service_id`(arg_id int)
 BEGIN
   SELECT *
   FROM service
@@ -192,7 +192,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_get_tariff_id`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_tariff_id`(arg_id int)
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_get_tariff_id`(arg_id int)
 BEGIN
   SELECT tariff.id, tariff.title, tariff.subtitle, tariff.tariff, tariff.price
   FROM tariff
@@ -206,7 +206,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_patch_admin_login`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_patch_admin_login`(arg_login varchar
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_patch_admin_login`(arg_login varchar
 (20), arg_new_login varchar
 (20), arg_password varchar
 (20))
@@ -224,7 +224,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_patch_contact_id`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_patch_contact_id`(arg_id int, arg_address varchar
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_patch_contact_id`(arg_id int, arg_address varchar
 (50), arg_phone varchar
 (20), arg_mail varchar
 (50))
@@ -242,7 +242,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_patch_service_id`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_patch_service_id`(arg_id int, arg_title varchar
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_patch_service_id`(arg_id int, arg_title varchar
 (225), arg_description varchar
 (1000))
 BEGIN
@@ -259,7 +259,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_patch_tariff_id`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_patch_tariff_id`(arg_id int, arg_title varchar
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_patch_tariff_id`(arg_id int, arg_title varchar
 (225), arg_subtitle varchar
 (225), arg_tariff varchar
 (1000), arg_price varchar
@@ -278,7 +278,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_post_admin`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_post_admin`(arg_login varchar
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_post_admin`(arg_login varchar
 (20), arg_password varchar
 (20))
 BEGIN
@@ -296,7 +296,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `func_api_v1_post_reception`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_post_reception`(arg_date date, arg_name varchar(255), arg_phone varchar(255), arg_mail varchar(255))
+CREATE DEFINER=`u0721110_default`@`%` PROCEDURE `func_api_v1_post_reception`(arg_date date, arg_name varchar(255), arg_phone varchar(255), arg_mail varchar(255))
 BEGIN
 	INSERT INTO reception VALUES(NULL, arg_date, arg_name, arg_phone, arg_mail);
 	SELECT * FROM reception order by id desc limit 1;

@@ -7,6 +7,7 @@ import Navigation from './Navigation';
 
 import MainPage from './Pages/MainPage'
 import TwoPage from './Pages/TwoPage'
+import Service from './Service'
 
 const Site = () => {
   const navigation = [
@@ -34,6 +35,9 @@ const Site = () => {
         <ContainerNavigation>
           <Navigation navigation={navigation}/>
         </ContainerNavigation>
+        <ContainerContent>
+          <Service />
+        </ContainerContent>
       </Container>
       {/* <Router history={history}>
         <Switch>
@@ -63,6 +67,10 @@ const ContainerNavigation = styled.div`
   height: 100%;
   position: relative;
 `
+const ContainerContent = styled.div`
+  margin: 15px;
+`;
+
 const Container = styled.div`
   width: 100%;
   height: 100%;

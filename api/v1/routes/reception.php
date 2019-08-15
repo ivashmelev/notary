@@ -23,7 +23,7 @@ if (!$connect) {
       }
     break;
     case 'GET':
-      auth($connect);
+      // auth($connect);
       $result = pg_query($connect, 'SELECT * FROM func_api_v1_get_reception()');
   }
 

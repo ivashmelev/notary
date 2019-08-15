@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import User from '../CommonUI/UserNavigation'
 import Link from '../CommonUI/LinkNavigation'
 import _ from 'lodash'
+// import Option from '../CommonUI/OptionNavigation'
 
 class Navigation extends Component {
   constructor(props) {
@@ -24,12 +25,13 @@ class Navigation extends Component {
             })
           }
         </LinkWrapper>
+        {/* <Option title='Услуги' /> */}
       </NavigationWrapper>
     );
   }
 }
 
-export default Navigation
+export default Navigation;
 
 const LinkWrapper = styled.div`
   width: 100%;
