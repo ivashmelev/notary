@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Element from '../Element'
 
 
-
 export default class Wall extends Component {
   constructor(props) {
     super(props);
@@ -20,9 +19,6 @@ export default class Wall extends Component {
         data: props.data
       }
     });
-  }
-
-  componentWillUnmount() {
   }
 
   componentWillReceiveProps() {
@@ -55,7 +51,7 @@ export default class Wall extends Component {
         }
       });
       this.props.onHandleChangeServices(newData, this.props.current);
-      return bodyStr;
+      return await bodyStr;
     }
 
     const body = getBody();
@@ -68,7 +64,7 @@ export default class Wall extends Component {
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `id=${id}&${body}`,
+          body: `id=${id}&${await body}`,
           mode: 'no-cors'
         });
         if (await response.ok) {
@@ -79,9 +75,7 @@ export default class Wall extends Component {
       }
     }
     switch (event) {
-      case 'UPDATE_SERVICE': const response = request('service', 'POST', this.state.data.id, body);
-
-
+      case 'UPDATE_SERVICE': request('service', 'POST', this.state.data.id, body);
         break;
       case 'UPDATE_TARIFF': request('tariff', 'POST', this.state.data.id, body);
         break;
@@ -98,7 +92,10 @@ export default class Wall extends Component {
     return (
       <WallWrapper>
         <WallTitle><Element name='title' view='input' text={this.state.data.title} /></WallTitle>
-        <WallText><Element name='description' className='wall-input' view='textarea' text={this.state.data.description} /></WallText>
+        <WallSubTitle><Element name='subtitle' view='input' text={this.state.data.subtitle} /></WallSubTitle>
+        <WallText><Element name='tariff' view='textarea' text={this.state.data.tariff} /></WallText>
+        <WallText><Element name='price' view='textarea' text={this.state.data.price} /></WallText>
+        <WallText><Element name='description' view='textarea' text={this.state.data.description} /></WallText>
         <WallButton onClick={() => this.sendRequest(event)}>Ok</WallButton>
       </WallWrapper>
     )
@@ -129,6 +126,15 @@ const WallTitle = styled.span`
   font-family: Roboto;
   font-weight: bold;
   font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+`;
+
+const WallSubTitle = styled.span`
+  margin-top: 16px;
+  font-family: Roboto;
+  font-style: italic;  
+  font-size: 14px;
   line-height: 21px;
   color: #000000;
 `;
