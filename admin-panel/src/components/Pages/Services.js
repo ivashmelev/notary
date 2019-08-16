@@ -4,6 +4,7 @@ import Sidebar from '../Sidebar'
 import Title from '../Header/Title'
 import Wall from '../Wall'
 import _ from 'lodash'
+import { UPDATE_SERVICE } from '../../helpers/constants'
 
 class Services extends Component {
   constructor(props) {
@@ -45,9 +46,7 @@ class Services extends Component {
           </ServicesContainerSidebar>
           <ServicesContainerWall>
             {!_.isEmpty(this.state.services) ?
-              <Wall onHandleTextChange={this.handleTextChange}
-                id={this.state.current}
-                data={this.state.services[this.state.current]} /> : null}
+              <Wall event={UPDATE_SERVICE} data={this.state.services[this.state.current]} /> : null}
           </ServicesContainerWall>
         </ServicesContainer>
       </ServicesWrapper>

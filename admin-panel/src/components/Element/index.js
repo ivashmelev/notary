@@ -8,7 +8,7 @@ export default class Element extends Component {
     this.state = {
       view: 'text',
       value: '',
-      changeText: (e) => { this.setState({ value: this.props.text }); console.log(e) }
+      changeText: (e) => this.setState({ value: this.props.text })
     }
   }
 
@@ -19,33 +19,6 @@ export default class Element extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('click', this.state.changeText);
-  }
-
-
-  sendRequest(event) {
-    const request = async (api, method, body) => {
-      try {
-        const response = await fetch(`https://foxstudio.site/api/v2/routes/${api}.php`, {
-          method: method,
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: body,
-          mode: 'no-cors'
-        });
-        if (await response.ok) {
-          return await response.json();
-        }
-      } catch (err) {
-        throw err;
-      }
-    }
-    switch (event) {
-      case 'UPDATE_SERVICE': request('service', 'POST', ``)
-
-    }
-
   }
 
   onKeyPress = event => {
