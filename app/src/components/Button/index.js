@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import responsive from '../../responsive'
+import history from '../../helpers/history'
 
 
 export default class Button extends Component {
@@ -11,8 +12,8 @@ export default class Button extends Component {
   render() {
     const { name, link, color, size, margin } = this.props;
     return (
-      <ButtonWrapper color={color} size={size} margin={margin}>
-        <ButtonLink size={size} href={link}>{name}</ButtonLink>
+      <ButtonWrapper color={color} size={size} margin={margin} onClick={link ? () => history.push('/appointment') : null}>
+        <ButtonLink size={size}>{name}</ButtonLink>
       </ButtonWrapper>
     )
   }

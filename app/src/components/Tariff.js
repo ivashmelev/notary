@@ -130,7 +130,7 @@ export default class Tariff extends Component {
                 </ButtonWrapper>
               )}
             </TariffButtonContainer>
-            <Navigation title='Контакты' subtitle='СЛЕДУЮЩИЙ РАЗДЕЛ' />
+            <Navigation title='КОНТАКТЫ' subtitle='СЛЕДУЮЩИЙ РАЗДЕЛ' />
           </TariffContainer>
         }
       </TariffWrapper>

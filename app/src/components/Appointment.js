@@ -34,7 +34,9 @@ export default class Appointment extends Component {
     let { date } = this.state
     if (date.getDay() === 6) {
       date = moment().add('days', 2);
-    } else if (date.getDay() === 0) {
+    } else if (date.getDay() === 5) {
+      date = moment().add('days', 3);
+    } else {
       date = moment().add('days', 1);
     }
     this.setState({ date: date._d })
@@ -72,6 +74,20 @@ export default class Appointment extends Component {
     return errors
   }
 
+  cleanState() {
+    this.setState((state, props) => {
+      return {
+        agreement: true,
+        name: '',
+        phone: '',
+        mail: '',
+        localErrors: {},
+      }
+    })
+    history.goBack()
+  }
+
+
   async handleAppointmentInfo(e) {
     const localErrors = this.validateUpdateUserInfo()
     if (_.isEmpty(localErrors)) {
@@ -81,6 +97,7 @@ export default class Appointment extends Component {
       const { date, name, phone, mail } = this.state
       const correctdate = moment(date).format('YYYY-MM-DD');
       alert(`К отправке данные ${correctdate}, ${name}, ${phone}, ${mail}`)
+      this.cleanState()
     } else {
       this.setState({ localErrors })
     }

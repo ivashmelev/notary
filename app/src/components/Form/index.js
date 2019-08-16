@@ -1,50 +1,211 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import responsive from '../../responsive'
-
+import { validateEmail, formattedPhone, validatePhone, isFieldNotEmpty } from '../../helpers/format'
+import _ from 'lodash'
+import checkImg from '../../assets/img/check.png'
 
 export default class Form extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      agreement: true,
+      name: '',
+      phone: '',
+      mail: '',
+      comment: '',
+      localErrors: {},
+    }
+    this.handleTextChange = this.handleTextChange.bind(this)
+    this.handleAppointmentInfo = this.handleAppointmentInfo.bind(this)
   }
 
-  phoneMask(e) {
-    let matrix = "+7 (___) ___ __ __",
-      i = 0,
-      def = matrix.replace(/\D/g, ""),
-      val = e.target.value.replace(/\D/g, "");
-    if (def.length >= val.length) val = def;
-    e.target.value = matrix.replace(/./g, function (a) {
-      return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a
-    });
+  handleAgreement() {
+    this.setState({ agreement: !this.state.agreement })
   }
+  onChange = (date) => {
+    this.setState({ date })
+  }
+  handleTextChange(e) {
+    this.setState(e)
+  }
+
+  validateUpdateUserInfo() {
+    let errors = {}
+    const { name, phone, mail } = this.state
+    if (!isFieldNotEmpty(name)) {
+      errors = { ...errors, nameError: 'Введите имя' }
+    }
+    if (!isFieldNotEmpty(phone)) {
+      errors = { ...errors, phoneError: 'Введите номер' }
+    } else if (!validatePhone(phone)) {
+      errors = { ...errors, phoneError: 'Введите корректный номер' }
+    }
+    if (!isFieldNotEmpty(mail)) {
+      errors = { ...errors, mailError: 'Введите email' }
+    } else if (!validateEmail(mail)) {
+      errors = { ...errors, mailError: 'Введите корректный email' }
+    }
+    return errors
+  }
+
+  cleanState() {
+    this.setState((state, props) => {
+      return {
+        agreement: true,
+        name: '',
+        phone: '',
+        mail: '',
+        comment: '',
+        localErrors: {},
+      }
+    })
+  }
+
+  async handleAppointmentInfo(e) {
+    const localErrors = this.validateUpdateUserInfo()
+    if (_.isEmpty(localErrors)) {
+      if (!_.isEmpty(this.state.localErrors)) {
+        this.setState({ localErrors: {} })
+      }
+      const { name, phone, mail, comment } = this.state
+      alert(`К отправке данные ${name}, ${phone}, ${mail}, ${comment}`)
+      this.cleanState()
+    } else {
+      this.setState({ localErrors })
+    }
+  }
+
 
   render() {
+    const { localErrors, agreement, name, phone, mail, comment } = this.state
     return (
       <FormWrapper>
         <FormTtileContainer>
           <FormTtile>НАПИСАТЬ</FormTtile>
         </FormTtileContainer>
         <FormContainer>
-          <FormInput type='text' name='name' required placeholder='Имя' />
-          <FormInput type='text' name='phone' required placeholder='+7 (___) ___ __ __' onChange={this.phoneMask} />
-          <FormInput type='email' name='mail' required placeholder='mail@example.ru' />
-          <FormInput type='text' name='comment' required placeholder='Комментарий' />
+          <AppointmentInputError>
+            {
+              localErrors.nameError ? (
+                localErrors.nameError
+              ) : null
+            }
+          </AppointmentInputError>
+          <FormInput
+            value={name}
+            errorValue={localErrors.nameError ? '#ff6363' : '#ffffff'}
+            onChange={e => this.handleTextChange({ name: e.target.value })}
+            type='text'
+            name='name'
+            required
+            placeholder='Имя' />
+          <AppointmentInputError>
+            {
+              localErrors.phoneError ? (
+                localErrors.phoneError
+              ) : null
+            }
+          </AppointmentInputError>
+          <FormInput
+            value={phone}
+            errorValue={localErrors.phoneError ? '#ff6363' : '#ffffff'}
+            type='text'
+            name='phone'
+            required
+            placeholder='+7 (___) ___ ____'
+            onChange={e => {
+              this.setState({ phone: formattedPhone(e.target.value) })
+            }} />
+          <AppointmentInputError>
+            {
+              localErrors.mailError ? (
+                localErrors.mailError
+              ) : null
+            }
+          </AppointmentInputError>
+          <FormInput
+            value={mail}
+            errorValue={localErrors.mailError ? '#ff6363' : '#ffffff'}
+            onChange={e => this.handleTextChange({ mail: e.target.value })}
+            type='email'
+            name='mail'
+            required
+            placeholder='mail@example.ru' />
+          <FormInput
+            value={comment}
+            onChange={e => this.handleTextChange({ comment: e.target.value })}
+            type='text'
+            name='comment'
+            placeholder='Комментарий' 
+            margin='0 0 10px 0'/>
+          <AppointmentChecked onClick={() => this.handleAgreement()}>
+            <AppointmentCheckedBox>
+              {
+                agreement ? (
+                  <AppointmentCheckedLine src={checkImg} />
+                ) : null
+              }
+            </AppointmentCheckedBox>
+            <AppointmentCheckedLabel>
+              Согласен на обработку персональных данных
+            </AppointmentCheckedLabel>
+          </AppointmentChecked>
         </FormContainer>
         <FormButtonContainer>
-          <FormButton>ОТПРАВИТЬ</FormButton>
+          <FormButton
+            active={agreement ? '1' : '0.5'}
+            cursor={agreement ? 'pointer' : 'default'}
+            onClick={agreement ? () => this.handleAppointmentInfo() : null}
+          >ОТПРАВИТЬ</FormButton>
         </FormButtonContainer>
       </FormWrapper>
     )
   }
 }
 
+const AppointmentCheckedLabel = styled.div`
+  font-family: Montserrat Regular;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 10px;
+`
+const AppointmentCheckedLine = styled.img``
+const AppointmentCheckedBox = styled.div`
+  width: 15px;
+  height: 15px;
+  border: 1px solid #FFFFFF;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const AppointmentChecked = styled.div`
+  max-width: 470px;
+  width: 100%;
+  width: 100%;
+  display: flex;
+  cursor: pointer;
+  margin: 0 0 30px;
+`
+const AppointmentInputError = styled.div`
+  font-family: Montserrat Regular;
+  height: 10px;
+  font-size: 8px;
+  letter-spacing: 0.05em;
+  color: #ff6363;
+  display: flex;
+  align-items: center;
+`
 const FormWrapper = styled.div`
   left: 15vw;
   z-index: 2;
   position: relative;
-  margin-top: 78px;
+  margin-top: 320px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -112,9 +273,9 @@ const FormInput = styled.input`
   letter-spacing: 0.05em;
   color: #FFFFFF;
   background: #2D2D2D;
-  margin-bottom: 40px;
+  margin: ${props => props.margin ? props.margin : '0 0 40px 0'};
   border: none;
-  border-bottom: 1px solid #FFFFFF;
+  border-bottom: 1px solid  ${props => props.errorValue ? props.errorValue : '#FFFFFF'};
   outline: none;
   padding: 2px 15px;
   box-sizing: border-box;
@@ -153,8 +314,6 @@ const FormButton = styled.button`
   text-align: center;
   letter-spacing: 0.05em;
   color: #FFFFFF;
-
-  &:hover{
-    cursor: pointer;
-  }
+  cursor: ${props => props.cursor ? props.cursor : 'pointer'};
+  opacity: ${props => props.active ? props.active : '1'};
 `;

@@ -91,11 +91,17 @@ export default class Wall extends Component {
     console.log(data);
     return (
       <WallWrapper>
+<<<<<<< HEAD
+        <WallTitle><Element name='title' view='input' text={this.state.data.title} active={this.state.active} onHandleActiveButton={this.handleActiveButton} /></WallTitle>
+        <WallText><Element name='description' className='wall-input' view='textarea' active={this.state.active} text={this.state.data.description} /></WallText>
+        <WallButton active={this.state.active} onClick={() => this.sendRequest(event)}>Ok</WallButton>
+=======
         <WallTitle><Element name='title' view='input' text={this.state.data.title} /></WallTitle>
         <WallSubTitle><Element name='subtit' view='input' text={this.state.data.subtitle} /></WallSubTitle>
         <WallText><Element name='tariff' className='wall-input' view='textarea' text={this.state.data.tariff} /></WallText>
         <WallText><Element name='price' className='wall-input' view='textarea' text={this.state.data.price} /></WallText>
         <WallButton onClick={() => this.sendRequest(event)}>Ok</WallButton>
+>>>>>>> 7a01779930cbb2b8a03e944fa4a537c6a864a3db
       </WallWrapper>
     )
   }

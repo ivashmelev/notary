@@ -18,7 +18,7 @@ export default class ServiceElement extends Component {
         </ServiceElementTitle>
         <ServiceElementText>{description}</ServiceElementText>
         <ServiceElementButton>
-          <Button name='Запись на прием' link='' />
+          <Button name='Запись на прием' link />
         </ServiceElementButton>
       </ServiceElementWrapper >
     )

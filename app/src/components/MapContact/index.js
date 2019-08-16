@@ -9,15 +9,6 @@ export default class MapContact extends Component {
     const { contact } = this.props;
     return (
       <MapWrapper>
-        <MapContainer>
-          <YMaps>
-            <Map
-              defaultState={{ center: [55.75, 37.57], zoom: 9 }}
-              width='100%'
-              height='100%'
-            />
-          </YMaps>
-        </MapContainer>
         <MapInfo>
           {contact.map((element, index, array) =>
             element.address !== null ?
@@ -41,6 +32,15 @@ export default class MapContact extends Component {
             </MapMail>
           </MapPhoneMail>
         </MapInfo>
+        <MapContainer>
+          <YMaps>
+            <Map
+              defaultState={{ center: [55.75, 37.57], zoom: 9 }}
+              width='100%'
+              height='100%'
+            />
+          </YMaps>
+        </MapContainer>
       </MapWrapper>
     )
   }
