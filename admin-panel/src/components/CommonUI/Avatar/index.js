@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import userAvatar from '../../../assets/img/avatar-female.png'
+import userAvatar from '../../../assets/icons/user-icon.svg'
 
 class Avatar extends Component {
   constructor(props) {

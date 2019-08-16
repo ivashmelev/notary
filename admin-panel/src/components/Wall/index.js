@@ -104,7 +104,7 @@ export default class Wall extends Component {
       <WallWrapper>
         <WallTitle><Element name='title' view='input' text={this.state.data.title} active={this.state.active} onHandleActiveButton={this.handleActiveButton} /></WallTitle>
         <WallText><Element name='description' className='wall-input' view='textarea' active={this.state.active} text={this.state.data.description} /></WallText>
-        <WallButton acrive={this.state.active} onClick={() => this.sendRequest(event)}>Ok</WallButton>
+        <WallButton active={this.state.active} onClick={() => this.sendRequest(event)}>Ok</WallButton>
       </WallWrapper>
     )
   }

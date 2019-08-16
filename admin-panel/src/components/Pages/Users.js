@@ -58,7 +58,6 @@ class Users extends Component {
 
   editUser(obj, index) {
     const copyState = {...this.state}
-
     copyState.users.splice(index, 1, obj)
     this.setState(copyState)
   }
