@@ -82,6 +82,7 @@ const ContainerContent = styled.div`
   width: 100%;
   padding: 15px 15px;
   background: #FFFFFF;
+  overflow: auto;
 `;
 
 const Container = styled.div`

@@ -3,6 +3,10 @@ import styled from 'styled-components'
 import chevron from '../../assets/icons/chevron-left.svg'
 import plus from '../../assets/icons/plus.svg'
 
+const USERS_VIEW_PAGE = 'USERS_VIEW_PAGE'
+const USERS_VIEW_EDIT = 'USERS_VIEW_EDIT'
+const USERS_VIEW_NEW = 'USERS_VIEW_NEW'
+
 class Title extends Component {
   constructor(props) {
     super(props);
@@ -10,17 +14,26 @@ class Title extends Component {
   }
   
   render() {
+    const { title, nextTitle, icon, onDoThis } = this.props
     return (
       <TitleWrapper>
         <TitleName>
-          Услуги&nbsp;
-          <TitleNextName>
-            / Создание пользователя
-          </TitleNextName>
+          {title}&nbsp;
+          {
+            nextTitle ? (
+              <TitleNextName>
+                / {nextTitle}
+              </TitleNextName>
+            ) : null
+          }
         </TitleName>
-        <TitleButton>
-          <TitleButtonImg src={plus}/>
-        </TitleButton>
+        {
+          icon ? (
+            <TitleButton>
+              <TitleButtonImg src={icon === 'plus' ? plus : chevron} onClick={icon === 'plus' ? () => onDoThis(USERS_VIEW_NEW) : () => onDoThis(USERS_VIEW_PAGE)}/>
+            </TitleButton>
+          ) : null
+        }
       </TitleWrapper>
     );
   }
@@ -61,6 +74,7 @@ const TitleName = styled.div`
 `
 const TitleWrapper = styled.div`
   width: 100%;
+  min-height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;

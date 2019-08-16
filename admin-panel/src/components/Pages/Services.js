@@ -37,7 +37,7 @@ class Services extends Component {
   render() {
     return (
       <ServicesWrapper>
-        <Title />
+        <Title title='Услуги' nextTitle='' icon='' onDoThis/>
         <ServicesContainer>
           <ServicesContainerSidebar>
             {this.state.services.map((element, index) =>
