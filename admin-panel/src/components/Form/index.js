@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import {validateEmail, isFieldNotEmpty} from '../../helpers'
+import { validateEmail, isFieldNotEmpty } from '../../helpers'
 import _ from 'lodash'
 
 const USERS_VIEW_PAGE = 'USERS_VIEW_PAGE'
@@ -9,6 +9,7 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: '',
       name: '',
       sername: '',
       mail: '',
@@ -22,8 +23,9 @@ class Form extends Component {
 
   componentDidMount() {
     if (this.props.data) {
-      const copyState = {...this.state}
-      const { name, mail, login, password } = this.props.data[this.props.editIndex]
+      const copyState = { ...this.state }
+      const { id, name, mail, login, password } = this.props.data[this.props.editIndex]
+      copyState.id = id
       copyState.name = name.split(' ')[0]
       copyState.sername = name.split(' ')[1]
       copyState.mail = mail
@@ -31,7 +33,7 @@ class Form extends Component {
       copyState.password = password
       copyState.passwordReplay = password
       this.setState(copyState)
-      
+
     }
   }
 
@@ -50,7 +52,7 @@ class Form extends Component {
     }
     if (!isFieldNotEmpty(mail)) {
       errors = { ...errors, mailError: 'Введите email' }
-    } else if(!validateEmail(mail)) {
+    } else if (!validateEmail(mail)) {
       errors = { ...errors, mailError: 'Введите корректный email' }
     }
     if (!isFieldNotEmpty(login)) {
@@ -70,12 +72,13 @@ class Form extends Component {
 
   async handleNewUserInfo(e) {
     const localErrors = this.validateNewUserInfo()
-    if (_.isEmpty(localErrors)){
-      if (!_.isEmpty(this.state.localErrors)){
-        this.setState({ localErrors : {}})
+    if (_.isEmpty(localErrors)) {
+      if (!_.isEmpty(this.state.localErrors)) {
+        this.setState({ localErrors: {} })
       }
-      const { name, sername, mail, login, password } = this.state
+      const { id, name, sername, mail, login, password } = this.state
       const newUserInfo = {
+        id: id,
         name: `${name} ${sername}`,
         mail: mail,
         login: login,
@@ -91,12 +94,13 @@ class Form extends Component {
 
   async handleEditUserInfo(e) {
     const localErrors = this.validateNewUserInfo()
-    if (_.isEmpty(localErrors)){
-      if (!_.isEmpty(this.state.localErrors)){
-        this.setState({ localErrors : {}})
+    if (_.isEmpty(localErrors)) {
+      if (!_.isEmpty(this.state.localErrors)) {
+        this.setState({ localErrors: {} })
       }
-      const { name, sername, mail, login, password } = this.state
+      const { id, name, sername, mail, login, password } = this.state
       const newUserInfo = {
+        id: id,
         name: `${name} ${sername}`,
         mail: mail,
         login: login,
@@ -109,104 +113,104 @@ class Form extends Component {
       this.setState({ localErrors })
     }
   }
-  
+
   render() {
     const { name, sername, mail, login, password, passwordReplay, localErrors } = this.state
     // const { onEditUser } = this.props
     return (
       <FormWrapper>
         <FormTitle>
-          { this.props.title }
+          {this.props.title}
         </FormTitle>
         <FormConatainer>
           <FormInputError>
             {
               localErrors.nameError ? (
                 localErrors.nameError
-              ) : null 
+              ) : null
             }
           </FormInputError>
           <FormInput
-            value={name} 
+            value={name}
             placeholder='Имя'
             onChange={e => this.handleTextChange({ name: e.target.value })}
             type='text'
-            name='name' 
+            name='name'
             required
           />
           <FormInputError>
             {
               localErrors.sernameError ? (
                 localErrors.sernameError
-              ) : null 
+              ) : null
             }
           </FormInputError>
-          <FormInput 
+          <FormInput
             value={sername}
             placeholder='Фамилия'
             onChange={e => this.handleTextChange({ sername: e.target.value })}
             type='text'
-            name='sername' 
+            name='sername'
             required
           />
           <FormInputError>
             {
               localErrors.mailError ? (
                 localErrors.mailError
-              ) : null 
+              ) : null
             }
           </FormInputError>
-          <FormInput 
+          <FormInput
             value={mail}
             placeholder='E-mail'
             onChange={e => this.handleTextChange({ mail: e.target.value })}
             type='mail'
-            name='mail' 
+            name='mail'
             required
           />
           <FormInputError>
             {
               localErrors.loginError ? (
                 localErrors.loginError
-              ) : null 
+              ) : null
             }
           </FormInputError>
-          <FormInput 
+          <FormInput
             value={login}
             placeholder='Логин'
             onChange={e => this.handleTextChange({ login: e.target.value })}
             type='text'
-            name='login' 
+            name='login'
             required
           />
           <FormInputError>
             {
               localErrors.passwordError ? (
                 localErrors.passwordError
-              ) : null 
+              ) : null
             }
           </FormInputError>
-          <FormInput 
+          <FormInput
             value={password}
             placeholder='Пароль'
             onChange={e => this.handleTextChange({ password: e.target.value })}
             type='password'
-            name='password' 
+            name='password'
             required
           />
           <FormInputError>
             {
               localErrors.passwordReplayError ? (
                 localErrors.passwordReplayError
-              ) : null 
+              ) : null
             }
           </FormInputError>
-          <FormInput 
+          <FormInput
             value={passwordReplay}
             placeholder='Повторите пароль'
             onChange={e => this.handleTextChange({ passwordReplay: e.target.value })}
             type='password'
-            name='passwordReplay' 
+            name='passwordReplay'
             required
           />
         </FormConatainer>

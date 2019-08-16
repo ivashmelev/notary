@@ -43,14 +43,28 @@ class Appointment extends Component {
       ]
     }
   }
-  
+
+  componentDidMount() {
+    try {
+      (async () => {
+        const response = await fetch('http://foxstudio.site/api/v2/routes/reception.php');
+        if (await response.ok) {
+          this.setState({ users: await response.json() });
+          console.log(this.state.users);
+        }
+      })();
+    } catch (err) {
+      throw err;
+    }
+  }
+
   render() {
     const { users } = this.state
     return (
       <AppointmentWrapper>
-        <Title title='Записи на прием' nextTitle='' icon='' onDoThis/>
+        <Title title='Записи на прием' nextTitle='' icon='' onDoThis />
         <AppointmentContainer>
-          <InfoLine page='appointment' infoLine={users}/>
+          <InfoLine page='appointment' infoLine={users} />
         </AppointmentContainer>
       </AppointmentWrapper>
     );
