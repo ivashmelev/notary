@@ -51,7 +51,7 @@ export default class Wall extends Component {
         }
       });
       this.props.onHandleChangeServices(newData, this.props.current);
-      return bodyStr;
+      return await bodyStr;
     }
 
     const body = getBody();
@@ -64,7 +64,7 @@ export default class Wall extends Component {
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `id=${id}&${body}`,
+          body: `id=${id}&${await body}`,
           mode: 'no-cors'
         });
         if (await response.ok) {
@@ -75,7 +75,7 @@ export default class Wall extends Component {
       }
     }
     switch (event) {
-      case 'UPDATE_SERVICE': const response = request('service', 'POST', this.state.data.id, body);
+      case 'UPDATE_SERVICE': request('service', 'POST', this.state.data.id, body);
         break;
       case 'UPDATE_TARIFF': request('tariff', 'POST', this.state.data.id, body);
         break;
@@ -91,17 +91,12 @@ export default class Wall extends Component {
     console.log(data);
     return (
       <WallWrapper>
-<<<<<<< HEAD
-        <WallTitle><Element name='title' view='input' text={this.state.data.title} active={this.state.active} onHandleActiveButton={this.handleActiveButton} /></WallTitle>
-        <WallText><Element name='description' className='wall-input' view='textarea' active={this.state.active} text={this.state.data.description} /></WallText>
-        <WallButton active={this.state.active} onClick={() => this.sendRequest(event)}>Ok</WallButton>
-=======
         <WallTitle><Element name='title' view='input' text={this.state.data.title} /></WallTitle>
-        <WallSubTitle><Element name='subtit' view='input' text={this.state.data.subtitle} /></WallSubTitle>
-        <WallText><Element name='tariff' className='wall-input' view='textarea' text={this.state.data.tariff} /></WallText>
-        <WallText><Element name='price' className='wall-input' view='textarea' text={this.state.data.price} /></WallText>
+        <WallSubTitle><Element name='subtitle' view='input' text={this.state.data.subtitle} /></WallSubTitle>
+        <WallText><Element name='tariff' view='textarea' text={this.state.data.tariff} /></WallText>
+        <WallText><Element name='price' view='textarea' text={this.state.data.price} /></WallText>
+        <WallText><Element name='description' view='textarea' text={this.state.data.description} /></WallText>
         <WallButton onClick={() => this.sendRequest(event)}>Ok</WallButton>
->>>>>>> 7a01779930cbb2b8a03e944fa4a537c6a864a3db
       </WallWrapper>
     )
   }

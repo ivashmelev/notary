@@ -10,26 +10,36 @@ class Tariffs extends Component {
     super(props);
     this.state = {
       sections: [],
-      tariffs: [],
+      tariffs: [{}],
       current: 0,
       view: 'menu'
     }
 
     this.setActive = this.setActive.bind(this);
+    this.handleChangeTariffs = this.handleChangeTariffs.bind(this);
+
 
   }
 
   componentDidMount() {
+    console.log(this.state.current);
     (
-      // this.state.view === 'menu' ?
-      async () => {
-        const response = await fetch('http://foxstudio.site/api/v2/routes/section.php');
-        if (await response.ok) {
-          this.setState({ sections: await response.json() });
-          console.log(this.state.sections);
+      this.state.view === 'menu' ?
+        async () => {
+          const response = await fetch('http://foxstudio.site/api/v2/routes/section.php');
+          if (await response.ok) {
+            this.setState({ sections: await response.json() });
+            console.log(this.state.sections);
+          }
         }
-      }
-      // :
+        :
+        async () => {
+          // const response = await fetch(`http://foxstudio.site/api/v2/routes/section.php?id=${this.state.sections[this.state.current].id}`);
+          // if (await response.ok) {
+          //   this.setState({ tariffs: await response.json() });
+          //   console.log(this.state.tariffs);
+          // }
+        }
     )();
   }
 
@@ -48,13 +58,13 @@ class Tariffs extends Component {
   }
 
   handleChangeTariffs(data, current) {
-    const newServices = [...this.state.services];
+    const newServices = [...this.state.tariffs];
     console.log(newServices);
     console.log(data);
     newServices[current] = data;
     this.setState((state, props) => {
       return {
-        services: newServices
+        tariffs: newServices
       }
     });
   }
@@ -84,7 +94,7 @@ class Tariffs extends Component {
                   <Wall
                     event={UPDATE_TARIFF}
                     data={this.state.tariffs[this.state.current]}
-                    onhandleChangeTariffs={this.handleChangeTariffs}
+                    onHandleChangeServices={this.handleChangeTariffs}
                     current={this.state.current}
                   /> : null
                 }
