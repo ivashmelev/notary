@@ -13,12 +13,23 @@ export default class Element extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('click', this.state.changeText);
-    this.setState({ value: this.props.text });
+    this.setState((state, props) => {
+      return {
+        value: props.text
+      }
+    });
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('click', this.state.changeText);
+  componentWillReceiveProps() {
+    this.setState((state, props) => {
+      return {
+        value: props.text
+      }
+    });
+  }
+
+  handleTextChange(e) {
+    this.setState(e);
   }
 
   onKeyPress = event => {
@@ -29,19 +40,20 @@ export default class Element extends Component {
 
       // this.sendRequest(event.target.id, event.target.value, 'description');
       document.removeEventListener('keydown', this.onKeyPress);
+      this.props.onHandleActiveButton(this.props.active);
     }
   }
 
   render() {
-    const { event, text, id, view } = this.props;
+    const { event, text, id, view, name, active } = this.props;
     return (
       <ElementWrapper >
         {this.state.view === 'text' ?
-          <ElementText onClick={() => this.setState({ view: this.props.view })}>{this.state.value}</ElementText> :
+          <ElementText className='wall-input' data-name={name} onClick={() => { this.props.onHandleActiveButton(active); this.setState({ view: this.props.view }) }}>{this.state.value}</ElementText> :
           this.state.view === 'input' ?
-            <ElementInput id={id} onKeyPress={this.onKeyPress} type='text' placeholder={this.state.value} /> :
+            <ElementInput id={id} onKeyPress={this.onKeyPress} type='text' placeholder={this.state.value} onChange={e => this.handleTextChange({ value: e.target.value })} value={this.state.value} /> :
             this.state.view === 'textarea' ?
-              <ElementTextarea id={id} onKeyPress={this.onKeyPress} placeholder={this.state.value} /> : null
+              <ElementTextarea id={id} onKeyPress={this.onKeyPress} placeholder={this.state.value} onChange={e => this.handleTextChange({ value: e.target.value })} value={this.state.value} /> : null
         }
       </ElementWrapper>
     )

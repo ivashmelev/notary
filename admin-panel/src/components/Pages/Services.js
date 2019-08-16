@@ -14,6 +14,7 @@ class Services extends Component {
       current: 0
     }
     this.setActive = this.setActive.bind(this);
+    this.handleChangeServices = this.handleChangeServices.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +31,18 @@ class Services extends Component {
     }
   }
 
+  handleChangeServices(data, current) {
+    const newServices = [...this.state.services];
+    console.log(newServices);
+    console.log(data);
+    newServices[current] = data;
+    this.setState((state, props) => {
+      return {
+        services: newServices
+      }
+    });
+  }
+
   setActive(value) {
     this.setState({ current: value });
   }
@@ -37,7 +50,7 @@ class Services extends Component {
   render() {
     return (
       <ServicesWrapper>
-        <Title title='Услуги' nextTitle='' icon='' onDoThis/>
+        <Title title='Услуги' nextTitle='' icon='' onDoThis />
         <ServicesContainer>
           <ServicesContainerSidebar>
             {this.state.services.map((element, index) =>
@@ -46,7 +59,13 @@ class Services extends Component {
           </ServicesContainerSidebar>
           <ServicesContainerWall>
             {!_.isEmpty(this.state.services) ?
-              <Wall event={UPDATE_SERVICE} data={this.state.services[this.state.current]} /> : null}
+              <Wall
+                event={UPDATE_SERVICE}
+                data={this.state.services[this.state.current]}
+                onHandleChangeServices={this.handleChangeServices}
+                current={this.state.current}
+              /> : null
+            }
           </ServicesContainerWall>
         </ServicesContainer>
       </ServicesWrapper>
