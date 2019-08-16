@@ -14,9 +14,13 @@ if (!$connect) {
 
   switch($_SERVER['REQUEST_METHOD']){
     case 'POST':
+      $date = $_POST['date'];
+      $name = $_POST['name'];
+      $phone = $_POST['phone'];
+      $mail = $_POST['mail'];
+
       if(isset($_POST['date']) && isset($_POST['name']) && isset($_POST['phone']) && isset($_POST['mail'])){
-        $result = mysqli_query($connect, 'CALL func_api_v1_post_reception(
-          '.$_POST['date'].', '.$_POST['name'].', '.$_POST['phone'].', '.$_POST['mail'].')');
+        $result = mysqli_query($connect, "CALL func_api_v1_post_reception('$date', '$name', '$phone', '$mail')");
       }
     break;
     case 'GET':

@@ -1,0 +1,4 @@
+export const UPDATE_SERVICE = 'PDATE_SERVICE';
+export const UPDATE_TARIFF = 'UPDATE_TARIFF';
+export const UPDATE_CONTACT = 'PDATE_CONTACT';
+export const GET_RECEPTION = 'GET_RECEPTION';

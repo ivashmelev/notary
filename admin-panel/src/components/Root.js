@@ -11,6 +11,7 @@ import Appointment from './Pages/Appointment'
 import Users from './Pages/Users'
 import Contacts from './Pages/Contacts'
 
+
 // import Service from './Service'
 
 const Site = () => {
@@ -41,7 +42,7 @@ const Site = () => {
       <Header />
       <Container>
         <ContainerNavigation>
-          <Navigation navigation={navigation}/>
+          <Navigation navigation={navigation} />
         </ContainerNavigation>
         <ContainerContent>
           <Router history={history}>
@@ -63,7 +64,7 @@ export default class Root extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      
+
     }
   }
 

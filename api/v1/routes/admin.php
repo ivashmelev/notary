@@ -23,13 +23,13 @@ if (!$connect) {
         ]);
       }
     break;
-    case 'PATCH':
-      parse_str(file_get_contents('php://input'), $_PATCH);
-      if(isset($_PATCH['login']) && isset($_PATCH['new_login']) && isset($_PATCH['password'])){
+    case 'POST':
+     
+      if(isset($_POST['login']) && isset($_POST['new_login']) && isset($_POST['password'])){
         $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_patch_admin_login($1, $2, $3)', [
-          $_PATCH['login'], 
-          $_PATCH['new_login'], 
-          md5($_PATCH['password'])
+          $_POST['login'], 
+          $_POST['new_login'], 
+          md5($_POST['password'])
         ]);
       }
     break;

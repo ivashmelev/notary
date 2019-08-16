@@ -7,7 +7,7 @@ import responsive from '../responsive'
 import history from '../helpers/history'
 import Calendar from 'react-calendar'
 import moment from 'moment';
-import {validateEmail, formattedPhone, validatePhone, isFieldNotEmpty} from '../helpers/format'
+import { validateEmail, formattedPhone, validatePhone, isFieldNotEmpty } from '../helpers/format'
 import _ from 'lodash'
 
 const SCREEN_CALENDAR = 'SCREEN_CALENDAR'
@@ -32,9 +32,9 @@ export default class Appointment extends Component {
   // date = moment(date).format('YYYY-MM-DD');
   componentDidMount() {
     let { date } = this.state
-    if(date.getDay() === 6) {
+    if (date.getDay() === 6) {
       date = moment().add('days', 2);
-    }else if (date.getDay() === 0) {
+    } else if (date.getDay() === 0) {
       date = moment().add('days', 1);
     }
     this.setState({ date: date._d })
@@ -61,12 +61,12 @@ export default class Appointment extends Component {
     }
     if (!isFieldNotEmpty(phone)) {
       errors = { ...errors, phoneError: 'Введите номер' }
-    } else if(!validatePhone(phone)) {
+    } else if (!validatePhone(phone)) {
       errors = { ...errors, phoneError: 'Введите корректный номер' }
     }
     if (!isFieldNotEmpty(mail)) {
       errors = { ...errors, mailError: 'Введите email' }
-    } else if(!validateEmail(mail)) {
+    } else if (!validateEmail(mail)) {
       errors = { ...errors, mailError: 'Введите корректный email' }
     }
     return errors
@@ -74,9 +74,9 @@ export default class Appointment extends Component {
 
   async handleAppointmentInfo(e) {
     const localErrors = this.validateUpdateUserInfo()
-    if (_.isEmpty(localErrors)){
-      if (!_.isEmpty(this.state.localErrors)){
-        this.setState({ localErrors : {}})
+    if (_.isEmpty(localErrors)) {
+      if (!_.isEmpty(this.state.localErrors)) {
+        this.setState({ localErrors: {} })
       }
       const { date, name, phone, mail } = this.state
       const correctdate = moment(date).format('YYYY-MM-DD');
@@ -92,80 +92,80 @@ export default class Appointment extends Component {
     return (
       <AppointmentWrapper>
         <AppointmentBackground />
-        <AppointmentCloseButton src={closeImg} onClick={() => history.goBack()}/>
+        <AppointmentCloseButton src={closeImg} onClick={() => history.goBack()} />
         <AppointmentContainer>
           <AppointmentContainerTitle>Запись на прием</AppointmentContainerTitle>
-            {
-              screen === SCREEN_CALENDAR ? (
-                <AppointmentContainerScreen>
-                  <AppointmentContainerSubTitle>Выберите дату</AppointmentContainerSubTitle>
-                  <AppointmentContainerCalendar>
-                    <Calendar 
-                      onChange={this.onChange}
-                      value={date}
-                      tileDisabled = {({date}) => date.getDay() === 6 || date.getDay() === 0 || date < today}
-                    />
-                  </AppointmentContainerCalendar>
-                  <AppointmentContainerButton 
-                    onClick={() => this.handleScreen(SCREEN_FORM)}
-                  >Далее
+          {
+            screen === SCREEN_CALENDAR ? (
+              <AppointmentContainerScreen>
+                <AppointmentContainerSubTitle>Выберите дату</AppointmentContainerSubTitle>
+                <AppointmentContainerCalendar>
+                  <Calendar
+                    onChange={this.onChange}
+                    value={date}
+                    tileDisabled={({ date }) => date.getDay() === 6 || date.getDay() === 0 || date < today}
+                  />
+                </AppointmentContainerCalendar>
+                <AppointmentContainerButton
+                  onClick={() => this.handleScreen(SCREEN_FORM)}
+                >Далее
                   </AppointmentContainerButton>
-                </AppointmentContainerScreen>
-              ) : (
+              </AppointmentContainerScreen>
+            ) : (
                 <AppointmentContainerScreen>
                   <AppointmentContainerSubTitle>Введите данные</AppointmentContainerSubTitle>
                   <AppointmentInputError>
                     {
-                    localErrors.nameError ? (
-                      localErrors.nameError
-                    ) : null 
+                      localErrors.nameError ? (
+                        localErrors.nameError
+                      ) : null
                     }
                   </AppointmentInputError>
-                  <AppointmentInput 
+                  <AppointmentInput
                     value={name}
                     errorValue={localErrors.nameError ? '#ff6363' : '#ffffff'}
                     onChange={e => this.handleTextChange({ name: e.target.value })}
                     type='text'
-                    name='name' 
-                    required 
+                    name='name'
+                    required
                     placeholder='Имя' />
                   <AppointmentInputError>
                     {
-                    localErrors.phoneError ? (
-                      localErrors.phoneError
-                    ) : null 
+                      localErrors.phoneError ? (
+                        localErrors.phoneError
+                      ) : null
                     }
                   </AppointmentInputError>
-                  <AppointmentInput 
+                  <AppointmentInput
                     value={phone}
                     errorValue={localErrors.phoneError ? '#ff6363' : '#ffffff'}
-                    type='text' 
-                    name='phone' 
-                    required 
-                    placeholder='+7 (___) ___ ____' 
+                    type='text'
+                    name='phone'
+                    required
+                    placeholder='+7 (___) ___ ____'
                     onChange={e => {
                       this.setState({ phone: formattedPhone(e.target.value) })
                     }} />
                   <AppointmentInputError>
                     {
-                    localErrors.mailError ? (
-                      localErrors.mailError
-                    ) : null 
+                      localErrors.mailError ? (
+                        localErrors.mailError
+                      ) : null
                     }
                   </AppointmentInputError>
-                  <AppointmentInput 
+                  <AppointmentInput
                     value={mail}
                     errorValue={localErrors.mailError ? '#ff6363' : '#ffffff'}
                     onChange={e => this.handleTextChange({ mail: e.target.value })}
-                    type='email' 
-                    name='mail' 
-                    required 
+                    type='email'
+                    name='mail'
+                    required
                     placeholder='mail@example.ru' />
                   <AppointmentChecked onClick={() => this.handleAgreement()}>
                     <AppointmentCheckedBox>
                       {
                         agreement ? (
-                          <AppointmentCheckedLine src={checkImg}/>
+                          <AppointmentCheckedLine src={checkImg} />
                         ) : null
                       }
                     </AppointmentCheckedBox>
@@ -181,10 +181,10 @@ export default class Appointment extends Component {
                   </AppointmentContainerButton>
                 </AppointmentContainerScreen>
               )
-            }
-            
+          }
+
           <AppointmentProgress>
-            <AppointmentProgressLine 
+            <AppointmentProgressLine
               onClick={() => this.handleScreen(SCREEN_CALENDAR)}
               active={screen === SCREEN_CALENDAR ? '1' : '0.5'}
             />
@@ -295,7 +295,7 @@ const AppointmentContainerButton = styled.div`
   align-items: center;
   justify-content: center;
   letter-spacing: 0.05em;
-  cursor: ${props => props.cursor ? props.cursor : 'pointer' };
+  cursor: ${props => props.cursor ? props.cursor : 'pointer'};
   margin: 50px 0 50px 0;
   opacity: ${props => props.active ? props.active : '1'};
   @media ${responsive.tablet} {

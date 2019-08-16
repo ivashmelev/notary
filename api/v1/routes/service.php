@@ -21,14 +21,14 @@ if (!$connect) {
         $result = pg_query($connect, 'SELECT * FROM func_api_v1_get_service()');
       }
     break;
-    case 'PATCH':
+    case 'POST':
       // auth($connect);
-      parse_str(file_get_contents('php://input'), $_PATCH);
-      if(isset($_PATCH['id']) && isset($_PATCH['title']) && isset($_PATCH['description'])){
+     
+      if(isset($_POST['id']) && isset($_POST['title']) && isset($_POST['description'])){
         $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_patch_service_id($1, $2, $3)', [
-          $_PATCH['id'], 
-          $_PATCH['title'], 
-          $_PATCH['description']
+          $_POST['id'], 
+          $_POST['title'], 
+          $_POST['description']
         ]);
       }
     break;
