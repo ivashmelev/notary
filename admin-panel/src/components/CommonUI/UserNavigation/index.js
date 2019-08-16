@@ -15,7 +15,6 @@ class UserNavigation extends Component {
       <UserNavigationWrapper>
         <Avatar size='40px'/>
         <UserName>Пережогина Ангелина</UserName>
-        <UserSettings src={ settings }/>
       </UserNavigationWrapper>
     )
   }

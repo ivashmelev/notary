@@ -6,8 +6,7 @@ class Services extends Component {
   render() {
     return (
       <ServicesWrapper>
-        <Title />
-        УСЛУГИ
+        <Title title='Услуги' nextTitle='' icon='' onDoThis/>
       </ServicesWrapper>
     );
   }
