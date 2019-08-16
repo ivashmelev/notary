@@ -36,7 +36,7 @@ export default class Header extends Component {
 const HeaderWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 60vh;
+  height: 45vh;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
@@ -44,7 +44,7 @@ const HeaderWrapper = styled.div`
   position: relative;
   z-index: 20;
   @media ${responsive.notebook} {
-    height: 50vh;
+    height: 45vh;
   }
   @media ${responsive.tablet} {
     height: 320px;
