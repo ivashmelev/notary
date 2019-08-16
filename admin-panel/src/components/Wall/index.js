@@ -91,11 +91,14 @@ export default class Wall extends Component {
     console.log(data);
     return (
       <WallWrapper>
-        <WallTitle><Element name='title' view='input' text={this.state.data.title} /></WallTitle>
-        <WallSubTitle><Element name='subtitle' view='input' text={this.state.data.subtitle} /></WallSubTitle>
-        <WallText><Element name='tariff' view='textarea' text={this.state.data.tariff} /></WallText>
-        <WallText><Element name='price' view='textarea' text={this.state.data.price} /></WallText>
-        <WallText><Element name='description' view='textarea' text={this.state.data.description} /></WallText>
+        {data.title ? <WallTitle><Element name='title' view='input' text={this.state.data.title} /></WallTitle> : null}
+        {data.subtitle ? <WallSubTitle><Element name='subtitle' view='input' text={this.state.data.subtitle} /></WallSubTitle> : null}
+        {data.taiff ? <WallText><Element name='tariff' view='textarea' text={this.state.data.tariff} /></WallText> : null}
+        {data.price ? <WallText><Element name='price' view='textarea' text={this.state.data.price} /></WallText> : null}
+        {data.description ? <WallText><Element name='description' view='textarea' text={this.state.data.description} /></WallText> : null}
+        {data.address ? <WallText><Element name='address' view='textarea' text={this.state.data.address} /></WallText> : null}
+        {data.phone ? <WallText><Element name='phone' view='input' text={this.state.data.phone} /></WallText> : null}
+        {data.mail ? <WallText><Element name='mail' view='input' text={this.state.data.mail} /></WallText> : null}
         <WallButton onClick={() => this.sendRequest(event)}>Ok</WallButton>
       </WallWrapper>
     )
