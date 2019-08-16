@@ -10,7 +10,6 @@ export default class Wall extends Component {
     this.state = {
       data: [],
       title: '',
-      active: true,
       changeText: (e) => { this.setState({ data: this.props.data }); console.log(e.target); }
     }
   }
@@ -38,10 +37,6 @@ export default class Wall extends Component {
     const newData = { ...this.state.data };
     newData[e.target.name] = e.target.value;
     this.setState({ data: newData });
-  }
-
-  handleActiveButton(value) {
-    this.setState({ active: !value });
   }
 
   sendRequest(event) {
@@ -102,9 +97,15 @@ export default class Wall extends Component {
     console.log(data);
     return (
       <WallWrapper>
+<<<<<<< HEAD
         <WallTitle><Element name='title' view='input' text={this.state.data.title} active={this.state.active} onHandleActiveButton={this.handleActiveButton} /></WallTitle>
         <WallText><Element name='description' className='wall-input' view='textarea' active={this.state.active} text={this.state.data.description} /></WallText>
         <WallButton active={this.state.active} onClick={() => this.sendRequest(event)}>Ok</WallButton>
+=======
+        <WallTitle><Element name='title' view='input' text={this.state.data.title} /></WallTitle>
+        <WallText><Element name='description' className='wall-input' view='textarea' text={this.state.data.description} /></WallText>
+        <WallButton onClick={() => this.sendRequest(event)}>Ok</WallButton>
+>>>>>>> 7a01779930cbb2b8a03e944fa4a537c6a864a3db
       </WallWrapper>
     )
   }
@@ -153,7 +154,6 @@ const WallButton = styled.div`
   font-size: 16px;
   line-height: 19px;
   color: #000000;
-  opacity: ${props => props.active ? .5 : 1};
   background: #efefef;
   border-radius: 12px;
   cursor: pointer;
