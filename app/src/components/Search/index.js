@@ -22,11 +22,6 @@ export default class Search extends Component {
     this.setState(e)
   }
   render() {
-<<<<<<< HEAD
-    // console.log('state', this.state.query);
-    // console.log('props', this.props.query);
-=======
->>>>>>> 8a19047524cecfad9e026e6b61eedc0b7cb69137
     const { query } = this.state
     return (
       <SearchWrapper>
@@ -35,13 +30,6 @@ export default class Search extends Component {
           onChange={e => this.handleTextChange({ query: e.target.value })}
           type='text' name='search' placeholder='ПОИСК ПО САЙТУ' />
         <SearchButton onClick={() => {
-<<<<<<< HEAD
-          query ? 
-          history.push({ pathname: `/search/${query}` }) :
-          history.push({ pathname: `/search` })
-        }}></SearchButton>
-        
-=======
           localStorage['search'] = query;
           (async () => {
             try {
@@ -67,7 +55,6 @@ export default class Search extends Component {
             history.push({ pathname: `/search` })
         }
         }></SearchButton>
->>>>>>> 8a19047524cecfad9e026e6b61eedc0b7cb69137
       </SearchWrapper>
     )
   }

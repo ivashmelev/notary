@@ -78,13 +78,9 @@ export default class SearchPage extends Component {
     // })();
   }
 
-<<<<<<< HEAD
-  render() {
-=======
   handleSearchResult(value) {
     this.setState({ searchResult: value });
   }
->>>>>>> 8a19047524cecfad9e026e6b61eedc0b7cb69137
 
   render() {
     const { query } = this.state
