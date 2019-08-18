@@ -86,7 +86,7 @@ const ServicesContainer = styled.div`
 const ServicesContainerSidebar = styled.div`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 315px;
 `;
 
 const ServicesContainerWall = styled.div`

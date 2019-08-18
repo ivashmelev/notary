@@ -15,7 +15,8 @@ class Tariffs extends Component {
       view: 'menu'
     }
 
-    this.setActive = this.setActive.bind(this);
+    this.setActiveSection = this.setActiveSection.bind(this);
+    this.setActiveTariff = this.setActiveTariff.bind(this);
     this.handleChangeTariffs = this.handleChangeTariffs.bind(this);
     this.unSetActive = this.unSetActive.bind(this);
   }
@@ -47,8 +48,11 @@ class Tariffs extends Component {
     )();
   }
 
-  setActive(value) {
+  setActiveTariff(value) {
+    this.setState({ current: value });
+  }
 
+  setActiveSection(value) {
     this.setState({ current: value, view: 'wall' });
     // (this.state.view === 'wall' ?
     (async () => {
@@ -99,7 +103,7 @@ class Tariffs extends Component {
           <TariffsContainer>
             <TariffsContainerSidebar>
               {this.state.sections.map((element, index) =>
-                <Sidebar active={this.state.current === index ? true : false} key={index} id={index} title={element.title} onSetActive={this.setActive} />
+                <Sidebar active={this.state.current === index ? true : false} key={index} id={index} title={element.title} onSetActiveSection={this.setActiveSection} />
               )}
             </TariffsContainerSidebar>
           </TariffsContainer>
@@ -108,7 +112,7 @@ class Tariffs extends Component {
             < TariffsContainer >
               <TariffsContainerSidebar>
                 {this.state.tariffs.map((element, index) =>
-                  <Sidebar active={this.state.current === index ? true : false} key={index} id={index} title={element.title} onSetActive={this.setActive} />
+                  <Sidebar active={this.state.current === index ? true : false} key={index} id={index} title={element.title} onSetActiveTariff={this.setActiveTariff} />
                 )}
               </TariffsContainerSidebar>
               <TariffsContainerWall>
@@ -140,7 +144,7 @@ const TariffsContainer = styled.div`
 const TariffsContainerSidebar = styled.div`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 315px;
 `;
 
 const TariffsContainerWall = styled.div`
