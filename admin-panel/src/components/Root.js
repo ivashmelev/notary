@@ -17,6 +17,10 @@ import Contacts from './Pages/Contacts'
 const Site = () => {
   const navigation = [
     {
+      title: 'Записи на прием',
+      link: '/'
+    },
+    {
       title: 'Услуги',
       link: '/services'
     },
@@ -27,10 +31,6 @@ const Site = () => {
     {
       title: 'Контакты',
       link: '/contacts'
-    },
-    {
-      title: 'Записи на прием',
-      link: '/appointment'
     },
     {
       title: 'Пользователи',
@@ -50,7 +50,7 @@ const Site = () => {
               <Route exact path="/services" component={Services} />
               <Route exact path="/tariffs" component={Tariffs} />
               <Route exact path="/contacts" component={Contacts} />
-              <Route exact path="/appointment" component={Appointment} />
+              <Route exact path="/" component={Appointment} />
               <Route exact path="/users" component={Users} />
             </Switch>
           </Router>
