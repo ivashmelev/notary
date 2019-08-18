@@ -38,6 +38,10 @@ const ContactLineText = styled.a`
   margin-left: 24px;
   color: #FFFFFF;
   text-decoration: none;
+  transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
+  &:hover{
+    opacity: .65;
+  }
 
   @media ${responsive.tablet} {
     margin-top: 15px;

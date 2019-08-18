@@ -152,6 +152,10 @@ const MenuLink = styled.a`
   padding: 15px 15px;
   letter-spacing: 0.05em;
   cursor: pointer;
+  transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
+  &:hover{
+    opacity: 0.65;
+  }
   @media ${responsive.tablet} {
     padding: 15px 30px;
     font-size: 24px;
@@ -160,6 +164,10 @@ const MenuLink = styled.a`
 
 const MenuButton = styled.div`
   margin: 0 0 0 15px;
+  transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
+  &:hover{
+    box-shadow: 0 0 12px 2px #4a4a4a;
+  }
   @media ${responsive.tablet} {
     margin: 0;
     position: absolute;

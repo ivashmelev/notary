@@ -85,7 +85,7 @@ const ContactsContainer = styled.div`
 const ContactsContainerSidebar = styled.div`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 315px;
 `;
 
 const ContactsContainerWall = styled.div`

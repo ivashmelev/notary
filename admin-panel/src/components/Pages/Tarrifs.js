@@ -18,6 +18,7 @@ class Tariffs extends Component {
     this.setActiveSection = this.setActiveSection.bind(this);
     this.setActiveTariff = this.setActiveTariff.bind(this);
     this.handleChangeTariffs = this.handleChangeTariffs.bind(this);
+    this.unSetActive = this.unSetActive.bind(this);
   }
 
   componentDidMount() {
@@ -28,7 +29,12 @@ class Tariffs extends Component {
           const response = await fetch('https://foxstudio.site/api/v2/routes/section.php');
           if (await response.ok) {
             this.setState({ sections: await response.json() });
-            console.log(this.state.sections);
+            // this.setState(async (state, props) => {
+            //   return {
+            //     sections: await response.json() 
+            //   }
+            // })
+            // console.log(this.state.sections);
           }
         }
         :
@@ -59,6 +65,11 @@ class Tariffs extends Component {
     // : null)();
   }
 
+  unSetActive(value) {
+    this.setState({ view: 'menu' });
+  }
+
+
   handleChangeTariffs(data, current) {
     const newServices = [...this.state.tariffs];
     console.log(newServices);
@@ -72,9 +83,22 @@ class Tariffs extends Component {
   }
 
   render() {
+    // this.state.sections[0].title ? console.log(this.state.sections[0]) : console.log('nothing');
+    if (!_.isEmpty(this.state.sections[this.state.current])){
+      console.log(this.state.sections[0].title)
+    } else {
+      console.log('NOOO')
+    }
+    
     return (
       <TariffsWrapper>
-        <Title title='Тарифы' nextTitle='' icon='' onDoThis />
+        <Title 
+          title='Тарифы' 
+          nextTitle={this.state.view === 'wall' ? this.state.sections[this.state.current].title : ''} 
+          icon={this.state.view === 'wall' ? 'chevron' : ''}
+          onDoThis={this.state.view === 'wall' ? this.unSetActive : null}
+          action
+        />
         {this.state.view === 'menu' ?
           <TariffsContainer>
             <TariffsContainerSidebar>
@@ -120,7 +144,7 @@ const TariffsContainer = styled.div`
 const TariffsContainerSidebar = styled.div`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 315px;
 `;
 
 const TariffsContainerWall = styled.div`

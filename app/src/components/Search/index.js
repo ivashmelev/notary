@@ -5,11 +5,37 @@ import searchIco from '../../assets/img/search.png'
 import history from '../../helpers/history'
 
 export default class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: ''
+    }
+    this.handleTextChange = this.handleTextChange.bind(this)
+
+  }
+  componentDidMount() {
+    if (this.props.query) {
+      this.setState({ query: this.props.query })
+    }
+  }
+  handleTextChange(e) {
+    this.setState(e)
+  }
   render() {
+    console.log('state', this.state.query);
+    console.log('props', this.props.query);
+    const { query } = this.state
     return (
       <SearchWrapper>
-        <SearchInput type='text' name='search' placeholder='ПОИСК ПО САЙТУ' />
-        <SearchButton onClick={() => history.push({ pathname: '/search?id=1' })}></SearchButton>
+        <SearchInput
+          value={query}
+          onChange={e => this.handleTextChange({ query: e.target.value })}
+          type='text' name='search' placeholder='ПОИСК ПО САЙТУ' />
+        <SearchButton onClick={() => {
+          query ? history.push({ pathname: `/search/${query}` }) :
+            history.push({ pathname: `/search` })
+        }
+        }></SearchButton>
       </SearchWrapper>
     )
   }

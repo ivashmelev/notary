@@ -29,6 +29,7 @@ const ButtonWrapper = styled.div`
   margin: ${props => props.margin};
   box-sizing: border-box;
   text-align: center;
+  transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
 
   &:hover{
     cursor: pointer;
