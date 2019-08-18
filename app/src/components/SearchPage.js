@@ -30,7 +30,7 @@ export default class SearchPage extends Component {
   componentDidMount() {
     // (async () => {
     //   try {
-    //     const response = await fetch('https://api.loc/api/v1/routes/search.php');
+    //     const response = await fetch('http://api.loc/api/v1/routes/search.php');
     //     if (await response.ok) {
     //       this.setState({ searchResult: await response.json() });
     //       console.log(this.state.searchResult);

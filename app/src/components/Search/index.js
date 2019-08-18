@@ -9,7 +9,7 @@ export default class Search extends Component {
     return (
       <SearchWrapper>
         <SearchInput type='text' name='search' placeholder='ПОИСК ПО САЙТУ' />
-        <SearchButton onClick={() => history.push({ pathname: '/search' })}></SearchButton>
+        <SearchButton onClick={() => history.push({ pathname: '/search?id=1' })}></SearchButton>
       </SearchWrapper>
     )
   }
