@@ -2,11 +2,25 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Menu from '../Menu/index'
 import ContactLine from '../ContactLine/index'
-import aboutImg from '../../assets/img/backgroundImgAbout.png'
-import serviceImg from '../../assets/img/backgroundImgService.png'
-import tariffImg from '../../assets/img/backgroundImgTariff.png'
-import contactImg from '../../assets/img/backgroundImgContact.png'
-import searchImg from '../../assets/img/backgroundImgSearch.png'
+
+import aboutMobile from '../../assets/img/background/about@mobile.jpg'
+import serviceMobile from '../../assets/img/background/service@mobile.jpg'
+import tariffMobile from '../../assets/img/background/tariff@mobile.jpg'
+import contactMobile from '../../assets/img/background/contact@mobile.jpg'
+import searchMobile from '../../assets/img/background/search@mobile.jpg'
+
+import aboutNetbook from '../../assets/img/background/about@netbook.jpg'
+import serviceNetbook from '../../assets/img/background/service@netbook.jpg'
+import tariffNetbook from '../../assets/img/background/tariff@netbook.jpg'
+import contactNetbook from '../../assets/img/background/contact@netbook.jpg'
+import searchNetbook from '../../assets/img/background/search@netbook.jpg'
+
+import aboutDesktop from '../../assets/img/background/about@desktop.jpg'
+import serviceDesktop from '../../assets/img/background/service@mobile.jpg'
+import tariffDesktop from '../../assets/img/background/tariff@mobile.jpg'
+import contactDesktop from '../../assets/img/background/contact@mobile.jpg'
+import searchDesktop from '../../assets/img/background/search@mobile.jpg'
+
 import responsive from '../../responsive'
 
 
@@ -19,12 +33,25 @@ export default class Header extends Component {
     const { backgroundImg } = this.props;
     return (
       <HeaderWrapper>
-        <HeaderBackgroundImg url={
-          backgroundImg === 'about' ? aboutImg :
-            backgroundImg === 'service' ? serviceImg :
-              backgroundImg === 'tariff' ? tariffImg :
-                backgroundImg === 'contact' ? contactImg :
-                  backgroundImg === 'search' ? searchImg : null} />
+        <HeaderBackgroundImg 
+        urlLarge={
+          backgroundImg === 'about' ? aboutDesktop :
+            backgroundImg === 'service' ? serviceDesktop :
+              backgroundImg === 'tariff' ? tariffDesktop :
+                backgroundImg === 'contact' ? contactDesktop :
+                  backgroundImg === 'search' ? searchDesktop: null}
+        urlMiddle={
+          backgroundImg === 'about' ? aboutNetbook :
+            backgroundImg === 'service' ? serviceNetbook :
+              backgroundImg === 'tariff' ? tariffNetbook :
+                backgroundImg === 'contact' ? contactNetbook :
+                  backgroundImg === 'search' ? searchNetbook: null}
+        urlSmall={
+          backgroundImg === 'about' ? aboutMobile :
+            backgroundImg === 'service' ? serviceMobile :
+              backgroundImg === 'tariff' ? tariffMobile :
+                backgroundImg === 'contact' ? contactMobile :
+                  backgroundImg === 'search' ? searchMobile: null} />
         <Menu />
         <ContactLine phone='8 (831) 999-99-99' mail='notary@gmail.com' />
       </HeaderWrapper>
@@ -58,10 +85,16 @@ const HeaderBackgroundImg = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  background-image: url(${props => props.url});
+  background-image: url(${props => props.urlLarge});
   background-position: center;
   background-size: cover;
   filter: brightness(.7);
+  @media ${responsive.notebook} {
+    background-image: url(${props => props.urlMiddle});
+  }
+  @media ${responsive.tablet} {
+    background-image: url(${props => props.urlSmall});
+  }
 `;
 
 

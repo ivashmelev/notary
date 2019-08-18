@@ -218,13 +218,17 @@ export default class Appointment extends Component {
           }
 
           <AppointmentProgress>
-            <AppointmentProgressLine
+            <AppointmentProgressLineWrap
               onClick={() => this.handleScreen(SCREEN_CALENDAR)}
               active={screen === SCREEN_CALENDAR ? '1' : '0.5'}
-            />
-            <AppointmentProgressLine
-              active={screen === SCREEN_FORM ? '1' : '0.5'}
-            />
+              toggle>
+              <AppointmentProgressLine/>
+            </AppointmentProgressLineWrap>
+            <AppointmentProgressLineWrap
+              active={screen === SCREEN_FORM ? '1' : '0.5'}>
+              <AppointmentProgressLine/>
+            </AppointmentProgressLineWrap>
+            
           </AppointmentProgress>
         </AppointmentContainer>
       </AppointmentWrapper>
@@ -305,12 +309,23 @@ const AppointmentContainerScreen = styled.div`
   flex-direction: column;
   align-items: center;
 `
+const AppointmentProgressLineWrap = styled.div`
+  width: 80px;
+  height: 12px;
+  margin: 0 10px;
+  padding: 5px;
+  transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
+  opacity: ${props => props.active};
+  cursor: ${props => props.toggle ? 'pointer' : 'default'};
+  box-sizing: border-box;
+  &:hover{
+    opacity: ${props => props.toggle ? '1' : ''};
+  }
+`
 const AppointmentProgressLine = styled.div`
   width: 70px;
   height: 2px;
   background: #FFFFFF;
-  margin: 0 10px;
-  opacity: ${props => props.active};
 `
 const AppointmentProgress = styled.div`
   display: flex;

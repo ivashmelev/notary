@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Menu from './Menu/index'
 import ContactLine from './ContactLine/index'
-import backgroundImgMain from '../assets/img/backgroundImgMain.png'
+import backgroundImgMain from '../assets/img/background/main@desktop.jpg'
+import backgroundImgMainMiddle from '../assets/img/background/main@netbook.jpg'
+import backgroundImgMainSmall from '../assets/img/background/main@mobile.jpg'
+
 import Search from './Search'
 import responsive from '../responsive'
 import arrowIco from '../assets/img/arrow.png'
@@ -48,7 +51,12 @@ const MainBackgroundImg = styled.div`
   height: 100vh;
   margin: auto;
   filter: brightness(.7);
+  @media ${responsive.notebook} {
+    background-image: url(${backgroundImgMainMiddle});
+  }
   @media ${responsive.tablet} {
+    background-image: url(${backgroundImgMainSmall});
+
     height: 55vh;
     bottom: 0;
     filter: brightness(1);

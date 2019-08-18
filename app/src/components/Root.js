@@ -12,7 +12,7 @@ import Appointment from './Appointment'
 
 const wrap = MainComponent => (
   <App>
-    <MainComponent />
+    <MainComponent/>
   </App>
 )
 

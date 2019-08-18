@@ -3,6 +3,7 @@ import Header from './Header'
 import styled from 'styled-components'
 import responsive from '../responsive'
 import Search from './Search';
+import history from '../helpers/history'
 
 
 
@@ -58,8 +59,6 @@ export default class SearchPage extends Component {
   }
 
   render() {
-    console.log(window.location.href.split('/').pop());
-    
 
     const { query } = this.state
     return (

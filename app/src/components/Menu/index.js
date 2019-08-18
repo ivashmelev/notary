@@ -27,6 +27,9 @@ export default class Menu extends Component {
             <MenuHamburgerBoxLine />
           </MenuHamburgerBox>
         </MenuHamburger>
+        <MenuNumberPhone>
+          +7 (831) 433-38-64
+        </MenuNumberPhone>
         <MenuLinkWrapper>
           <MenuLink onClick={() => history.push({ pathname: '/' })}>Главная</MenuLink>
           <MenuLink onClick={() => history.push({ pathname: '/about' })}>О нас</MenuLink>
@@ -36,13 +39,53 @@ export default class Menu extends Component {
           <MenuButton onClick={() => history.push({ pathname: '/appointment' })}>
             <Button name="Запись на прием" link="" color="grey" size="small"  />
           </MenuButton>
+          <MenuLinkContactWrap>
+            <MenuLinkContact>+7 (831) 433-38-64</MenuLinkContact>
+            <MenuLinkContact>+7 (831) 419-71-70</MenuLinkContact>
+            <MenuLinkContact>nnp180@nnp.nnov.ru</MenuLinkContact>
+            <MenuLinkContact>nnp180@gmail.com</MenuLinkContact>
+          </MenuLinkContactWrap>
         </MenuLinkWrapper>
       </MenuWrapper >
     )
   }
 }
 
+const MenuNumberPhone = styled.a`
+  display: none;
+  font-family: Montserrat Regular;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+  text-decoration: none;
+  position: absolute;
+  left: 15px;
+  top: 30px;
+  @media ${responsive.tablet} {
+    display: block;
+  }
+`
+const MenuLinkContact = styled.a`
+  font-family: Montserrat Regular;
+  padding: 10px 30px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+  text-decoration: none;
+`
 
+const MenuLinkContactWrap = styled.div`
+  display: none;
+  @media ${responsive.tablet} {
+    display: flex;
+    flex-direction: column;
+    padding: 35px 0;
+  }
+`
 const MenuWrapper = styled.div`
   display: flex;
   width: 100%;
