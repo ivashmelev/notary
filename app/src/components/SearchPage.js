@@ -5,12 +5,11 @@ import responsive from '../responsive'
 import Search from './Search';
 
 
-
 export default class SearchPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: '',
+      query: localStorage['search'],
       searchResult: [{
         section: 'УСЛУГИ',
         title: 'Удостоверение сделок1',
@@ -27,18 +26,39 @@ export default class SearchPage extends Component {
         text: '123'
       }]
     }
+    this.handleSearchResult = this.handleSearchResult.bind(this)
+
   }
 
   componentDidMount() {
     if (window.location.href.split('/').pop() !== 'search') {
-      this.setState({ query: window.location.href.split('/').pop()})
+      // this.setState({ query: window.location.href.split('/').pop() })
+      this.setState((state, props) => ({
+        query: window.location.href.split('/').pop()
+      }));
+
+      console.log(this.state.query);
     }
-    // (async () => {
-    //   try {
-    //     const response = await fetch('http://api.loc/api/v1/routes/search.php');
-    //     if (await response.ok) {
-    //       this.setState({ searchResult: await response.json() });
-    //       console.log(this.state.searchResult);
+    (async () => {
+      try {
+        const response = await fetch('https://foxstudio.site/api/v2/routes/search.php', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/text',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `search=${this.state.query}`,
+          mode: 'cors'
+        });
+        if (response.ok) {
+          this.setState({ searchResult: await response.json() });
+          console.log(this.state.searchResult);
+        }
+      } catch (err) {
+        throw err;
+      }
+    })();
+
     let cloneSearchResult = [...this.state.searchResult];
     cloneSearchResult.forEach((element, index) => {
       let arrText = element.text.split('');
@@ -57,26 +77,35 @@ export default class SearchPage extends Component {
     // })();
   }
 
-  render() {
-    console.log(window.location.href.split('/').pop());
-    
+  handleSearchResult(value) {
+    this.setState({ searchResult: value });
+  }
 
+  render() {
     const { query } = this.state
     return (
       <SearchWrapper>
         <Header backgroundImg='search' />
         <SearchContainer>
-          <Search query={query}/>
+          <Search onHandleSearchResult={this.handleSearchResult} query={query} />
         </SearchContainer>
         <SearchResultContainer>
-          {this.state.searchResult.map((element, index) =>
-            <SearchResult key={index}>
+          {this.state.searchResult.length !== 0 ?
+            this.state.searchResult.map((element, index) =>
+              <SearchResult key={index}>
+                <SearchTitleContainer>
+                  <SearchResultTitle>Раздел: {element.table} / {element.title}</SearchResultTitle>
+                </SearchTitleContainer>
+                <SearchResultText>{element.description}{element.tariff}</SearchResultText>
+              </SearchResult>
+            )
+            :
+            <SearchResult>
               <SearchTitleContainer>
-                <SearchResultTitle>Раздел: {element.section} / {element.title}</SearchResultTitle>
+                <SearchResultTitle>Ничего не найдено</SearchResultTitle>
               </SearchTitleContainer>
-              <SearchResultText>{element.text}</SearchResultText>
             </SearchResult>
-          )}
+          }
         </SearchResultContainer>
       </SearchWrapper>
     )
@@ -102,11 +131,20 @@ const SearchContainer = styled.div`
 
 const SearchResultContainer = styled.div`
   max-width: 1172px;
+  width: 100%;
+  margin: 15px;
   margin-top: 100px;
 
+
   @media ${responsive.mobileS} {
+    margin: 15px;
     margin-top: 55px;
   }
+  @media ${responsive.tablet} {
+    margin: 15px;
+    margin-top: 55px;
+  }
+  
 `;
 
 const SearchResult = styled.div`
