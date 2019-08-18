@@ -14,8 +14,10 @@ export default class Sidebar extends Component {
     const { id, title, active } = this.props;
     return (
       <SidebarWrapper className='sidebar'>
-        <SidebarTitle onClick={() => this.props.onSetActive(id)} active={active}>{title}</SidebarTitle>
-      </SidebarWrapper>
+        <SidebarTitle onClick={() => this.props.onSetActive ? this.props.onSetActive(id) :
+          this.props.onSetActiveSection ? this.props.onSetActiveSection(id) :
+            this.props.onSetActiveTariff ? this.props.onSetActiveTariff(id) : null} active={active}>{title}</SidebarTitle>
+      </SidebarWrapper >
     )
   }
 }
