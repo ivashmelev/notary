@@ -202,7 +202,7 @@ const TariffListTitleElement = styled.span`
   align-items: center;
   justify-content: flex-end;
   margin-bottom: 30px;
-  
+  transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
   &:hover{
     color: #E6B980;
     cursor: pointer;

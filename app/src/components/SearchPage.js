@@ -5,10 +5,12 @@ import responsive from '../responsive'
 import Search from './Search';
 
 
+
 export default class SearchPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      query: '',
       searchResult: [{
         section: 'УСЛУГИ',
         title: 'Удостоверение сделок1',
@@ -28,6 +30,9 @@ export default class SearchPage extends Component {
   }
 
   componentDidMount() {
+    if (window.location.href.split('/').pop() !== 'search') {
+      this.setState({ query: window.location.href.split('/').pop()})
+    }
     // (async () => {
     //   try {
     //     const response = await fetch('https://api.loc/api/v1/routes/search.php');
@@ -53,11 +58,15 @@ export default class SearchPage extends Component {
   }
 
   render() {
+    console.log(window.location.href.split('/').pop());
+    
+
+    const { query } = this.state
     return (
       <SearchWrapper>
         <Header backgroundImg='search' />
         <SearchContainer>
-          <Search />
+          <Search query={query}/>
         </SearchContainer>
         <SearchResultContainer>
           {this.state.searchResult.map((element, index) =>

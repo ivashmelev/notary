@@ -26,7 +26,7 @@ const Site = () => {
         <Route path="/service" render={() => wrap(Service)} />
         <Route path="/tariff" render={() => wrap(Tariff)} />
         <Route path="/contact" render={() => wrap(Contact)} />
-        <Route path="/search" render={() => wrap(SearchPage)} />
+        <Route path="/search/:query?" render={() => wrap(SearchPage)} />
         <Route path="/appointment" render={() => wrap(Appointment)} />
       </Switch>
     </Router>
