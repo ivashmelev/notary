@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Title from '../Header/Title'
 import InfoLine from '../CommonUI/InfoLine'
 import Form from '../Form'
+import axios from 'axios'
 
 const USERS_VIEW_PAGE = 'USERS_VIEW_PAGE'
 const USERS_VIEW_EDIT = 'USERS_VIEW_EDIT'
@@ -47,10 +48,10 @@ class Users extends Component {
   componentDidMount() {
     try {
       (async () => {
-        const response = await fetch('http://foxstudio.site/api/v2/routes/admin.php');
+        const response = await fetch('https://foxstudio.site/api/v2/routes/admin.php');
         if (await response.ok) {
           this.setState({ users: await response.json() });
-          console.log(this.state.users);
+          console.log('componentDidMount');
         }
       })();
     } catch (err) {
@@ -63,32 +64,24 @@ class Users extends Component {
     this.setState({ viewPage: value })
   }
 
-  addNewUser(obj) {
-    const copyState = { ...this.state }
-    obj.id = copyState.users.length
-    copyState.users = [...copyState.users, obj]
-    this.setState(copyState)
-  }
-
-  editUser(obj, index) {
-    console.log(obj);
+  addNewUser(obj, index) {
     const send = async () => {
       try {
-        const response = await fetch('http://foxstudio.site/api/v2/routes/admin.php', {
+        const response = await fetch('https://foxstudio.site/api/v2/routes/admin.php', {
           method: 'POST',
           headers: {
             'Accept': 'application/text',
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `id=${obj.id}&name=${obj.name}&login=${obj.login}&password=${obj.password}`,
-          // mode: 'no-cors'
+          body: `id=${obj.id}&name=${obj.name}&login=${obj.login}&mail=${obj.mail}&password=${obj.password}&create=${true}`,
         });
-        if (await response.ok) {
+        if (response.ok) {
           const copyState = { ...this.state }
-          copyState.users.splice(index, 1, await response.json())
-          this.setState(copyState)
+          const newElement = await response.json();
+          copyState.users.push(newElement[0]);
+          console.log(copyState.users);
+          this.setState({ users: copyState.users });
         }
-
       } catch (err) {
         throw err;
       }
@@ -96,10 +89,52 @@ class Users extends Component {
     send();
   }
 
-  deleteUser(index) {
-    const copyState = { ...this.state }
-    copyState.users.splice(index, 1)
-    this.setState(copyState)
+  editUser(obj, index) {
+    const send = async () => {
+      try {
+        const response = await fetch('https://foxstudio.site/api/v2/routes/admin.php', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/text',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `id=${obj.id}&name=${obj.name}&login=${obj.login}&mail=${obj.mail}&password=${obj.password}&edit=${true}`,
+        });
+        if (response.ok) {
+          const copyState = { ...this.state }
+          const newElement = await response.json();
+          copyState.users.splice(index, 1, [...newElement]);
+          console.log(copyState.users);
+          this.setState({ users: [...newElement] });
+        }
+      } catch (err) {
+        throw err;
+      }
+    }
+    send();
+  }
+
+  deleteUser(obj, index) {
+    const send = async () => {
+      try {
+        const response = await fetch('https://foxstudio.site/api/v2/routes/admin.php', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/text',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `id=${obj.id}&delete=true`,
+        });
+        if (response.ok) {
+          const copyState = { ...this.state }
+          copyState.users.splice(index, 1);
+          this.setState({ users: copyState.users });
+        }
+      } catch (err) {
+        throw err;
+      }
+    }
+    send();
   }
 
   render() {

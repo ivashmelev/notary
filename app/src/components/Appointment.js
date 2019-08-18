@@ -96,8 +96,25 @@ export default class Appointment extends Component {
       }
       const { date, name, phone, mail } = this.state
       const correctdate = moment(date).format('YYYY-MM-DD');
-      alert(`К отправке данные ${correctdate}, ${name}, ${phone}, ${mail}`)
-      this.cleanState()
+      (async () => {
+        try {
+          const response = await fetch('https://foxstudio.site/api/v2/routes/reception.php', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/text',
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `date=${correctdate}&name=${name}&phone=${phone}&mail=${mail}`,
+          });
+          if (response.ok) {
+            alert(`Вы записались на прием`);
+            this.cleanState()
+          }
+        } catch (err) {
+          throw err;
+        }
+      })();
+
     } else {
       this.setState({ localErrors })
     }

@@ -47,7 +47,7 @@ class Appointment extends Component {
   componentDidMount() {
     try {
       (async () => {
-        const response = await fetch('http://foxstudio.site/api/v2/routes/reception.php');
+        const response = await fetch('https://foxstudio.site/api/v2/routes/reception.php');
         if (await response.ok) {
           this.setState({ users: await response.json() });
           console.log(this.state.users);

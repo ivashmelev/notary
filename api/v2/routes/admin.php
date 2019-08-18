@@ -1,6 +1,6 @@
 <?php
-// Регистрация нового админа и изменение текущих
 header('Access-Control-Allow-Origin: *');
+// Регистрация нового админа и изменение текущих
 
 require_once ('../../../modules/sql/config.php');
 require_once ('../../../modules/sql/auth.php');
@@ -12,18 +12,9 @@ if (!$connect) {
   die("Ошибка: Невозможно установить соединение с MySQL.");
 } else {
   
-  // // auth($connect);
-
   switch($_SERVER['REQUEST_METHOD']){
     case 'GET':
       $result = mysqli_query($connect, 'CALL func_api_v1_get_admin()');
-    break;
-    case 'POST':
-      $login = $_POST['login'];
-      $password = md5($_POST['password']);
-      if(isset($_POST['login']) && isset($_POST['password'])){
-        $result = mysqli_query($connect, "CALL func_api_v1_post_admin('$login', '$password)");
-      }
     break;
     case 'POST':
       $id = $_POST['id'];
@@ -31,8 +22,14 @@ if (!$connect) {
       $mail = $_POST['mail'];
       $login = $_POST['login'];
       $password = md5($_POST['password']);
-      if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['mail']) && isset($_POST['login']) && isset($_POST['password'])){
+      if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['mail']) && isset($_POST['login']) && isset($_POST['password']) && isset($_POST['create'])){
+        $result = mysqli_query($connect, "CALL func_api_v1_post_admin('$login', '$password', '$name', '$mail')");
+      }
+      if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['mail']) && isset($_POST['login']) && isset($_POST['password']) && isset($_POST['edit'])){
         $result = mysqli_query($connect, "CALL func_api_v1_patch_admin_id($id, '$name', '$mail', '$login', '$password')");
+      }
+      if(isset($_POST['id']) && isset($_POST['delete'])){
+        $result = mysqli_query($connect, "CALL func_api_v1_post_admin_delete($id)");
       }
     break;
   }
@@ -43,6 +40,7 @@ if (!$connect) {
 
   $data = json_encode(mysqli_fetch_all($result, MYSQLI_ASSOC));
   echo $data;
+
 }
 
 ?>

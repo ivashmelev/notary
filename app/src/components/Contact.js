@@ -44,7 +44,7 @@ export default class Contact extends Component {
             <ContactLink href='https://minjust.ru/' target='_blank'>Министерство юстиций Российской Федерации</ContactLink>
             <ContactLink href='https://to52.minjust.ru/' target='_blank'>Главное управление министерства юстиции РФ по Нижегородской области</ContactLink>
             <ContactLink href='https://notariat.ru' target='_blank'>Федеральная нотариальная палата</ContactLink>
-            <ContactLink href='http://www.nnp52.ru' target='_blank'>Нижегородская областная нотариальная палата</ContactLink>
+            <ContactLink href='https://www.nnp52.ru' target='_blank'>Нижегородская областная нотариальная палата</ContactLink>
           </ContactLinkContainer>
         </ContactPageWrap>
       </ContactWrapper>
