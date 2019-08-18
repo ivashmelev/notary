@@ -16,10 +16,10 @@ import contactNetbook from '../../assets/img/background/contact@netbook.jpg'
 import searchNetbook from '../../assets/img/background/search@netbook.jpg'
 
 import aboutDesktop from '../../assets/img/background/about@desktop.jpg'
-import serviceDesktop from '../../assets/img/background/service@mobile.jpg'
-import tariffDesktop from '../../assets/img/background/tariff@mobile.jpg'
-import contactDesktop from '../../assets/img/background/contact@mobile.jpg'
-import searchDesktop from '../../assets/img/background/search@mobile.jpg'
+import serviceDesktop from '../../assets/img/background/service@desktop.jpg'
+import tariffDesktop from '../../assets/img/background/tariff@desktop.jpg'
+import contactDesktop from '../../assets/img/background/contact@desktop.jpg'
+import searchDesktop from '../../assets/img/background/search@desktop.jpg'
 
 import responsive from '../../responsive'
 
