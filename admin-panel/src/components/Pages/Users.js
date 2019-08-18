@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Title from '../Header/Title'
 import InfoLine from '../CommonUI/InfoLine'
 import Form from '../Form'
-import axios from 'axios'
 
 const USERS_VIEW_PAGE = 'USERS_VIEW_PAGE'
 const USERS_VIEW_EDIT = 'USERS_VIEW_EDIT'
@@ -142,14 +141,14 @@ class Users extends Component {
     return (
       viewPage === USERS_VIEW_PAGE ? (
         <UsersWrapper>
-          <Title title='Пользователи' nextTitle='' icon='plus' onDoThis={this.changeViewPage} />
+          <Title title='Пользователи' nextTitle='' icon='plus' onDoThis={this.changeViewPage} action='edit'/>
           <UsersContainer>
             <InfoLine page='users' infoLine={users} onDoThis={this.changeViewPage} onDeleteUser={this.deleteUser} />
           </UsersContainer>
         </UsersWrapper>
       ) : viewPage === USERS_VIEW_NEW ? (
         <UsersWrapper>
-          <Title title='Пользователи' nextTitle='Новый пользователь' icon='chevron' onDoThis={this.changeViewPage} />
+          <Title title='Пользователи' nextTitle='Новый пользователь' icon='chevron' onDoThis={this.changeViewPage} action='exit' />
           <UsersContainer>
             <Form title='Создание пользователя' onDoThis={this.changeViewPage} onAddNewUser={this.addNewUser} />
             {/* <InfoLine page='users' infoLine={users}/> */}
@@ -157,7 +156,7 @@ class Users extends Component {
         </UsersWrapper>
       ) : viewPage === USERS_VIEW_EDIT ? (
         <UsersWrapper>
-          <Title title='Пользователи' nextTitle='Изменение пользователя' icon='chevron' onDoThis={this.changeViewPage} />
+          <Title title='Пользователи' nextTitle='Изменение пользователя' icon='chevron' onDoThis={this.changeViewPage} action='exit' />
           <UsersContainer>
             <Form title='Изменение пользователя' edit={true} editIndex={editIndex} data={users} onDoThis={this.changeViewPage} onEditUser={this.editUser} />
           </UsersContainer>

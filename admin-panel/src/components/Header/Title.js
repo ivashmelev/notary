@@ -14,7 +14,7 @@ class Title extends Component {
   }
   
   render() {
-    const { title, nextTitle, icon, onDoThis } = this.props
+    const { title, nextTitle, icon, onDoThis, action } = this.props
     return (
       <TitleWrapper>
         <TitleName>
@@ -30,7 +30,7 @@ class Title extends Component {
         {
           icon ? (
             <TitleButton>
-              <TitleButtonImg src={icon === 'plus' ? plus : chevron} onClick={icon === 'plus' ? () => onDoThis(USERS_VIEW_NEW) : () => onDoThis(USERS_VIEW_PAGE)}/>
+              <TitleButtonImg src={icon === 'plus' ? plus : chevron} onClick={action === 'edit' ? () => onDoThis(USERS_VIEW_NEW) : action === 'exit' ? () => onDoThis(USERS_VIEW_PAGE) : action ? () => onDoThis() : null}/>
             </TitleButton>
           ) : null
         }
