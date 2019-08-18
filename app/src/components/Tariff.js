@@ -71,7 +71,7 @@ export default class Tariff extends Component {
   componentDidMount() {
     // (async () => {
     //   try {
-    //     const response = await fetch('http://api.loc/api/v1/routes/section.php');
+    //     const response = await fetch('https://api.loc/api/v1/routes/section.php');
     //     if (await response.ok) {
     //       this.setState({ section: await response.json() });
     //       console.log(this.state.section)

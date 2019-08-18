@@ -31,7 +31,7 @@ class InfoLine extends Component {
                       <LineButtonImg src={editIco} onClick={() => onDoThis(USERS_VIEW_EDIT, index)} />
                       {
                         item.login !== 'admin' && item.login !== 'Admin' ? (
-                          <LineButtonImg src={deleteIco} onClick={() => onDeleteUser(index)} />
+                          <LineButtonImg src={deleteIco} onClick={() => onDeleteUser(item, index)} />
                         ) : (
                             null
                           )

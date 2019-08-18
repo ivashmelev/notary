@@ -36,7 +36,7 @@ export default class ServiceList extends Component {
   componentDidMount() {
     // try {
     //   (async () => {
-    //     const response = await fetch('http://api.loc/api/v1/routes/service.php');
+    //     const response = await fetch('https://api.loc/api/v1/routes/service.php');
     //     if (await response.ok) {
     //       this.setState({ services: await response.json() });
     //       console.log(this.state.services);
