@@ -10,6 +10,8 @@ import Tariffs from './Pages/Tarrifs'
 import Appointment from './Pages/Appointment'
 import Users from './Pages/Users'
 import Contacts from './Pages/Contacts'
+import Info from './Information'
+import Login from './Login'
 
 
 // import Service from './Service'
@@ -38,8 +40,7 @@ const Site = () => {
     }
   ]
   return (
-    <RootContainer>
-      <Header />
+    
       <Container>
         <ContainerNavigation>
           <Navigation navigation={navigation} />
@@ -55,8 +56,9 @@ const Site = () => {
             </Switch>
           </Router>
         </ContainerContent>
+        <Info />
       </Container>
-    </RootContainer>
+    
   )
 }
 
@@ -64,12 +66,33 @@ export default class Root extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      token: true
     }
+    this.changeView = this.changeView.bind(this)
+  }
+
+  changeView() {
+    this.setState({ token: !this.state.token})
   }
 
   render() {
-    return <Site {...this.props} />
+    const { token } = this.state
+    console.log(this.props, 'HELLO');
+
+    return (
+      <RootContainer>
+        {
+          token ? (
+            <RootContainer>
+              <Header onChangeView={this.changeView}/>
+              <Site {...this.props} />
+            </RootContainer>
+          ) : (
+            <Login onChangeView={this.changeView}/>
+          )
+        }
+      </RootContainer>
+    )
   }
 }
 
@@ -93,7 +116,6 @@ const Container = styled.div`
 const RootContainer = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: #cccccc;
   display: flex;
   flex-flow: column;
 `

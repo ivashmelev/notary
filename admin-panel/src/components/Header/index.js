@@ -8,7 +8,7 @@ class Header extends Component {
       <HeaderWrapper>
         <HeaderTitle>Admin Panel</HeaderTitle>
         <HeaderLogut>
-          <HeaderLogutImg src={logoutIcon}/>
+          <HeaderLogutImg src={logoutIcon} onClick={() => this.props.onChangeView()}/>
         </HeaderLogut>
       </HeaderWrapper>
     );
