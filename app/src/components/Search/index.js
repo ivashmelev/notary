@@ -8,35 +8,66 @@ export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: ''
+      query: localStorage['search']
     }
     this.handleTextChange = this.handleTextChange.bind(this)
 
   }
   componentDidMount() {
     if (this.props.query) {
-      this.setState({ query : this.props.query })
+      this.setState({ query: this.props.query })
     }
   }
   handleTextChange(e) {
     this.setState(e)
   }
   render() {
+<<<<<<< HEAD
     // console.log('state', this.state.query);
     // console.log('props', this.props.query);
+=======
+>>>>>>> 8a19047524cecfad9e026e6b61eedc0b7cb69137
     const { query } = this.state
     return (
       <SearchWrapper>
-        <SearchInput 
-        value={query}
-        onChange={e => this.handleTextChange({ query: e.target.value })}
-        type='text' name='search' placeholder='ПОИСК ПО САЙТУ' />
+        <SearchInput
+
+          onChange={e => this.handleTextChange({ query: e.target.value })}
+          type='text' name='search' placeholder='ПОИСК ПО САЙТУ' />
         <SearchButton onClick={() => {
+<<<<<<< HEAD
           query ? 
           history.push({ pathname: `/search/${query}` }) :
           history.push({ pathname: `/search` })
         }}></SearchButton>
         
+=======
+          localStorage['search'] = query;
+          (async () => {
+            try {
+              const response = await fetch('https://foxstudio.site/api/v2/routes/search.php', {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/text',
+                  'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `search=${this.state.query}`,
+                mode: 'cors'
+              });
+              if (response.ok) {
+                !this.state.searchResult ?
+                  this.setState({ searchResult: await response.json() }) :
+                  this.props.onHandleSearchResult(await response.json());
+              }
+            } catch (err) {
+              throw err;
+            }
+          })();
+          query ? history.push({ pathname: `/search/${query}` }) :
+            history.push({ pathname: `/search` })
+        }
+        }></SearchButton>
+>>>>>>> 8a19047524cecfad9e026e6b61eedc0b7cb69137
       </SearchWrapper>
     )
   }
