@@ -21,41 +21,51 @@ export default class Search extends Component {
   handleTextChange(e) {
     this.setState(e)
   }
+
+  sendRequest() {
+    localStorage['search'] = this.state.query;
+    (async () => {
+      try {
+        const response = await fetch('https://foxstudio.site/api/v2/routes/search.php', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/text',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `search=${this.state.query}`,
+          mode: 'cors'
+        });
+        if (response.ok) {
+          !this.state.searchResult ?
+            this.setState({ searchResult: await response.json() }) :
+            this.props.onHandleSearchResult(await response.json());
+        }
+      } catch (err) {
+        throw err;
+      }
+    })();
+    this.state.query ? history.push({ pathname: `/search/${this.state.query}` }) :
+      history.push({ pathname: `/search` })
+  }
+
+
+  onKeyPress = event => {
+    if (event.key === 'Enter') {
+      this.sendRequest();
+      // this.sendRequest(event.target.id, event.target.value, 'description');
+    }
+  }
+
   render() {
     const { query } = this.state
     return (
       <SearchWrapper>
         <SearchInput
-
+          onKeyPress={this.onKeyPress}
           onChange={e => this.handleTextChange({ query: e.target.value })}
           type='text' name='search' placeholder='ПОИСК ПО САЙТУ' />
-        <SearchButton onClick={() => {
-          localStorage['search'] = query;
-          (async () => {
-            try {
-              const response = await fetch('https://foxstudio.site/api/v2/routes/search.php', {
-                method: 'POST',
-                headers: {
-                  'Accept': 'application/text',
-                  'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `search=${this.state.query}`,
-                mode: 'cors'
-              });
-              if (response.ok) {
-                !this.state.searchResult ?
-                  this.setState({ searchResult: await response.json() }) :
-                  this.props.onHandleSearchResult(await response.json());
-              }
-            } catch (err) {
-              throw err;
-            }
-          })();
-          query ? history.push({ pathname: `/search/${query}` }) :
-            history.push({ pathname: `/search` })
-        }
-        }></SearchButton>
-      </SearchWrapper>
+        <SearchButton onClick={this.sendRequest}></SearchButton>
+      </SearchWrapper >
     )
   }
 }
