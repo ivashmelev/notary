@@ -68,5 +68,8 @@ const ElementInput = styled.input`
 `;
 
 const ElementTextarea = styled.textarea`
-
+  margin: 20px;
+  height: 322px;
+  width: 987px;
+  font-size: 16px;
 `;
