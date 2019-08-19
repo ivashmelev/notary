@@ -9,6 +9,13 @@ import responsive from '../responsive'
 
 
 export default class Service extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      services: []
+    }
+  }
+
   render() {
     return (
       <ServiceWrapper>

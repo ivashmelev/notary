@@ -35,7 +35,7 @@ export default class TariffElement extends Component {
 
 const TariffElementWrapper = styled.div`
   position: relative;
-  padding: 60px 0 0 0;
+  padding: 90px 0 0 0;
   @media ${responsive.tabletB} {
     padding: 0;
   }

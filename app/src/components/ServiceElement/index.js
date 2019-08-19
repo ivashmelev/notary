@@ -27,7 +27,7 @@ export default class ServiceElement extends Component {
 
 const ServiceElementWrapper = styled.div`
   position: relative;
-  padding: 60px 0 0 0;
+  padding: 90px 0 0 0;
   /* transform: ${props => (props.current === 1 ? 'translateY(75px)' :
     `translateY(${props.current * 100 - 25}px)`)}; */
 

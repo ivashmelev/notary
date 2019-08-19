@@ -29,22 +29,17 @@ export default class ServiceList extends Component {
           description: 'Свидетельствуя подлинность подписи на документе, нотариус, не удостоверяя фактов изложенных в документе, подтверждает, что подпись на документе сделана в его присутствии определенным лицом.'
         }
       ],
-      current: '1'
+      current: '9'
     }
   }
 
   componentDidMount() {
-    // try {
-    //   (async () => {
-    //     const response = await fetch('https://api.loc/api/v1/routes/service.php');
-    //     if (await response.ok) {
-    //       this.setState({ services: await response.json() });
-    //       console.log(this.state.services);
-    //     }
-    //   })();
-    // } catch (err) {
-    //   throw err;
-    // }
+    (async () => {
+      const response = await fetch('https://foxstudio.site/api/v2/routes/service.php');
+      if (response.ok) {
+        this.setState({ services: await response.json() });
+      }
+    })();
   }
 
   render() {
@@ -52,29 +47,31 @@ export default class ServiceList extends Component {
     return (
       <ServiceListWrapper>
         <ServiceListTitleWrap>
-          <ServiceListTitle>
-            {services.map((element, index) =>
-              current === element.id ?
-                <ServiceListTitleElement
-                  key={index}
-                  style={{ color: '#E6B980' }}
-                  onClick={() => {
-                    this.setState({ current: element.id });
-                  }}
-                >
-                  {element.title}
-                </ServiceListTitleElement>
-                :
-                <ServiceListTitleElement
-                  key={index}
-                  onClick={() => {
-                    this.setState({ current: element.id });
-                  }}
-                >
-                  {element.title}
-                </ServiceListTitleElement>
-            )}
-          </ServiceListTitle>
+          <ServiceListTitleBlock>
+            <ServiceListTitle>
+              {services.map((element, index) =>
+                current === element.id ?
+                  <ServiceListTitleElement
+                    key={index}
+                    style={{ color: '#E6B980' }}
+                    onClick={() => {
+                      this.setState({ current: element.id });
+                    }}
+                  >
+                    {element.title}
+                  </ServiceListTitleElement>
+                  :
+                  <ServiceListTitleElement
+                    key={index}
+                    onClick={() => {
+                      this.setState({ current: element.id });
+                    }}
+                  >
+                    {element.title}
+                  </ServiceListTitleElement>
+              )}
+            </ServiceListTitle>
+          </ServiceListTitleBlock>
         </ServiceListTitleWrap>
         <ServiceListDescriptionWrap>
           <ServiceListDescription>
@@ -107,15 +104,17 @@ const ServiceListWrapper = styled.div`
 `;
 
 const ServiceListTitle = styled.div`
-  width: 100%;
-  padding: 60px 40px 60px 100px;
+  width: calc(100% + 15px);
+  height: 780px;
+  overflow: auto;
+  padding: 90px 40px 90px 100px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   background: #2D2D2D;
   box-sizing: border-box;
   @media ${responsive.notebook} {
-    padding: 60px 40px 60px 30px;
+    padding: 90px 40px 90px 30px;
   }
   @media ${responsive.tabletB} {
     padding: 40px 30px 0 30px;
@@ -137,6 +136,30 @@ const ServiceListTitleWrap = styled.div`
     background: #2D2D2D;
   }
 `
+
+const ServiceListTitleBlock = styled.div`
+  overflow: hidden;
+  position: relative;
+
+  :before{
+    content: '';
+    display: block;
+    width: calc(100% - 2px);
+    height: 105px;
+    background: linear-gradient(0deg, rgba(45, 45, 45, 0) 0%, #2D2D2D 95.83%);
+    position: absolute;
+  }
+
+  :after{
+    content: '';
+    display: block;
+    width: calc(100% - 2px);
+    height: 105px;
+    background: linear-gradient(0deg,#2D2D2D 9.9%,rgba(45,45,45,0) 100%);
+    position: absolute;
+    bottom: 0;
+  }
+`;
 
 const ServiceListTitleElement = styled.span`
   max-width: 420px;

@@ -20,35 +20,37 @@ export default class TariffList extends Component {
       <TariffListWrapper tariff={tariff}>
         <TariffListContainer>
           <TariffListTitleWrap>
-            <TariffListTitle>
-              <TariffListTitleElement
-                onClick={() => this.props.onReturnBack(false)}
-              >
-                <TariffListTitleImg src={backImg} />
-                Назад
+            <TariffListTitleBlock>
+              <TariffListTitle>
+                <TariffListTitleElement
+                  onClick={() => this.props.onReturnBack(false)}
+                >
+                  <TariffListTitleImg src={backImg} />
+                  Назад
             </TariffListTitleElement>
-              {tariff.map((element, index, array) =>
-                this.state.current === element.id ?
-                  <TariffListTitleElement
-                    key={index}
-                    style={{ color: '#E6B980' }}
-                    onClick={() => {
-                      this.setState({ current: element.id });
-                    }}
-                  >
-                    {element.title}
-                  </TariffListTitleElement>
-                  :
-                  <TariffListTitleElement
-                    key={index}
-                    onClick={() => {
-                      this.setState({ current: element.id });
-                    }}
-                  >
-                    {element.title}
-                  </TariffListTitleElement>
-              )}
-            </TariffListTitle>
+                {tariff.map((element, index, array) =>
+                  this.state.current === element.id ?
+                    <TariffListTitleElement
+                      key={index}
+                      style={{ color: '#E6B980' }}
+                      onClick={() => {
+                        this.setState({ current: element.id });
+                      }}
+                    >
+                      {element.title}
+                    </TariffListTitleElement>
+                    :
+                    <TariffListTitleElement
+                      key={index}
+                      onClick={() => {
+                        this.setState({ current: element.id });
+                      }}
+                    >
+                      {element.title}
+                    </TariffListTitleElement>
+                )}
+              </TariffListTitle>
+            </TariffListTitleBlock>
           </TariffListTitleWrap>
           <TariffListDescriptionWrap>
             <TariffListDescription>
@@ -108,7 +110,6 @@ const TariffListNoteUl = styled.ul`
 const TariffListNoteDitailUl = styled.ul`
   padding: 0 0 0 20px;
 `
-
 const TariffListNoteTitleLi = styled.li`
   list-style-image: url(${ellipse});
   font-family: Montserrat Medium;
@@ -143,8 +144,10 @@ const TariffListContainer = styled.div`
 `;
 
 const TariffListTitle = styled.div`
-  width: 100%;
-  padding: 60px 40px 60px 100px;
+  width: calc(100% + 15px);
+  height: 780px;
+  overflow: auto;
+  padding: 90px 40px 90px 100px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -161,6 +164,30 @@ const TariffListTitle = styled.div`
     padding: 30px 15px 0 15px;
   }
 `;
+
+const TariffListTitleBlock = styled.div`
+  overflow: hidden;
+  position: relative;
+
+  :before{
+    content: '';
+    display: block;
+    width: calc(100% - 2px);
+    height: 105px;
+    background: linear-gradient(0deg, rgba(45, 45, 45, 0) 0%, #2D2D2D 95.83%);
+    position: absolute;
+  }
+
+  :after{
+    content: '';
+    display: block;
+    width: calc(100% - 2px);
+    height: 105px;
+    background: linear-gradient(0deg,#2D2D2D 9.9%,rgba(45,45,45,0) 100%);
+    position: absolute;
+    bottom: 0;
+  }
+`
 
 const TariffListTitleWrap = styled.div`
   width: 50%;
