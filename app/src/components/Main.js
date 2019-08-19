@@ -12,13 +12,34 @@ import arrowIco from '../assets/img/arrow.png'
 import history from '../helpers/history'
 
 export default class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      contacts: []
+    }
+  }
+
+  componentDidMount() {
+    (async () => {
+      try {
+        const response = await fetch('https://foxstudio.site/api/v2/routes/contact.php');
+        if (response.ok) {
+          this.setState({ contacts: await response.json() });
+        }
+      } catch (err) {
+        throw err;
+      }
+    })();
+  }
+
   render() {
+    const { contacts } = this.state;
     return (
       <MainWrapper>
         <MainBackgroundImg>
           <MainBackgroundButton onClick={() => history.push({ pathname: '/about' })} />
         </MainBackgroundImg>
-        <Menu />
+        <Menu contacts={contacts} />
         <MainContent>
           <MainTitleContainer>
             <MainTitle>Нотариальная контора</MainTitle>
@@ -26,7 +47,11 @@ export default class Main extends Component {
           </MainTitleContainer>
           <Search width='720px' />
         </MainContent>
-        <ContactLine phone='8 (831) 999-99-99' mail='notary@gmail.com' />
+        <MainContactBlock>
+          {contacts.map((element, index) =>
+            <ContactLine key={index} phone={element.phone} mail={element.mail} />
+          )}
+        </MainContactBlock>
       </MainWrapper>
     )
   }
@@ -129,3 +154,5 @@ const MainTitle = styled.h1`
     letter-spacing: 0em;
   }
 `;
+
+const MainContactBlock = styled.div``;

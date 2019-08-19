@@ -9,7 +9,10 @@ export default class Menu extends Component {
     super(props)
     this.state = {}
   }
+
   render() {
+    const { contacts } = this.props;
+    console.log(contacts)
     return (
       <MenuWrapper>
         <MenuHamburger onClick={() => {
@@ -28,7 +31,7 @@ export default class Menu extends Component {
           </MenuHamburgerBox>
         </MenuHamburger>
         <MenuNumberPhone>
-          +7 (831) 433-38-64
+          {contacts.length > 0 ? contacts[0].phone : null}
         </MenuNumberPhone>
         <MenuLinkWrapper>
           <MenuLink onClick={() => history.push({ pathname: '/' })}>Главная</MenuLink>
@@ -37,13 +40,15 @@ export default class Menu extends Component {
           <MenuLink onClick={() => history.push({ pathname: '/tariff' })}>Тарифы</MenuLink>
           <MenuLink onClick={() => history.push({ pathname: '/contact' })}>Контакты</MenuLink>
           <MenuButton onClick={() => history.push({ pathname: '/appointment' })}>
-            <Button name="Запись на прием" link="" color="grey" size="small"  />
+            <Button name="Запись на прием" link="" color="grey" size="small" />
           </MenuButton>
           <MenuLinkContactWrap>
-            <MenuLinkContact>+7 (831) 433-38-64</MenuLinkContact>
-            <MenuLinkContact>+7 (831) 419-71-70</MenuLinkContact>
-            <MenuLinkContact>nnp180@nnp.nnov.ru</MenuLinkContact>
-            <MenuLinkContact>nnp180@gmail.com</MenuLinkContact>
+            {contacts.map((element, index) =>
+              <MenuLinkContactBlock key={index}>
+                <MenuLinkContact key={index}>{element.phone}</MenuLinkContact>
+                <MenuLinkContact key={element.id}>{element.address}</MenuLinkContact>
+              </MenuLinkContactBlock>
+            )}
           </MenuLinkContactWrap>
         </MenuLinkWrapper>
       </MenuWrapper >
@@ -86,6 +91,12 @@ const MenuLinkContactWrap = styled.div`
     padding: 35px 0;
   }
 `
+
+const MenuLinkContactBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const MenuWrapper = styled.div`
   display: flex;
   width: 100%;
