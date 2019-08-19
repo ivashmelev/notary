@@ -12,8 +12,8 @@ export default class MapContact extends Component {
         <MapInfo>
           {contact.map((element, index, array) =>
             element.address !== null ?
-              <MapAddres>
-                <MapAddresText key={index} href=''>{element.address}</MapAddresText>
+              <MapAddres key={index}>
+                <MapAddresText href=''>{element.address}</MapAddresText>
               </MapAddres>
               : null
           )}

@@ -68,8 +68,20 @@ export default class Form extends Component {
       if (!_.isEmpty(this.state.localErrors)) {
         this.setState({ localErrors: {} })
       }
-      const { name, phone, mail, comment } = this.state
-      alert(`К отправке данные ${name}, ${phone}, ${mail}, ${comment}`)
+      const { name, phone, mail, comment } = this.state;
+      try {
+        await fetch('https://foxstudio.site/api/v2/routes/send.php', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/text',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `name=${name}&phone=${phone}&mail=${mail}&comment=${comment}&admin_mail=shmelevivan20@gmail.com`,
+          mode: 'cors'
+        })
+      } catch (err) {
+        throw err;
+      }
       this.cleanState()
     } else {
       this.setState({ localErrors })
@@ -137,8 +149,8 @@ export default class Form extends Component {
             onChange={e => this.handleTextChange({ comment: e.target.value })}
             type='text'
             name='comment'
-            placeholder='Комментарий' 
-            margin='0 0 10px 0'/>
+            placeholder='Комментарий'
+            margin='0 0 10px 0' />
           <AppointmentChecked onClick={() => this.handleAgreement()}>
             <AppointmentCheckedBox>
               {
