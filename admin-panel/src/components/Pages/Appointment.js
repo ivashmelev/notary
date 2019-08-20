@@ -7,40 +7,7 @@ class Appointment extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [
-        {
-          id: '0',
-          name: 'Александр',
-          date: '21.08.2019',
-          mail: 'alex@gmail.com',
-          phone: '+7(954)159-5211',
-          comment: ''
-        },
-        {
-          id: '1',
-          name: 'Василий',
-          date: '',
-          mail: 'vasiliy@mail.ru',
-          phone: '+7(954)159-5211',
-          comment: 'Хотел коммент получать? Сосать!'
-        },
-        {
-          id: '2',
-          name: 'Анастасия',
-          date: '21.08.2019',
-          mail: 'nastya.kulagina@mail.ru',
-          phone: '+7(954)159-5211',
-          comment: ''
-        },
-        {
-          id: '3',
-          name: 'Александр',
-          date: '',
-          mail: 'alex@gmail.com',
-          phone: '+7(954)159-5211',
-          comment: 'Как же вы заебали, лицемерные мрази, что лезут к нам - в юриспруденцию.'
-        },
-      ]
+      users: []
     }
   }
 

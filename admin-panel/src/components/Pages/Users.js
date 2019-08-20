@@ -12,29 +12,7 @@ class Users extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [
-        {
-          id: '0',
-          name: 'Ангелина Пережогина',
-          mail: 'angelina@gmail.com',
-          login: 'admin',
-          password: 'sidfh123'
-        },
-        {
-          id: '1',
-          name: 'Василиса Соловьева',
-          mail: 'v.solo@gmail.com',
-          login: 'manager',
-          password: 'sidfh123'
-        },
-        {
-          id: '2',
-          name: 'Ихтан Курваян',
-          mail: 'i.kurva@gmail.com',
-          login: 'adminadmin',
-          password: 'sidfh123'
-        }
-      ],
+      users: [],
       viewPage: USERS_VIEW_PAGE,
       editIndex: null
     }
