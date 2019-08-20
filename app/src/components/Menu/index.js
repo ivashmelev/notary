@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import responsive from '../../responsive'
 import Button from '../Button'
 import history from '../../helpers/history'
+import { cleanPhone } from '../../helpers/format'
 
 export default class Menu extends Component {
   constructor(props) {
@@ -11,8 +12,7 @@ export default class Menu extends Component {
   }
 
   render() {
-    const { contacts } = this.props;
-    console.log(contacts)
+    const { contacts } = this.props
     return (
       <MenuWrapper>
         <MenuHamburger onClick={() => {
@@ -30,9 +30,12 @@ export default class Menu extends Component {
             <MenuHamburgerBoxLine />
           </MenuHamburgerBox>
         </MenuHamburger>
-        <MenuNumberPhone>
-          {contacts.length > 0 ? contacts[0].phone : null}
-        </MenuNumberPhone>
+        { contacts.length > 0 ? (
+            <MenuNumberPhone href={`tel:+7${cleanPhone(contacts[0].phone)}`}>
+              {contacts[0].phone}
+            </MenuNumberPhone>
+          ) : null
+        }
         <MenuLinkWrapper>
           <MenuLink onClick={() => history.push({ pathname: '/' })}>Главная</MenuLink>
           <MenuLink onClick={() => history.push({ pathname: '/about' })}>О нас</MenuLink>
@@ -43,12 +46,17 @@ export default class Menu extends Component {
             <Button name="Запись на прием" link="" color="grey" size="small" />
           </MenuButton>
           <MenuLinkContactWrap>
-            {contacts.map((element, index) =>
-              <MenuLinkContactBlock key={index}>
-                <MenuLinkContact key={index}>{element.phone}</MenuLinkContact>
-                <MenuLinkContact key={element.id}>{element.address}</MenuLinkContact>
-              </MenuLinkContactBlock>
-            )}
+            {
+              contacts.length > 0 ? (
+                <MenuLinkContactBlock>
+                  <MenuLinkContact href={`tel:+7${cleanPhone(contacts[0].phone)}`}>{contacts[0].phone}</MenuLinkContact>
+                  <MenuLinkContact href={`tel:+7${cleanPhone(contacts[1].phone)}`}>{contacts[1].phone}</MenuLinkContact>
+                  <MenuLinkContact href={`mailto:${contacts[0].mail}`}>{contacts[0].mail}</MenuLinkContact>
+                  <MenuLinkContact href={`mailto:${contacts[1].mail}`}>{contacts[1].mail}</MenuLinkContact>
+                </MenuLinkContactBlock>
+              ) : null
+
+            }
           </MenuLinkContactWrap>
         </MenuLinkWrapper>
       </MenuWrapper >

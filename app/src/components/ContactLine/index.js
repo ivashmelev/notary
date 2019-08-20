@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import responsive from '../../responsive'
+import { cleanPhone } from '../../helpers/format'
 
 
 export default class ContactLine extends Component {
@@ -12,8 +13,8 @@ export default class ContactLine extends Component {
     const { phone, mail } = this.props;
     return (
       <ContactLineWrapper>
-        <ContactLineText href={`tel:${phone}`}>{phone}</ContactLineText>
-        <ContactLineText href={`mail:${phone}`}>{mail}</ContactLineText>
+        <ContactLineText href={`tel:+7${cleanPhone(phone)}`}>{phone}</ContactLineText>
+        <ContactLineText href={`mail:${mail}`}>{mail}</ContactLineText>
       </ContactLineWrapper>
     )
   }

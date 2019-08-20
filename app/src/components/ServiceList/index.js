@@ -7,28 +7,7 @@ export default class ServiceList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      services: [
-        {
-          id: '1',
-          title: 'Удостоверение сделок',
-          description: 'В случаях, указанных в законе (обязательная нотариальная форма сделок), или по соглашению сторон нотариусы удостоверяют сделки – действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей (завещания, доверенности, договоры и т.д.). Нотариальное удостоверение сделки предполагает проверку нотариусом законности сделки, в том числе наличия у каждой из сторон права на ее совершение, соответствия содержания сделки действительным намерениям сторон.'
-        },
-        {
-          id: '2',
-          title: 'Наложение и снятие запрещения отчуждения имущества',
-          description: 'Наложение и снятие запрещения отчуждения имущества осуществляется на условиях и в порядке, установленном законодательными актами Российской Федерации.'
-        },
-        {
-          id: '3',
-          title: 'Свидетельствование верности копий документов и выписок из них',
-          description: 'Нотариус свидетельствует верность копий документов и выписок из документов, выданных органами государственной власти, органами местного самоуправления, юридическими лицами, гражданами, не подтверждая при этом законность содержания документа, соответствие изложенных в нем фактов действительности, личность, дееспособность и полномочия подписавших его лиц, правоспособность юридического лица, от которого исходит документ.Свидетельствуя верность копии документа, нотариус подтверждает соответствие изг.'
-        },
-        {
-          id: '4',
-          title: 'Свидетельствование подлинности подписи на документах',
-          description: 'Свидетельствуя подлинность подписи на документе, нотариус, не удостоверяя фактов изложенных в документе, подтверждает, что подпись на документе сделана в его присутствии определенным лицом.'
-        }
-      ],
+      services: [],
       current: '9'
     }
   }
@@ -37,13 +16,16 @@ export default class ServiceList extends Component {
     (async () => {
       const response = await fetch('https://foxstudio.site/api/v2/routes/service.php');
       if (response.ok) {
-        this.setState({ services: await response.json() });
+        this.setState({ services: await response.json() })
+        if (this.state.services.length > 0) {
+          this.setState({ current: this.state.services[0].id })
+        }
       }
     })();
   }
 
   render() {
-    const { services, current } = this.state;
+    const { services, current } = this.state
     return (
       <ServiceListWrapper>
         <ServiceListTitleWrap>
@@ -104,7 +86,7 @@ const ServiceListWrapper = styled.div`
 `;
 
 const ServiceListTitle = styled.div`
-  width: calc(100% + 15px);
+  width: calc(100% + 17px);
   height: 780px;
   overflow: auto;
   padding: 90px 40px 90px 100px;
@@ -117,11 +99,13 @@ const ServiceListTitle = styled.div`
     padding: 90px 40px 90px 30px;
   }
   @media ${responsive.tabletB} {
-    padding: 40px 30px 0 30px;
+    padding: 60px 30px 0 30px;
+    width: 100%;
     align-items: flex-start;
   }
   @media ${responsive.tablet} {
     padding: 40px 15px 0 15px;
+    height: 400px;
   }
 `;
 
@@ -144,20 +128,37 @@ const ServiceListTitleBlock = styled.div`
   :before{
     content: '';
     display: block;
-    width: calc(100% - 2px);
-    height: 105px;
+    width: 100%;
+    height: 100px;
     background: linear-gradient(0deg, rgba(45, 45, 45, 0) 0%, #2D2D2D 95.83%);
     position: absolute;
+    top: 0;
   }
 
   :after{
     content: '';
     display: block;
-    width: calc(100% - 2px);
-    height: 105px;
+    width: 100%;
+    height: 100px;
     background: linear-gradient(0deg,#2D2D2D 9.9%,rgba(45,45,45,0) 100%);
     position: absolute;
     bottom: 0;
+  }
+  @media ${responsive.tabletB} {
+    :before{
+      height: 60px;
+    }
+    :after{
+      height: 60px;
+    }
+  }
+  @media ${responsive.tablet} {
+    :before{
+      height: 40px;
+    }
+    :after{
+      height: 100px;
+    }
   }
 `;
 

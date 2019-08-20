@@ -71,9 +71,11 @@ export default class Header extends Component {
                     backgroundImg === 'search' ? searchMobile : null} />
         <Menu contacts={contacts} />
         <HeaderContactBlock>
-          {contacts.map((element, index) =>
-            <ContactLine key={index} phone={element.phone} mail={element.mail} />
-          )}
+          {
+            contacts.length > 0 ? (
+              <ContactLine phone={contacts[1].phone} mail={contacts[1].mail} />
+            ) : null
+          }
         </HeaderContactBlock>
       </HeaderWrapper>
 

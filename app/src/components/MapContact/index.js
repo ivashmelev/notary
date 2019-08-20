@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import responsive from '../../responsive'
-import { YMaps, Map } from 'react-yandex-maps';
-
+import { YMaps, Map, Placemark } from 'react-yandex-maps'
+import { cleanPhone } from '../../helpers/format'
 
 export default class MapContact extends Component {
   render() {
@@ -21,13 +21,13 @@ export default class MapContact extends Component {
             <MapPhone>
               <MapInfoTitle>Позвоните нам:</MapInfoTitle>
               {contact.map((element, index) =>
-                <MapInfoLink key={index} href=''>{element.phone}</MapInfoLink>
+                <MapInfoLink key={index} href={`tel:+7${cleanPhone(element.phone)}`}>{element.phone}</MapInfoLink>
               )}
             </MapPhone>
             <MapMail>
               <MapInfoTitle>Напишите:</MapInfoTitle>
               {contact.map((element, index) =>
-                <MapInfoLink key={index} href=''>{element.mail}</MapInfoLink>
+                <MapInfoLink key={index} href={`mailto:${element.mail}`}>{element.mail}</MapInfoLink>
               )}
             </MapMail>
           </MapPhoneMail>
@@ -35,10 +35,12 @@ export default class MapContact extends Component {
         <MapContainer>
           <YMaps>
             <Map
-              defaultState={{ center: [55.75, 37.57], zoom: 9 }}
+              defaultState={{ center: [56.322759, 44.001369], zoom: 15 }}
               width='100%'
               height='100%'
-            />
+            >
+              <Placemark geometry={[56.322759, 44.001369]} />
+            </Map>
           </YMaps>
         </MapContainer>
       </MapWrapper>
@@ -53,7 +55,7 @@ const MapWrapper = styled.div`
   @media ${responsive.notebookS} {
     width: 100%;
   }
-`;
+`
 
 const MapContainer = styled.div`
   width: 100%;
@@ -61,7 +63,10 @@ const MapContainer = styled.div`
   @media ${responsive.notebookS} {
     height: 550px;
   }
-`;
+  @media ${responsive.tabletB} {
+    height: 350px;
+  }
+`
 
 const MapInfo = styled.div`
   width: 100%;
@@ -69,18 +74,16 @@ const MapInfo = styled.div`
   align-items: flex-start;
   flex-direction: column;
   background: #E6B980;
-  padding-left: 20px;
+  padding: 20px 10px 20px 20px;
   box-sizing: border-box;
 
   @media ${responsive.tablet} {
     height: unset;
   }
   
-`;
+`
 
-const MapAddres = styled.div`
-  margin-top: 27px;
-`;
+const MapAddres = styled.div``
 
 const MapAddresText = styled.a`
   font-family: Montserrat Bold;
@@ -94,7 +97,7 @@ const MapAddresText = styled.a`
   @media ${responsive.tablet} {
     font-size: 16px;
   }
-`;
+`
 
 const MapPhoneMail = styled.div`
   margin-top: 20px;
@@ -105,7 +108,7 @@ const MapPhoneMail = styled.div`
     flex-direction: column;
     justify-content: center;
   }
-`;
+`
 
 const MapPhone = styled.div`
   display: flex;
@@ -114,7 +117,7 @@ const MapPhone = styled.div`
   @media ${responsive.tablet} {
     width: 100%;
   }
-`;
+`
 
 const MapInfoTitle = styled.div`
   margin-bottom: 20px;
@@ -126,7 +129,7 @@ const MapInfoTitle = styled.div`
   align-items: center;
   letter-spacing: 0.05em;
   color: #FFFFFF;
-`;
+`
 
 const MapInfoLink = styled.a`
   margin-bottom: 10px;
@@ -139,7 +142,7 @@ const MapInfoLink = styled.a`
   letter-spacing: 0.05em;
   color: #FFFFFF;
   text-decoration: none;
-`;
+`
 
 const MapMail = styled.div`
   display: flex;
@@ -150,5 +153,5 @@ const MapMail = styled.div`
     margin-left: 0;
     margin-top: 20px;
   }
-`;
+`
 

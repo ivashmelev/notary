@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Button from '../Button'
 import styled from 'styled-components'
 import responsive from '../../responsive'
 
@@ -25,9 +24,6 @@ export default class TariffElement extends Component {
           <TariffElementTitle>Размер платы за услуги правового и технического характера (УПТХ)</TariffElementTitle>
           <TariffElementText>{price}</TariffElementText>
         </TariffElementBlock>
-        {/* <TariffElementButton>
-          <Button name='Запись на прием' link='' />
-        </TariffElementButton> */}
       </TariffElementWrapper >
     )
   }
@@ -51,15 +47,6 @@ const TariffElementText = styled.span`
     font-size: 16px;
     line-height: 25px;
     letter-spacing: 0;
-  }
-`;
-
-const TariffElementButton = styled.div`
-  margin-top: 55px;
-
-  @media ${responsive.tablet} {
-    display: flex;
-    justify-content: flex-start;
   }
 `;
 

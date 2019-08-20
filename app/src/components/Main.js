@@ -48,9 +48,11 @@ export default class Main extends Component {
           <Search width='720px' />
         </MainContent>
         <MainContactBlock>
-          {contacts.map((element, index) =>
-            <ContactLine key={index} phone={element.phone} mail={element.mail} />
-          )}
+          {
+            contacts.length > 0 ? (
+              <ContactLine phone={contacts[1].phone} mail={contacts[1].mail} />
+            ) : null
+          }
         </MainContactBlock>
       </MainWrapper>
     )

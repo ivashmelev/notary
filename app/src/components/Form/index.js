@@ -217,7 +217,7 @@ const FormWrapper = styled.div`
   left: 15vw;
   z-index: 2;
   position: relative;
-  margin-top: 320px;
+  margin-top: 260px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -308,7 +308,6 @@ const FormButtonContainer = styled.div`
 `;
 
 const FormButton = styled.button`
-  
   width: 200px;
   height: 50px;
   display: flex;

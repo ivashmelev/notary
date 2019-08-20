@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import Header from './Header'
 import styled from 'styled-components'
 import responsive from '../responsive'
-import Search from './Search';
-import history from '../helpers/history'
+import Search from './Search'
 
 
 export default class SearchPage extends Component {
@@ -33,12 +32,9 @@ export default class SearchPage extends Component {
 
   componentDidMount() {
     if (window.location.href.split('/').pop() !== 'search') {
-      // this.setState({ query: window.location.href.split('/').pop() })
       this.setState((state, props) => ({
         query: window.location.href.split('/').pop()
-      }));
-
-      console.log(this.state.query);
+      }))
     }
     (async () => {
       try {
@@ -52,8 +48,7 @@ export default class SearchPage extends Component {
           mode: 'cors'
         });
         if (response.ok) {
-          this.setState({ searchResult: await response.json() });
-          console.log(this.state.searchResult);
+          this.setState({ searchResult: await response.json() })
         }
       } catch (err) {
         throw err;
@@ -70,12 +65,6 @@ export default class SearchPage extends Component {
     });
 
     this.setState({ searchResult: cloneSearchResult });
-
-    //     }
-    //   } catch (err) {
-    //     throw err;
-    //   }
-    // })();
   }
 
   handleSearchResult(value) {

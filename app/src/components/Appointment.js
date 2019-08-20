@@ -122,7 +122,6 @@ export default class Appointment extends Component {
 
   render() {
     const { localErrors, screen, agreement, date, today, name, phone, mail } = this.state
-    console.log(localErrors);
     return (
       <AppointmentWrapper>
         <AppointmentBackground />

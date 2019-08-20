@@ -30,6 +30,8 @@ const TitleText = styled.h2`
   font-size: 24px;
   letter-spacing: 0.05em;
   margin: 0;
+  text-align: center;
+  padding: 0 15px;
   @media ${responsive.tablet} {
     font-size: 18px;
   }

@@ -26,8 +26,7 @@ export default class Tariff extends Component {
       try {
         const response = await fetch('https://foxstudio.site/api/v2/routes/section.php');
         if (await response.ok) {
-          this.setState({ section: await response.json() });
-          console.log(this.state.section)
+          this.setState({ section: await response.json() })
         }
       } catch (err) {
         throw err;
@@ -36,7 +35,6 @@ export default class Tariff extends Component {
   }
 
   getTariff(id, section) {
-    console.log(id, '---id---');
     try {
       (async () => {
         const response = await fetch(
@@ -47,8 +45,7 @@ export default class Tariff extends Component {
             tariff: await response.json(),
             sectionView: true,
             title: section
-          });
-          console.log(this.state.tariff);
+          })
         }
       })();
     } catch (err) {
@@ -91,10 +88,7 @@ export default class Tariff extends Component {
   }
 }
 
-const TariffWrapper = styled.div`
-  /* max-width: 1440px; */
-  /* margin: auto; */
-`;
+const TariffWrapper = styled.div``
 
 const TariffButtonContainer = styled.div`
   display: flex;
@@ -112,14 +106,12 @@ const TariffButtonContainer = styled.div`
   }
 `
 
-const TariffListContainer = styled.div``;
-
 const ButtonWrapper = styled.div`
   padding: 15px;
   box-sizing: border-box;
   @media ${responsive.tablet} {
     width: 100%;
   }
-`;
+`
 
-const TariffContainer = styled.div``;
+const TariffContainer = styled.div``

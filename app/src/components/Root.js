@@ -20,7 +20,6 @@ const Site = () => {
   return (
     <Router history={history}>
       <Switch>
-        {/* <Route exact path="/auth/:platform" render={() => wrap(Main)} /> */}
         <Route exact path="/" render={() => wrap(Main)} />
         <Route path="/about" render={() => wrap(About)} />
         <Route path="/service" render={() => wrap(Service)} />

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import TariffElement from '../TariffElement'
-import Navigation from '../Navigation/index'
 import styled from 'styled-components'
 import responsive from '../../responsive'
 import backImg from '../../assets/img/back.png'
@@ -11,6 +10,12 @@ export default class TariffList extends Component {
     super(props);
     this.state = {
       current: '0'
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.tariff.length > 0){
+      this.setState({ current: this.props.tariff[0].id })
     }
   }
 
@@ -27,7 +32,7 @@ export default class TariffList extends Component {
                 >
                   <TariffListTitleImg src={backImg} />
                   Назад
-            </TariffListTitleElement>
+                </TariffListTitleElement>
                 {tariff.map((element, index, array) =>
                   this.state.current === element.id ?
                     <TariffListTitleElement
@@ -144,7 +149,7 @@ const TariffListContainer = styled.div`
 `;
 
 const TariffListTitle = styled.div`
-  width: calc(100% + 15px);
+  width: calc(100% + 17px);
   height: 780px;
   overflow: auto;
   padding: 90px 40px 90px 100px;
@@ -154,14 +159,17 @@ const TariffListTitle = styled.div`
   background: #2D2D2D;
   box-sizing: border-box;
   @media ${responsive.notebook} {
-    padding: 60px 40px 60px 30px;
+    padding: 90px 40px 90px 30px;
   }
   @media ${responsive.tabletB} {
-    padding: 40px 30px 0 30px;
+    padding: 60px 30px 0 30px;
+    width: 100%;
+    height: 400px;
     align-items: flex-start;
   }
   @media ${responsive.tablet} {
-    padding: 30px 15px 0 15px;
+    padding: 40px 15px 0 15px;
+    height: 400px;
   }
 `;
 
@@ -172,7 +180,7 @@ const TariffListTitleBlock = styled.div`
   :before{
     content: '';
     display: block;
-    width: calc(100% - 2px);
+    width: 100%;
     height: 105px;
     background: linear-gradient(0deg, rgba(45, 45, 45, 0) 0%, #2D2D2D 95.83%);
     position: absolute;
@@ -181,11 +189,27 @@ const TariffListTitleBlock = styled.div`
   :after{
     content: '';
     display: block;
-    width: calc(100% - 2px);
+    width: 100%;
     height: 105px;
     background: linear-gradient(0deg,#2D2D2D 9.9%,rgba(45,45,45,0) 100%);
     position: absolute;
     bottom: 0;
+  }
+  @media ${responsive.tabletB} {
+    :before{
+      height: 60px;
+    }
+    :after{
+      height: 60px;
+    }
+  }
+  @media ${responsive.tablet} {
+    :before{
+      height: 40px;
+    }
+    :after{
+      height: 100px;
+    }
   }
 `
 
@@ -287,50 +311,3 @@ const TariffListNoteTitle = styled.span`
     margin-bottom: 40px;
   }
 `;
-
-const TariffListNotePointTitle = styled.span`
-  font-family: Montserrat Regular;
-  font-size: 16px;
-  line-height: 34px;
-  letter-spacing: 0.05em;
-  color: #2D2D2D;
-
-  &:before{
-    content: '';
-    width: 10px;
-    height: 10px;
-    background: #E6B980;
-    display: block;
-    position: relative;
-    border-radius: 20px;
-    top: 20px;
-    left: -20px;
-  }
-`;
-
-const TariffListNotePointText = styled.span`
-  font-family: Montserrat Regular;
-  font-size: 16px;
-  line-height: 34px;
-  letter-spacing: 0.05em;
-  color: #2D2D2D;
-  opacity: .7;
-  margin-left: 5px;
-
-  &:before{
-    top: 18px;
-    left: -12px;
-    content: '';
-    width: 5px;
-    height: 5px;
-    background: #E6B980;
-    display: block;
-    position: relative;
-    border-radius: 20px;
-    background: #2D2D2D;
-  }
-`;
-
-
-
-

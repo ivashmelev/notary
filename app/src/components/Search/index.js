@@ -57,7 +57,6 @@ export default class Search extends Component {
   }
 
   render() {
-    const { query } = this.state
     return (
       <SearchWrapper>
         <SearchInput

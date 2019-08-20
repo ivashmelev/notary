@@ -20,8 +20,7 @@ export default class Contact extends Component {
       try {
         const response = await fetch('https://foxstudio.site/api/v2/routes/contact.php');
         if (await response.ok) {
-          this.setState({ contact: await response.json() });
-          console.log(this.state.contact)
+          this.setState({ contact: await response.json() })
         }
       } catch (err) {
         throw err;
@@ -102,6 +101,10 @@ const ContactLink = styled.a`
   color: #000000;
   margin-bottom: 30px;
   text-decoration: none;
+  transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
+  &:hover{
+    opacity: .7;
+  }
   @media ${responsive.tablet} {
     font-size: 16px;
   }
