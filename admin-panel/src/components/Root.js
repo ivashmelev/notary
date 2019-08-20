@@ -20,23 +20,23 @@ const Site = () => {
   const navigation = [
     {
       title: 'Записи на прием',
-      link: '/admin/'
+      link: '/'
     },
     {
       title: 'Услуги',
-      link: '/admin/services'
+      link: '/services'
     },
     {
       title: 'Тарифы',
-      link: '/admin/tariffs'
+      link: '/tariffs'
     },
     {
       title: 'Контакты',
-      link: '/admin/contacts'
+      link: '/contacts'
     },
     {
       title: 'Пользователи',
-      link: '/admin/users'
+      link: '/users'
     }
   ]
   return (
@@ -48,11 +48,11 @@ const Site = () => {
         <ContainerContent>
           <Router history={history}>
             <Switch>
-              <Route exact path="/admin/services" component={Services} />
-              <Route exact path="/admin/tariffs" component={Tariffs} />
-              <Route exact path="/admin/contacts" component={Contacts} />
-              <Route exact path="/admin/" component={Appointment} />
-              <Route exact path="/admin/users" component={Users} />
+              <Route exact path="/services" component={Services} />
+              <Route exact path="/tariffs" component={Tariffs} />
+              <Route exact path="/contacts" component={Contacts} />
+              <Route exact path="/" component={Appointment} />
+              <Route exact path="/users" component={Users} />
             </Switch>
           </Router>
         </ContainerContent>
