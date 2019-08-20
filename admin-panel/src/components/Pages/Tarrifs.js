@@ -11,6 +11,7 @@ class Tariffs extends Component {
     this.state = {
       sections: [],
       tariffs: [{}],
+      currentSection: NaN,
       current: 0,
       view: 'menu'
     }
@@ -22,28 +23,16 @@ class Tariffs extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state.current);
     (
       this.state.view === 'menu' ?
         async () => {
           const response = await fetch('https://foxstudio.site/api/v2/routes/section.php');
           if (await response.ok) {
             this.setState({ sections: await response.json() });
-            // this.setState(async (state, props) => {
-            //   return {
-            //     sections: await response.json() 
-            //   }
-            // })
-            // console.log(this.state.sections);
           }
         }
         :
         async () => {
-          // const response = await fetch(`http://foxstudio.site/api/v2/routes/section.php?id=${this.state.sections[this.state.current].id}`);
-          // if (await response.ok) {
-          //   this.setState({ tariffs: await response.json() });
-          //   console.log(this.state.tariffs);
-          // }
         }
     )();
   }
@@ -53,48 +42,36 @@ class Tariffs extends Component {
   }
 
   setActiveSection(value) {
-    this.setState({ current: value, view: 'wall' });
-    // (this.state.view === 'wall' ?
+    this.setState({ currentSection: value, view: 'wall' });
     (async () => {
-      const response = await fetch(`http://foxstudio.site/api/v2/routes/section.php?id=${this.state.sections[this.state.current].id}`);
+      const response = await fetch(`http://foxstudio.site/api/v2/routes/section.php?id=${this.state.sections[value].id}`);
       if (await response.ok) {
-        this.setState({ tariffs: await response.json() });
-        console.log(this.state.tariffs);
+        this.setState({ tariffs: await response.json() })
       }
     })();
-    // : null)();
   }
 
   unSetActive(value) {
-    this.setState({ view: 'menu' });
+    this.setState({ view: 'menu', current: 0 });
   }
 
 
   handleChangeTariffs(data, current) {
-    const newServices = [...this.state.tariffs];
-    console.log(newServices);
-    console.log(data);
+    const newServices = [...this.state.tariffs]
     newServices[current] = data;
     this.setState((state, props) => {
       return {
         tariffs: newServices
       }
-    });
+    })
   }
 
   render() {
-    // this.state.sections[0].title ? console.log(this.state.sections[0]) : console.log('nothing');
-    if (!_.isEmpty(this.state.sections[this.state.current])){
-      console.log(this.state.sections[0].title)
-    } else {
-      console.log('NOOO')
-    }
-    
     return (
       <TariffsWrapper>
         <Title 
           title='Тарифы' 
-          nextTitle={this.state.view === 'wall' ? this.state.sections[this.state.current].title : ''} 
+          nextTitle={this.state.view === 'wall' ? this.state.sections[this.state.currentSection].title : ''} 
           icon={this.state.view === 'wall' ? 'chevron' : ''}
           onDoThis={this.state.view === 'wall' ? this.unSetActive : null}
           action
@@ -103,7 +80,7 @@ class Tariffs extends Component {
           <TariffsContainer>
             <TariffsContainerSidebar>
               {this.state.sections.map((element, index) =>
-                <Sidebar active={this.state.current === index ? true : false} key={index} id={index} title={element.title} onSetActiveSection={this.setActiveSection} />
+                <Sidebar active={false} key={index} id={index} title={element.title} onSetActiveSection={this.setActiveSection} />
               )}
             </TariffsContainerSidebar>
           </TariffsContainer>
@@ -111,13 +88,18 @@ class Tariffs extends Component {
           this.state.view === 'wall' ?
             < TariffsContainer >
               <TariffsContainerSidebar>
-                {this.state.tariffs.map((element, index) =>
-                  <Sidebar active={this.state.current === index ? true : false} key={index} id={index} title={element.title} onSetActiveTariff={this.setActiveTariff} />
-                )}
+                {
+                  !_.isEmpty(this.state.tariffs) > 0 ? (
+                    this.state.tariffs.map((element, index) =>
+                      <Sidebar active={this.state.current === index ? true : false} key={index} id={index} title={element.title} onSetActiveTariff={this.setActiveTariff} />
+                    )
+                  ) : null
+                }
               </TariffsContainerSidebar>
               <TariffsContainerWall>
                 {!_.isEmpty(this.state.tariffs) ?
                   <Wall
+                    title='Hello'
                     event={UPDATE_TARIFF}
                     data={this.state.tariffs[this.state.current]}
                     onHandleChangeServices={this.handleChangeTariffs}
@@ -144,12 +126,12 @@ const TariffsContainer = styled.div`
 const TariffsContainerSidebar = styled.div`
   display: flex;
   flex-direction: column;
-  width: 315px;
+  flex: 0 1 315px;
 `;
 
 const TariffsContainerWall = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  flex: 1 1;
   padding: 5px 0;
 `;

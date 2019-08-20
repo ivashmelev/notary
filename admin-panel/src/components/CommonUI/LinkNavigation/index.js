@@ -10,8 +10,7 @@ class LinkNavigation extends Component {
   }
   
   render() {
-    console.log(history.location.pathname)
-    const { title, link, active } = this.props
+    const { title, link } = this.props
     return (
       <LinkNavigationWrapper onClick={() => history.push({ pathname: `${link}` })}>
         {title}

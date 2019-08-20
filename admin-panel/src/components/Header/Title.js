@@ -4,7 +4,6 @@ import chevron from '../../assets/icons/chevron-left.svg'
 import plus from '../../assets/icons/plus.svg'
 
 const USERS_VIEW_PAGE = 'USERS_VIEW_PAGE'
-const USERS_VIEW_EDIT = 'USERS_VIEW_EDIT'
 const USERS_VIEW_NEW = 'USERS_VIEW_NEW'
 
 class Title extends Component {

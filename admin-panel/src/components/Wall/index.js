@@ -9,7 +9,7 @@ export default class Wall extends Component {
     this.state = {
       data: [],
       title: '',
-      changeText: (e) => { this.setState({ data: this.props.data }); console.log(e.target); }
+      changeText: (e) => { this.setState({ data: this.props.data }); }
     }
   }
 
@@ -81,19 +81,17 @@ export default class Wall extends Component {
         break;
       case 'UPDATE_CONTACT': request('contact', 'POST', this.state.data.id, body);
         break;
+      default: break;
     }
-
-
   }
 
   render() {
     const { data, event } = this.props;
-    console.log(data);
     return (
       <WallWrapper>
         {data.title ? <WallTitle><Element name='title' view='input' text={this.state.data.title} /></WallTitle> : null}
         {data.subtitle ? <WallSubTitle><Element name='subtitle' view='input' text={this.state.data.subtitle} /></WallSubTitle> : null}
-        {data.taiff ? <WallText><Element name='tariff' view='textarea' text={this.state.data.tariff} /></WallText> : null}
+        {data.tariff ? <WallText><Element name='tariff' view='textarea' text={this.state.data.tariff} /></WallText> : null}
         {data.price ? <WallText><Element name='price' view='textarea' text={this.state.data.price} /></WallText> : null}
         {data.description ? <WallText><Element name='description' view='textarea' text={this.state.data.description} /></WallText> : null}
         {data.address ? <WallText><Element name='address' view='textarea' text={this.state.data.address} /></WallText> : null}
@@ -121,8 +119,6 @@ const WallWrapper = styled.div`
   font-weight: 500;
   color: #2D2D2D;
   cursor: pointer;
-`;
-const WallId = styled.input`
 `;
 
 const WallTitle = styled.span`

@@ -23,7 +23,6 @@ class Services extends Component {
         const response = await fetch('https://foxstudio.site/api/v2/routes/service.php', { method: 'GET', mode: "cors" });
         if (await response.ok) {
           this.setState({ services: await response.json() });
-          console.log(this.state.services);
         }
       })();
     } catch (err) {
@@ -33,8 +32,6 @@ class Services extends Component {
 
   handleChangeServices(data, current) {
     const newServices = [...this.state.services];
-    console.log(newServices);
-    console.log(data);
     newServices[current] = data;
     this.setState((state, props) => {
       return {
@@ -86,12 +83,12 @@ const ServicesContainer = styled.div`
 const ServicesContainerSidebar = styled.div`
   display: flex;
   flex-direction: column;
-  width: 315px;
+  flex: 0 1 315px;
 `;
 
 const ServicesContainerWall = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  flex: 1 1;
   padding: 5px 0;
 `;

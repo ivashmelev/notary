@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Avatar from '../Avatar'
-import settings from '../../../assets/icons/settings.svg'
 
 class UserNavigation extends Component {
   constructor(props) {
@@ -14,7 +13,7 @@ class UserNavigation extends Component {
     return (
       <UserNavigationWrapper>
         <Avatar size='40px'/>
-        <UserName>Пережогина Ангелина</UserName>
+        <UserName>{ userName ? userName : 'Admin'}</UserName>
       </UserNavigationWrapper>
     )
   }
@@ -22,10 +21,6 @@ class UserNavigation extends Component {
 
 export default UserNavigation;
 
-const UserSettings = styled.img`
-  width: 20px;
-  height: 20px;
-`
 const UserName = styled.div`
   font-size: 12px;
   color: #2D2D2D;

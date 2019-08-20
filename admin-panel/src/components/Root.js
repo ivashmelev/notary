@@ -20,39 +20,39 @@ const Site = () => {
   const navigation = [
     {
       title: 'Записи на прием',
-      link: '/'
+      link: '/admin/'
     },
     {
       title: 'Услуги',
-      link: '/services'
+      link: '/admin/services'
     },
     {
       title: 'Тарифы',
-      link: '/tariffs'
+      link: '/admin/tariffs'
     },
     {
       title: 'Контакты',
-      link: '/contacts'
+      link: '/admin/contacts'
     },
     {
       title: 'Пользователи',
-      link: '/users'
+      link: '/admin/users'
     }
   ]
   return (
     
       <Container>
         <ContainerNavigation>
-          <Navigation navigation={navigation} />
+          <Navigation userName="Ангелина Пережогина" navigation={navigation} />
         </ContainerNavigation>
         <ContainerContent>
           <Router history={history}>
             <Switch>
-              <Route exact path="/services" component={Services} />
-              <Route exact path="/tariffs" component={Tariffs} />
-              <Route exact path="/contacts" component={Contacts} />
-              <Route exact path="/" component={Appointment} />
-              <Route exact path="/users" component={Users} />
+              <Route exact path="/admin/services" component={Services} />
+              <Route exact path="/admin/tariffs" component={Tariffs} />
+              <Route exact path="/admin/contacts" component={Contacts} />
+              <Route exact path="/admin/" component={Appointment} />
+              <Route exact path="/admin/users" component={Users} />
             </Switch>
           </Router>
         </ContainerContent>
@@ -66,7 +66,7 @@ export default class Root extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      token: true
+      token: false
     }
     this.changeView = this.changeView.bind(this)
   }
@@ -77,8 +77,6 @@ export default class Root extends Component {
 
   render() {
     const { token } = this.state
-    console.log(this.props, 'HELLO');
-
     return (
       <RootContainer>
         {

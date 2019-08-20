@@ -50,7 +50,6 @@ class Users extends Component {
         const response = await fetch('https://foxstudio.site/api/v2/routes/admin.php');
         if (await response.ok) {
           this.setState({ users: await response.json() });
-          console.log('componentDidMount');
         }
       })();
     } catch (err) {
@@ -78,7 +77,6 @@ class Users extends Component {
           const copyState = { ...this.state }
           const newElement = await response.json();
           copyState.users.push(newElement[0]);
-          console.log(copyState.users);
           this.setState({ users: copyState.users });
         }
       } catch (err) {
@@ -103,7 +101,6 @@ class Users extends Component {
           const copyState = { ...this.state }
           const newElement = await response.json();
           copyState.users.splice(index, 1, [...newElement]);
-          console.log(copyState.users);
           this.setState({ users: [...newElement] });
         }
       } catch (err) {

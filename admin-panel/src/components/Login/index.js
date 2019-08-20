@@ -48,7 +48,6 @@ export default class Login extends Component {
       }
 
       this.props.onChangeView()
-      // alert(`К отправке данные ${newUserInfo.name}, ${newUserInfo.mail}, ${newUserInfo.login}, ${newUserInfo.password}`)
     } else {
       this.setState({ localErrors })
     }

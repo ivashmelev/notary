@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import User from '../CommonUI/UserNavigation'
 import Link from '../CommonUI/LinkNavigation'
 import _ from 'lodash'
-import history from '../../helpers/'
-// import Option from '../CommonUI/OptionNavigation'
+import history from '../../helpers/history'
 
 class Navigation extends Component {
   constructor(props) {
@@ -13,10 +12,10 @@ class Navigation extends Component {
   }
   
   render() {
-    const { navigation } = this.props
+    const { navigation, userName } = this.props
     return (
       <NavigationWrapper>
-        <User />
+        <User userName={userName}/>
         <LinkWrapper>
           {
             _.map(navigation, (item, index) => {
@@ -26,7 +25,6 @@ class Navigation extends Component {
             })
           }
         </LinkWrapper>
-        {/* <Option title='Услуги' /> */}
       </NavigationWrapper>
     );
   }

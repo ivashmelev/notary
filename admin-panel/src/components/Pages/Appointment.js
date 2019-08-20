@@ -49,8 +49,7 @@ class Appointment extends Component {
       (async () => {
         const response = await fetch('https://foxstudio.site/api/v2/routes/reception.php');
         if (await response.ok) {
-          this.setState({ users: await response.json() });
-          console.log(this.state.users);
+          this.setState({ users: await response.json() })
         }
       })();
     } catch (err) {
