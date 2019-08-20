@@ -46,8 +46,11 @@ export default class Login extends Component {
         login: login,
         password: password
       }
-
-      this.props.onChangeView()
+      if (authInfo.login === 'admin' && authInfo.password === 'adminadmin') {
+        this.props.onChangeView()
+      } else {
+        this.setState({ localErrors: {loginError: 'Неверный логин или пароль'} })
+      }
     } else {
       this.setState({ localErrors })
     }

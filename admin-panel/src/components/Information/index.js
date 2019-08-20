@@ -33,8 +33,44 @@ export default class Information extends Component {
               <InformationContentClose src={closeIco} onClick={() => this.changeView()}/>
             </InformationContentHeader>
             <InformationContentText>
-              Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании генератора мы использовали небезизвестный универсальный код речей. Текст генерируется абзацами случайным образом от двух до десяти предложений в абзаце, что позволяет сделать текст более привлекательным и живым для визуально-слухового восприятия.
-              По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.
+              <b>Элементы навигации и экраны</b>
+            </InformationContentText>
+            <InformationContentText>
+              <InfoUl>
+                <InfoLi>Кнопка в правом верхнем углу (Выход из админ панели)</InfoLi>
+                <InfoLi>Левое меню:</InfoLi>
+                  <InfoUl>
+                    <InfoLi>Записи на прием (Список пользователей записавшихся на прием)</InfoLi>
+                    <InfoLi>Услуги (Список услуг для редактирования)</InfoLi>
+                    <InfoLi>Тарифы (Список тарифов для редактирования)</InfoLi>
+                    <InfoLi>Контакты (Список контактов для редактирования)</InfoLi>
+                    <InfoLi>Пользователи (Список учетных записей для создания и редактирования)</InfoLi>
+                  </InfoUl>
+                <InfoLi>Правая панель (Экран вывода информации раздела):</InfoLi>
+                  <InfoUl>
+                    <InfoLi>Шапка с именем раздела</InfoLi>
+                    <InfoLi>Справа в шапке появляются кнопки: </InfoLi>
+                      <InfoUl>
+                        <InfoLi>Стрелка (Подняться на уровень выше)</InfoLi>
+                        <InfoLi>Плюс (Добавление новой учетной записи)</InfoLi>
+                      </InfoUl>
+                    <InfoLi>Левое боковое меню (Меню переключения разделов)</InfoLi>
+                    <InfoLi>Правая форма редактирования</InfoLi>
+                  </InfoUl>
+              </InfoUl>
+            </InformationContentText>
+            <InformationContentText>
+              <b>Инструкция по редактированию</b>
+            </InformationContentText>
+            <InformationContentText>
+              <InfoUl>
+                <InfoLi>Нажмите на текст</InfoLi>
+                <InfoLi>Если текст изменяемый, то появится поле ввода</InfoLi>
+                <InfoLi>После всех изменений необходимо нажать сочетание клавиш <b>ctrl + enter</b></InfoLi>
+                <InfoLi>Инпут должен вернуться к первоначальному виду</InfoLi>
+                <InfoLi>Нажмите кнопку <b>Ок</b></InfoLi>
+                <InfoLi>Данные сохранены</InfoLi>
+              </InfoUl>
             </InformationContentText>
           </InformationContent>
           </InformationContentWrapper>
@@ -43,11 +79,16 @@ export default class Information extends Component {
   }
 }
 
+const InfoLi = styled.li``;
+const InfoUl = styled.ul`
+  padding: 0 0 0 20px;
+`;
 const InformationContentText = styled.div`
   font-weight: normal;
   font-size: 16px;
   line-height: 30px;
   color: #2d2d2d;
+  margin: 0 0 10px;
 `
 const InformationContentClose = styled.img`
   cursor: pointer;
@@ -66,12 +107,14 @@ const InformationContentHeader = styled.div`
 `
 const InformationContent = styled.div`
   width: 800px;
+  height: 470px;
   background: #FFFFFF;
   border-radius: 12px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.25);
   position: relative;
   z-index: 35;
   padding: 15px;
+  overflow: auto;
 `
 const InformationContentBack = styled.div`
   width: 100%;
