@@ -16,7 +16,7 @@ if (!$connect) {
       $result = pg_query($connect, 'SELECT * FROM func_api_v1_get_contact()');
     break;
     case 'POST':
-      // auth($connect);
+     //auth($connect);
      
       if(isset($_POST['id']) && isset($_POST['address']) && isset($_POST['phone']) && isset($_POST['mail'])){
         $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_patch_contact_id($1, $2, $3, $4)', [

@@ -12,7 +12,7 @@ if (!$connect) {
   die("Ошибка: Невозможно установить соединение с MySQL.");
 } else {
   
-  // auth($connect);
+ //auth($connect);
 
   switch($_SERVER['REQUEST_METHOD']){
     case 'POST':

@@ -16,7 +16,7 @@ if (!$connect) {
       $result = mysqli_query($connect, 'CALL func_api_v1_get_contact()');
     break;
     case 'POST':
-      // auth($connect);
+     //auth($connect);
      $id = $_POST['id'];
      $address = $_POST['address'];
      $phone = $_POST['phone'];

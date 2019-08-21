@@ -27,7 +27,7 @@ if (!$connect) {
       }
     break;
     case 'POST':
-      // auth($connect);
+     //auth($connect);
       $id = $_POST['id'];
       $title = $_POST['title'];
       $description = $_POST['description'];

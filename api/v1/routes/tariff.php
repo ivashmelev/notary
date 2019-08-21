@@ -18,7 +18,7 @@ if (!$connect) {
       }
     break;
     case 'POST':
-      // auth($connect);
+     //auth($connect);
      
       if(isset($_POST['id']) && isset($_POST['title']) && isset($_POST['subtitle']) && isset($_POST['tariff']) && isset($_POST['price'])){
         $result = pg_query_params($connect, 'SELECT * FROM func_api_v1_patch_tariff_id($1, $2, $3, $4, $5)', [

@@ -24,7 +24,7 @@ if (!$connect) {
       }
     break;
     case 'GET':
-      // auth($connect);
+     //auth($connect);
       $result = mysqli_query($connect, 'CALL func_api_v1_get_reception()');
   }
 

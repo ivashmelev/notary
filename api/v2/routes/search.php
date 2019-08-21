@@ -13,7 +13,7 @@ if (!$connect) {
 
   switch($_SERVER['REQUEST_METHOD']){
     case 'POST':
-      // auth($connect);
+     //auth($connect);
     $search = $_POST['search'];
     if(isset($_POST['search'])){
       $result1 = mysqli_query($connect, "SELECT * FROM service WHERE title LIKE '%$search%' OR description LIKE '%$search%'");

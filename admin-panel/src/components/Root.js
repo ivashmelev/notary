@@ -40,25 +40,25 @@ const Site = () => {
     }
   ]
   return (
-    
-      <Container>
-        <ContainerNavigation>
-          <Navigation userName="Ангелина Пережогина" navigation={navigation} />
-        </ContainerNavigation>
-        <ContainerContent>
-          <Router history={history}>
-            <Switch>
-              <Route exact path="/services" component={Services} />
-              <Route exact path="/tariffs" component={Tariffs} />
-              <Route exact path="/contacts" component={Contacts} />
-              <Route exact path="/" component={Appointment} />
-              <Route exact path="/users" component={Users} />
-            </Switch>
-          </Router>
-        </ContainerContent>
-        <Info />
-      </Container>
-    
+
+    <Container>
+      <ContainerNavigation>
+        <Navigation userName={localStorage['name']} navigation={navigation} />
+      </ContainerNavigation>
+      <ContainerContent>
+        <Router history={history}>
+          <Switch>
+            <Route exact path="/services" component={Services} />
+            <Route exact path="/tariffs" component={Tariffs} />
+            <Route exact path="/contacts" component={Contacts} />
+            <Route exact path="/" component={Appointment} />
+            <Route exact path="/users" component={Users} />
+          </Switch>
+        </Router>
+      </ContainerContent>
+      <Info />
+    </Container>
+
   )
 }
 
@@ -72,7 +72,7 @@ export default class Root extends Component {
   }
 
   changeView() {
-    this.setState({ token: !this.state.token})
+    this.setState({ token: !this.state.token })
   }
 
   render() {
@@ -82,12 +82,12 @@ export default class Root extends Component {
         {
           token ? (
             <RootContainer>
-              <Header onChangeView={this.changeView}/>
+              <Header onChangeView={this.changeView} />
               <Site {...this.props} />
             </RootContainer>
           ) : (
-            <Login onChangeView={this.changeView}/>
-          )
+              <Login onChangeView={this.changeView} />
+            )
         }
       </RootContainer>
     )

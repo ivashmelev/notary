@@ -13,16 +13,15 @@ if(!isset($_SESSION['auth'])){
   $result = mysqli_query($connect, 'CALL func_api_v1_admin_auth('.'"'.$phpAuthUser.'"'.')');
   $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
   $password = $data[0]['password'];
-  print_r($phpAuthUser);
-  print_r($data);
 
   if(md5($_POST['password']) != $password){
     header('HTTP/1.0 401 Unauthorized');
 
-    die('401 Unauthorized');
+    die(false);
 
   } else {
     $_SESSION['auth'] = true;
+    echo json_encode($data[0]['name']);
   }
 } 
 ?>

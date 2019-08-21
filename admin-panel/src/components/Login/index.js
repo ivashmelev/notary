@@ -14,7 +14,8 @@ export default class Login extends Component {
       login: '',
       password: '',
       localErrors: {},
-      visibleInput: false
+      visibleInput: false,
+      auth: 'false'
     }
     this.handleTextChange = this.handleTextChange.bind(this)
   }
@@ -35,8 +36,50 @@ export default class Login extends Component {
     return errors
   }
 
+  async checkAuth(login, password, onChangeView) {
+    try {
+      const response = await fetch('https://foxstudio.site/api/v2/routes/login.php', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/text',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `login=${login}&password=${password}`
+      })
+      if (response.ok) {
+        localStorage['name'] = await response.json();
+        onChangeView()
+      } else {
+        this.setState({ localErrors: { loginError: 'Неверный логин или пароль' } })
+      }
+    } catch (err) {
+      throw err;
+    }
+  }
+
   async handleAuthInfo(e) {
     const localErrors = this.validateAuthInfo()
+    const checkAuth = async (login, password, onChangeView) => {
+      try {
+        const response = await fetch('https://foxstudio.site/api/v2/routes/login.php', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/text',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `login=${login}&password=${password}`
+        })
+        if (response.ok) {
+          console.log(await response.json());
+          onChangeView()
+        } else {
+          this.setState({ localErrors: { loginError: 'Неверный логин или пароль' } })
+        }
+      } catch (err) {
+        throw err;
+      }
+
+    }
     if (_.isEmpty(localErrors)) {
       if (!_.isEmpty(this.state.localErrors)) {
         this.setState({ localErrors: {} })
@@ -46,11 +89,12 @@ export default class Login extends Component {
         login: login,
         password: password
       }
-      if (authInfo.login === 'admin' && authInfo.password === 'adminadmin') {
-        this.props.onChangeView()
-      } else {
-        this.setState({ localErrors: {loginError: 'Неверный логин или пароль'} })
-      }
+      this.checkAuth(authInfo.login, authInfo.password, this.props.onChangeView);
+      // if (authInfo.login === 'admin' && authInfo.password === 'adminadmin') {
+      // this.props.onChangeView()
+      // } else {
+      // this.setState({ localErrors: { loginError: 'Неверный логин или пароль' } })
+      // }
     } else {
       this.setState({ localErrors })
     }
@@ -98,15 +142,15 @@ export default class Login extends Component {
               required
               padding='0 25px 0 10px'
             />
-            <FormInputControl src={visibleInput ? eye : notEye} onClick={() => this.setState({ visibleInput : !visibleInput })}/>
+            <FormInputControl src={visibleInput ? eye : notEye} onClick={() => this.setState({ visibleInput: !visibleInput })} />
           </FormInputWrapper>
           <FormButtonWrapper>
-          <FormButton
-            onClick={() => this.handleAuthInfo()}
-          >
-            Вход
+            <FormButton
+              onClick={() => this.handleAuthInfo()}
+            >
+              Вход
           </FormButton>
-        </FormButtonWrapper>
+          </FormButtonWrapper>
         </LoginContainer>
       </LoginWrapper>
     );
