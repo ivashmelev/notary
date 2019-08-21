@@ -150,8 +150,8 @@ export default class Form extends Component {
             type='text'
             name='comment'
             placeholder='Комментарий'
-            margin='0 0 10px 0' />
-          <AppointmentChecked onClick={() => this.handleAgreement()}>
+            />
+          {/* <AppointmentChecked onClick={() => this.handleAgreement()}>
             <AppointmentCheckedBox>
               {
                 agreement ? (
@@ -162,7 +162,7 @@ export default class Form extends Component {
             <AppointmentCheckedLabel>
               Согласен на обработку персональных данных
             </AppointmentCheckedLabel>
-          </AppointmentChecked>
+          </AppointmentChecked> */}
         </FormContainer>
         <FormButtonContainer>
           <FormButton
@@ -214,10 +214,10 @@ const AppointmentInputError = styled.div`
   align-items: center;
 `
 const FormWrapper = styled.div`
-  left: 15vw;
+  left: calc(50% - 665px);
   z-index: 2;
   position: relative;
-  margin-top: 260px;
+  margin-top: 130px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -228,8 +228,11 @@ const FormWrapper = styled.div`
   justify-content: center;
   box-shadow: 15px 0px 48px rgba(0, 0, 0, 0.55);
 
-  @media ${responsive.notebook} {
-    left: 5vw;
+  @media ${responsive.notebookB} {
+    width: 430px;
+    height: 570px;
+    padding: 30px 30px;
+    left: 30px;
   }
   @media ${responsive.notebookS} {
     left: 0;

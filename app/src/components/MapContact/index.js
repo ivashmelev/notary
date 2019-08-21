@@ -31,6 +31,14 @@ export default class MapContact extends Component {
               )}
             </MapMail>
           </MapPhoneMail>
+          <MapPhoneMail>
+            <MapPhone>
+              <MapInfoTitle>График работы:</MapInfoTitle>
+              <MapInfoLink>ПН-ПТ: 9:00 - 17:00</MapInfoLink>
+              <MapInfoLink>Обед: 13:00 - 14:00</MapInfoLink>
+              <MapInfoLink>СБ, ВС - выходные дни</MapInfoLink>
+            </MapPhone>
+          </MapPhoneMail>
         </MapInfo>
         <MapContainer>
           <YMaps>

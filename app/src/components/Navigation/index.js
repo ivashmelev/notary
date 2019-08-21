@@ -15,7 +15,7 @@ export default class Navigation extends Component {
               this.props.onReturnBack(false) 
               window.scrollTo(0, 0)
             } :
-            title === 'УСЛУГИ' ? () => {
+            title === 'ДЕЙСТВИЯ' ? () => {
               history.push({ pathname: '/service' })
               window.scrollTo(0, 0)
             } :

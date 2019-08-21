@@ -42,8 +42,7 @@ export default class Main extends Component {
         <Menu contacts={contacts} />
         <MainContent>
           <MainTitleContainer>
-            <MainTitle>Нотариальная контора</MainTitle>
-            <MainTitle>Нижнего Новгорода</MainTitle>
+            <MainTitle>Нотариус города областного значения Нижнего Новгорода Пережогина А.Ю.</MainTitle>
           </MainTitleContainer>
           <Search width='720px' />
         </MainContent>
@@ -126,33 +125,39 @@ const MainTitleContainer = styled.div`
   position: relative;
   padding-right: 94px;
   box-sizing: border-box;
-
+  @media ${responsive.notebookB} {
+    font-size: 26px;
+    width: 600px;
+    height: 170px;
+  }
   @media ${responsive.notebook} {
     width: 570px;
     height: 180px;
-    padding-right: 30px;
+    padding-right: 60px;
   }
   @media ${responsive.tablet} {
     width: 100%;
     padding: 15px;
     height: 100%;
     text-align: right;
+    justify-content: flex-end;
   }
 `;
 
 const MainTitle = styled.h1`
-  font-size: 36px;
+  font-size: 26px;
+  text-align: right;
   letter-spacing: 0.05em;
   color: #E6B980;
   font-family: Montserrat_Alternates Bold;
   margin: 0;
   display: flex;
   justify-content: flex-end;
-  @media ${responsive.notebook} {
-    font-size: 28px;
+  @media ${responsive.notebookB} {
+    font-size: 22px;
   }
   @media ${responsive.tablet} {
-    font-size: 24px;
+    font-size: 22px;
     letter-spacing: 0em;
   }
 `;

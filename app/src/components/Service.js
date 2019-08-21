@@ -18,7 +18,7 @@ export default class Service extends Component {
     return (
       <ServiceWrapper>
         <Header backgroundImg='service' />
-        <Title text='УСЛУГИ' />
+        <Title text='НОТАРИАЛЬНЫЕ ДЕЙСТВИЯ' />
         <ServiceList />
         <Navigation title='ТАРИФЫ' subtitle='СЛЕДУЮЩИЙ РАЗДЕЛ' />
       </ServiceWrapper>

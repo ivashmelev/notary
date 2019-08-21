@@ -194,7 +194,7 @@ export default class Appointment extends Component {
                     name='mail'
                     required
                     placeholder='mail@example.ru' />
-                  <AppointmentChecked onClick={() => this.handleAgreement()}>
+                  {/* <AppointmentChecked onClick={() => this.handleAgreement()}>
                     <AppointmentCheckedBox>
                       {
                         agreement ? (
@@ -205,7 +205,7 @@ export default class Appointment extends Component {
                     <AppointmentCheckedLabel>
                       Согласен на обработку персональных данных
                     </AppointmentCheckedLabel>
-                  </AppointmentChecked>
+                  </AppointmentChecked> */}
                   <AppointmentContainerButton
                     active={agreement ? '1' : '0.5'}
                     cursor={agreement ? 'pointer' : 'default'}

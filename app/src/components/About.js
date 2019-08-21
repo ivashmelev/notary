@@ -16,25 +16,8 @@ export default class About extends Component {
     return (
       <AboutWrapper>
         <Header backgroundImg='about' />
-        <Title text='О НАС' />
+        <Title text='НОТАРИУС' />
         <AboutContent>
-          <AboutContentText>
-            <AboutContentColumn>
-              <AboutParagraph>Повседневная практика показывает, что дальнейшее развитие различных форм деятельности способствует подготовки и реализации существенных финансовых и административных условий. С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности играет важную роль в формировании дальнейших направлений развития. Задача организации, в особенности же новая модель организационной деятельности обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития.</AboutParagraph>
-              <AboutParagraph>Значимость этих проблем настолько очевидна, что постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет выполнять важные задания по разработке модели развития. Задача организации, в особенности же укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании новых предложений. Разнообразный и богатый опыт сложившаяся структура организации требуют определения и уточнения систем массового участия.</AboutParagraph>
-              <AboutButton>
-                <Button name='Запись на прием' link/>
-              </AboutButton>
-            </AboutContentColumn>
-            <AboutContentColumn>
-              <AboutCite>
-                Задача организации, в особенности же укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании новых предложений.
-              </AboutCite>
-              <AboutCiteAuthor>
-                Пережогина А. Ю.
-              </AboutCiteAuthor>
-            </AboutContentColumn>
-          </AboutContentText>
           <AboutPersonWrapper>
             <AboutPersonPortret>
               <AboutPersonPortretBack />
@@ -49,7 +32,7 @@ export default class About extends Component {
             </AboutPersonBiography>
           </AboutPersonWrapper>
         </AboutContent>
-        <Navigation title='УСЛУГИ' subtitle='СЛЕДУЮЩИЙ РАЗДЕЛ' />
+        <Navigation title='ДЕЙСТВИЯ' subtitle='СЛЕДУЮЩИЙ РАЗДЕЛ' />
       </AboutWrapper>
     )
   }
@@ -133,15 +116,11 @@ const AboutPersonPortret = styled.div`
 `
 const AboutPersonWrapper = styled.div`
   width: 100%;
-  padding: 200px 0 0 0;
   display: flex;
   justify-content: space-between;
   @media ${responsive.tabletB} {
     flex-direction: column;
     align-items: center;
-  }
-  @media ${responsive.tablet} {
-    padding: 140px 0 0 0;
   }
 `
 const AboutWrapper = styled.div``;
