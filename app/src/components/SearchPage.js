@@ -11,19 +11,9 @@ export default class SearchPage extends Component {
     this.state = {
       query: localStorage['search'],
       searchResult: [{
-        section: 'УСЛУГИ',
-        title: 'Удостоверение сделок1',
-        text: 'В случаях, указанных в законе (обязательная нотариальная форма сделок), или по соглашению сторон нотариусы удостоверяют сделки – действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей (завещания, доверенности, договоры и т.д.). Нотариальное удостоверение сделки предполагает проверку нотариусом законности сделки, в том числе наличия у каждой из сторон права на ее совершение, соответствия содержания сделки действительным намерениям сторон.'
-      },
-      {
-        section: 'УСЛУГИ',
-        title: 'Удостоверение сделок2',
-        text: 'В случаях, указанных в законе (обязательная нотариальная форма сделок), или по соглашению сторон нотариусы удостоверяют сделки – действия граждан и юридических лиц, направленные на установление, изменение или прекращение гражданских прав и обязанностей (завещания, доверенности, договоры и т.д.). Нотариальное удостоверение сделки предполагает проверку нотариусом законности сделки, в том числе наличия у каждой из сторон права на ее совершение, соответствия содержания сделки действительным намерениям сторон.'
-      },
-      {
-        section: 'УСЛУГИ',
-        title: 'Удостоверение сделок2',
-        text: '123'
+        section: 'Поиск...',
+        title: '',
+        text: ''
       }]
     }
     this.handleSearchResult = this.handleSearchResult.bind(this)
@@ -84,7 +74,7 @@ export default class SearchPage extends Component {
             this.state.searchResult.map((element, index) =>
               <SearchResult key={index}>
                 <SearchTitleContainer>
-                  <SearchResultTitle>Раздел: {element.table} / {element.title}</SearchResultTitle>
+                  <SearchResultTitle>Раздел: {element.table === 'tariff' ? 'ТАРИФЫ' : 'НОТАРИАЛЬНЫЕ ДЕЙСТВИЯ'} / {element.title}</SearchResultTitle>
                 </SearchTitleContainer>
                 <SearchResultText>{element.description}{element.tariff}</SearchResultText>
               </SearchResult>
@@ -124,7 +114,11 @@ const SearchResultContainer = styled.div`
   width: 100%;
   margin: 15px;
   margin-top: 100px;
-
+  @media ${responsive.notebookB} {
+    padding: 0 30px;
+    box-sizing: border-box;
+  }
+  
 
   @media ${responsive.mobileS} {
     margin: 15px;
@@ -173,6 +167,10 @@ const SearchResultText = styled.div`
   line-height: 34px;
   letter-spacing: 0.05em;
   color: #2D2D2D;
+  @media ${responsive.notebookB} {
+    font-size: 16px;
+    line-height: 30px;
+  }
 
   &:hover{
     cursor: pointer;

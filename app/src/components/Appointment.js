@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 import backgroundImg from '../assets/img/backgroundImgMain.png'
 import closeImg from '../assets/img/close.png'
-import checkImg from '../assets/img/check.png'
+// import checkImg from '../assets/img/check.png'
 import responsive from '../responsive'
 import history from '../helpers/history'
 import Calendar from 'react-calendar'
@@ -29,7 +29,6 @@ export default class Appointment extends Component {
     this.handleAppointmentInfo = this.handleAppointmentInfo.bind(this)
 
   }
-  // date = moment(date).format('YYYY-MM-DD');
   componentDidMount() {
     let { date } = this.state
     if (date.getDay() === 6) {
@@ -244,32 +243,32 @@ const AppointmentInputError = styled.div`
   display: flex;
   align-items: center;
 `
-const AppointmentCheckedLabel = styled.div`
-  font-family: Montserrat Regular;
-  font-size: 10px;
-  line-height: 12px;
-  letter-spacing: 0.05em;
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  margin: 0 0 0 10px;
-`
-const AppointmentCheckedLine = styled.img``
-const AppointmentCheckedBox = styled.div`
-  width: 15px;
-  height: 15px;
-  border: 1px solid #FFFFFF;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-const AppointmentChecked = styled.div`
-  max-width: 320px;
-  width: 100%;
-  display: flex;
-  cursor: pointer;
-`
+// const AppointmentCheckedLabel = styled.div`
+//   font-family: Montserrat Regular;
+//   font-size: 10px;
+//   line-height: 12px;
+//   letter-spacing: 0.05em;
+//   color: #FFFFFF;
+//   display: flex;
+//   align-items: center;
+//   margin: 0 0 0 10px;
+// `
+// const AppointmentCheckedLine = styled.img``
+// const AppointmentCheckedBox = styled.div`
+//   width: 15px;
+//   height: 15px;
+//   border: 1px solid #FFFFFF;
+//   box-sizing: border-box;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `
+// const AppointmentChecked = styled.div`
+//   max-width: 320px;
+//   width: 100%;
+//   display: flex;
+//   cursor: pointer;
+// `
 const AppointmentInput = styled.input`
   max-width: 320px;
   width: 100%;
@@ -413,7 +412,7 @@ const AppointmentBackground = styled.div`
   background-position: center;
   background-size: cover;
   top: 0;
-  filter: blur(185px);
+  filter: blur(115px);
 `
 const AppointmentWrapper = styled.div`
   width: 100%;

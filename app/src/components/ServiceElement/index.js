@@ -60,7 +60,10 @@ const ServiceElementText = styled.span`
   line-height: 34px;
   letter-spacing: 0.05em;
   color: #2D2D2D;
-
+  @media ${responsive.notebookB} {
+    font-size: 16px;
+    line-height: 30px;
+  }
   @media ${responsive.tablet} {
     font-size: 16px;
     letter-spacing: 0;

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import responsive from '../../responsive'
 import { validateEmail, formattedPhone, validatePhone, isFieldNotEmpty } from '../../helpers/format'
 import _ from 'lodash'
-import checkImg from '../../assets/img/check.png'
+// import checkImg from '../../assets/img/check.png'
 
 export default class Form extends Component {
   constructor(props) {
@@ -176,34 +176,34 @@ export default class Form extends Component {
   }
 }
 
-const AppointmentCheckedLabel = styled.div`
-  font-family: Montserrat Regular;
-  font-size: 10px;
-  line-height: 12px;
-  letter-spacing: 0.05em;
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  margin: 0 0 0 10px;
-`
-const AppointmentCheckedLine = styled.img``
-const AppointmentCheckedBox = styled.div`
-  width: 15px;
-  height: 15px;
-  border: 1px solid #FFFFFF;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-const AppointmentChecked = styled.div`
-  max-width: 470px;
-  width: 100%;
-  width: 100%;
-  display: flex;
-  cursor: pointer;
-  margin: 0 0 30px;
-`
+// const AppointmentCheckedLabel = styled.div`
+//   font-family: Montserrat Regular;
+//   font-size: 10px;
+//   line-height: 12px;
+//   letter-spacing: 0.05em;
+//   color: #FFFFFF;
+//   display: flex;
+//   align-items: center;
+//   margin: 0 0 0 10px;
+// `
+// const AppointmentCheckedLine = styled.img``
+// const AppointmentCheckedBox = styled.div`
+//   width: 15px;
+//   height: 15px;
+//   border: 1px solid #FFFFFF;
+//   box-sizing: border-box;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `
+// const AppointmentChecked = styled.div`
+//   max-width: 470px;
+//   width: 100%;
+//   width: 100%;
+//   display: flex;
+//   cursor: pointer;
+//   margin: 0 0 30px;
+// `
 const AppointmentInputError = styled.div`
   font-family: Montserrat Regular;
   height: 10px;

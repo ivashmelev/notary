@@ -43,6 +43,10 @@ const TariffElementText = styled.span`
   line-height: 34px;
   letter-spacing: 0.05em;
   color: #2D2D2D;
+  @media ${responsive.notebookB} {
+    font-size: 16px;
+    line-height: 30px; 
+  }
   @media ${responsive.tablet} {
     font-size: 16px;
     line-height: 25px;
@@ -63,6 +67,10 @@ const TariffElementTitle = styled.span`
   line-height: 34px;
   letter-spacing: 0.05em;
   color: #2D2D2D;
+  @media ${responsive.notebookB} {
+    font-size: 18px;
+    line-height: 30px; 
+  }
   @media ${responsive.tablet} {
     font-size: 16px;
     line-height: 25px;
@@ -76,4 +84,7 @@ const TariffElementSubtitle = styled.span`
   line-height: 25px;
   letter-spacing: 0.05em;
   color: #2D2D2D;
+  @media ${responsive.notebookB} {
+    letter-spacing: 0em;
+  }
 `;

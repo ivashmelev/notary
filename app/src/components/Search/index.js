@@ -8,9 +8,11 @@ export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: localStorage['search']
+      query: ''
     }
     this.handleTextChange = this.handleTextChange.bind(this)
+    this.sendRequest = this.sendRequest.bind(this)
+
 
   }
   componentDidMount() {
@@ -23,29 +25,31 @@ export default class Search extends Component {
   }
 
   sendRequest() {
-    localStorage['search'] = this.state.query;
-    (async () => {
-      try {
-        const response = await fetch('https://foxstudio.site/api/v2/routes/search.php', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/text',
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: `search=${this.state.query}`,
-          mode: 'cors'
-        });
-        if (response.ok) {
-          !this.state.searchResult ?
-            this.setState({ searchResult: await response.json() }) :
-            this.props.onHandleSearchResult(await response.json());
+    if(this.state.query){
+      localStorage['search'] = this.state.query;
+      (async () => {
+        try {
+          const response = await fetch('https://foxstudio.site/api/v2/routes/search.php', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/text',
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `search=${this.state.query}`,
+            mode: 'cors'
+          });
+          if (response.ok) {
+            !this.state.searchResult ?
+              this.setState({ searchResult: await response.json() }) :
+              this.props.onHandleSearchResult(await response.json());
+          }
+        } catch (err) {
+          throw err;
         }
-      } catch (err) {
-        throw err;
-      }
-    })();
+      })();
+    }
     this.state.query ? history.push({ pathname: `/search/${this.state.query}` }) :
-      history.push({ pathname: `/search` })
+    history.push({ pathname: `/search` })
   }
 
 

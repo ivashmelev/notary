@@ -180,6 +180,10 @@ const ServiceListTitleElement = styled.span`
     color: #E6B980;
     cursor: pointer;
   }
+  @media ${responsive.notebookB} {
+    font-size: 16px;
+    line-height: 30px;
+  }
   @media ${responsive.tabletB} {
     text-align: left;
     justify-content: flex-start;

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import Header from './Header'
 import Title from './Title'
-import Button from './Button'
+// import Button from './Button'
 import Navigation from './Navigation'
 import styled from 'styled-components'
 import responsive from '../responsive'
-import openCite from '../assets/img/openCite.svg';
-import closeCite from '../assets/img/closeCite.svg';
+// import openCite from '../assets/img/openCite.svg';
+// import closeCite from '../assets/img/closeCite.svg';
 import personImg from '../assets/img/person.png';
 
 
@@ -44,6 +44,10 @@ const PersonBiographyDescription = styled.div`
   line-height: 34px;
   letter-spacing: 0.05em;
   color: #2D2D2D;
+  @media ${responsive.notebookB} {
+    font-size: 16px;
+    line-height: 30px;
+  }
   @media ${responsive.tablet} {
     font-size: 16px;
     line-height: 25px;
@@ -69,6 +73,10 @@ const PersonBiographyTitle = styled.div`
   letter-spacing: 0.05em;
   color: #E6B980;
   margin: 0 0 30px;
+  @media ${responsive.tablet} {
+    font-size: 18px;
+    line-height: 30px;
+  }
   @media ${responsive.tablet} {
     font-size: 20px;
     line-height: 25px;
@@ -141,113 +149,113 @@ const AboutContent = styled.div`
   }
 `;
 
-const AboutContentText = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+// const AboutContentText = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
 
-  @media ${responsive.notebookS} {
-    flex-direction: column;
-  }
-`;
+//   @media ${responsive.notebookS} {
+//     flex-direction: column;
+//   }
+// `;
 
-const AboutContentColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 560px;
-  width: 100%;
-  align-items: flex-end;
-  @media ${responsive.notebookS} {
-    max-width: 100%;
-    align-items: center;
-  }
-`;
+// const AboutContentColumn = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   max-width: 560px;
+//   width: 100%;
+//   align-items: flex-end;
+//   @media ${responsive.notebookS} {
+//     max-width: 100%;
+//     align-items: center;
+//   }
+// `;
 
-const AboutParagraph = styled.p`
-  font-family: Montserrat Regular;
-  font-size: 18px;
-  color: #2D2D2D;
-  line-height: 34px;
-  letter-spacing: 0.05em;
-  text-align: left;
-  margin: 0 0 20px 0;
-  @media ${responsive.tablet} {
-    font-size: 16px;
-    line-height: 25px;
-    letter-spacing: 0;
-  }
-`;
+// const AboutParagraph = styled.p`
+//   font-family: Montserrat Regular;
+//   font-size: 18px;
+//   color: #2D2D2D;
+//   line-height: 34px;
+//   letter-spacing: 0.05em;
+//   text-align: left;
+//   margin: 0 0 20px 0;
+//   @media ${responsive.tablet} {
+//     font-size: 16px;
+//     line-height: 25px;
+//     letter-spacing: 0;
+//   }
+// `;
 
-const AboutCite = styled.div`
-  width: 400px;
-  font-family: Montserrat Regular Italic;
-  font-size: 18px;
-  color: #2D2D2D;
-  line-height: 34px;
-  letter-spacing: 0.05em;
-  text-align: left;
-  font-weight: 600;
-  padding: 25px 40px;
-  position: relative;
+// const AboutCite = styled.div`
+//   width: 400px;
+//   font-family: Montserrat Regular Italic;
+//   font-size: 18px;
+//   color: #2D2D2D;
+//   line-height: 34px;
+//   letter-spacing: 0.05em;
+//   text-align: left;
+//   font-weight: 600;
+//   padding: 25px 40px;
+//   position: relative;
 
-  &::before{
-    content: '';
-    position: absolute;
-    background-image: url(${openCite});
-    width: 35px;
-    height: 25px;
-    display: block;
-    background-repeat: no-repeat;
-    left: 0;
-    top: 0;
-  }
+//   &::before{
+//     content: '';
+//     position: absolute;
+//     background-image: url(${openCite});
+//     width: 35px;
+//     height: 25px;
+//     display: block;
+//     background-repeat: no-repeat;
+//     left: 0;
+//     top: 0;
+//   }
 
-  &::after{
-    content: '';
-    position: absolute;
-    background-image: url(${closeCite});
-    width: 35px;
-    height: 25px;
-    display: block;
-    background-repeat: no-repeat;
-    bottom: 0;
-    right: 0;
-  }
+//   &::after{
+//     content: '';
+//     position: absolute;
+//     background-image: url(${closeCite});
+//     width: 35px;
+//     height: 25px;
+//     display: block;
+//     background-repeat: no-repeat;
+//     bottom: 0;
+//     right: 0;
+//   }
 
-  @media ${responsive.tablet} {
-    font-size: 16px;
-    line-height: 25px;
-    padding: 25px 15px;
-    max-width: 400px;
-    width: 100%;
-    box-sizing: border-box;
-  }
+//   @media ${responsive.tablet} {
+//     font-size: 16px;
+//     line-height: 25px;
+//     padding: 25px 15px;
+//     max-width: 400px;
+//     width: 100%;
+//     box-sizing: border-box;
+//   }
 
-`;
+// `;
 
-const AboutCiteAuthor = styled.p`
-  width: 400px;
-  font-family: Montserrat Bold;
-  font-size: 20px;
-  line-height: 34px;
-  letter-spacing: 0.05em;
-  color: #2D2D2D;
-  padding: 0 40px;
-  margin: 0;
+// const AboutCiteAuthor = styled.p`
+//   width: 400px;
+//   font-family: Montserrat Bold;
+//   font-size: 20px;
+//   line-height: 34px;
+//   letter-spacing: 0.05em;
+//   color: #2D2D2D;
+//   padding: 0 40px;
+//   margin: 0;
 
-  @media ${responsive.tablet} {
-    padding: 0 15px;
-    max-width: 400px;
-    width: 100%;
-  }
-`;
+//   @media ${responsive.tablet} {
+//     padding: 0 15px;
+//     max-width: 400px;
+//     width: 100%;
+//   }
+// `;
 
 
-const AboutButton = styled.div`
-  width: 100%;
-  margin: 30px 0 0 0;
-  @media ${responsive.notebookS} {
-    margin: 30px 0 65px 0;
-  }
-`;
+// const AboutButton = styled.div`
+//   width: 100%;
+//   margin: 30px 0 0 0;
+//   @media ${responsive.notebookS} {
+//     margin: 30px 0 65px 0;
+//   }
+// `;
 
