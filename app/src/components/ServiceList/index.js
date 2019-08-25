@@ -157,7 +157,7 @@ const ServiceListTitleBlock = styled.div`
       height: 40px;
     }
     :after{
-      height: 100px;
+      height: 40px;
     }
   }
 `;

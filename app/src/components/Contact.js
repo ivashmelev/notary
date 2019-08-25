@@ -5,6 +5,7 @@ import Header from './Header'
 import Title from './Title'
 import Form from './Form'
 import MapContact from './MapContact'
+import Developer from './Developer'
 
 
 export default class Contact extends Component {
@@ -46,6 +47,7 @@ export default class Contact extends Component {
             <ContactLink href='https://www.nnp52.ru' target='_blank'>Нижегородская областная нотариальная палата</ContactLink>
           </ContactLinkContainer>
         </ContactPageWrap>
+        <Developer/>
       </ContactWrapper>
     )
   }
