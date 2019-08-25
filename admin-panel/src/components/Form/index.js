@@ -30,8 +30,8 @@ class Form extends Component {
       copyState.sername = name.split(' ')[1]
       copyState.mail = mail
       copyState.login = login
-      copyState.password = password
-      copyState.passwordReplay = password
+      copyState.password = ''
+      copyState.passwordReplay = ''
       this.setState(copyState)
 
     }
