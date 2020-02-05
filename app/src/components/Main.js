@@ -37,7 +37,7 @@ export default class Main extends Component {
     return (
       <MainWrapper>
         <MainBackgroundImg>
-          <MainBackgroundButton onClick={() => history.push({ pathname: '/about' })} />
+          <MainBackgroundButton onClick={() => history.push({ pathname: '/service' })} />
         </MainBackgroundImg>
         <Menu contacts={contacts} />
         <MainContent>
