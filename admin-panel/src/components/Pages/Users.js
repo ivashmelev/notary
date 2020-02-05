@@ -25,7 +25,7 @@ class Users extends Component {
   componentDidMount() {
     try {
       (async () => {
-        const response = await fetch('https://foxstudio.site/api/v2/routes/admin.php');
+        const response = await fetch('https://notary-nn.ru/api/v2/routes/admin.php');
         if (await response.ok) {
           this.setState({ users: await response.json() });
         }
@@ -43,7 +43,7 @@ class Users extends Component {
   addNewUser(obj, index) {
     const send = async () => {
       try {
-        const response = await fetch('https://foxstudio.site/api/v2/routes/admin.php', {
+        const response = await fetch('https://notary-nn.ru/api/v2/routes/admin.php', {
           method: 'POST',
           headers: {
             'Accept': 'application/text',
@@ -67,7 +67,7 @@ class Users extends Component {
   editUser(obj, index) {
     const send = async () => {
       try {
-        const response = await fetch('https://foxstudio.site/api/v2/routes/admin.php', {
+        const response = await fetch('https://notary-nn.ru/api/v2/routes/admin.php', {
           method: 'POST',
           headers: {
             'Accept': 'application/text',
@@ -91,7 +91,7 @@ class Users extends Component {
   deleteUser(obj, index) {
     const send = async () => {
       try {
-        const response = await fetch('https://foxstudio.site/api/v2/routes/admin.php', {
+        const response = await fetch('https://notary-nn.ru/api/v2/routes/admin.php', {
           method: 'POST',
           headers: {
             'Accept': 'application/text',

@@ -20,7 +20,7 @@ class Contacts extends Component {
   componentDidMount() {
     try {
       (async () => {
-        const response = await fetch('https://foxstudio.site/api/v2/routes/contact.php');
+        const response = await fetch('https://notary-nn.ru/api/v2/routes/contact.php');
         if (await response.ok) {
           this.setState({ contacts: await response.json() });
         }

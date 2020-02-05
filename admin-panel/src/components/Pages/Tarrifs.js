@@ -26,7 +26,7 @@ class Tariffs extends Component {
     (
       this.state.view === 'menu' ?
         async () => {
-          const response = await fetch('https://foxstudio.site/api/v2/routes/section.php');
+          const response = await fetch('https://notary-nn.ru/api/v2/routes/section.php');
           if (await response.ok) {
             this.setState({ sections: await response.json() });
           }

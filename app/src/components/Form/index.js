@@ -70,7 +70,7 @@ export default class Form extends Component {
       }
       const { name, phone, mail, comment } = this.state;
       try {
-        await fetch('https://foxstudio.site/api/v2/routes/send.php', {
+        await fetch('https://notary-nn.ru/api/v2/routes/send.php', {
           method: 'POST',
           headers: {
             'Accept': 'application/text',

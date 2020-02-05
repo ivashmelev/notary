@@ -28,7 +28,7 @@ export default class SearchPage extends Component {
     }
     (async () => {
       try {
-        const response = await fetch('https://foxstudio.site/api/v2/routes/search.php', {
+        const response = await fetch('https://notary-nn.ru/api/v2/routes/search.php', {
           method: 'POST',
           headers: {
             'Accept': 'application/text',

@@ -38,7 +38,7 @@ export default class Login extends Component {
 
   async checkAuth(login, password, onChangeView) {
     try {
-      const response = await fetch('https://foxstudio.site/api/v2/routes/login.php', {
+      const response = await fetch('https://notary-nn.ru/api/v2/routes/login.php', {
         method: 'POST',
         headers: {
           'Accept': 'application/text',
@@ -61,7 +61,7 @@ export default class Login extends Component {
     const localErrors = this.validateAuthInfo()
     const checkAuth = async (login, password, onChangeView) => {
       try {
-        const response = await fetch('https://foxstudio.site/api/v2/routes/login.php', {
+        const response = await fetch('https://notary-nn.ru/api/v2/routes/login.php', {
           method: 'POST',
           headers: {
             'Accept': 'application/text',

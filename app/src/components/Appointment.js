@@ -97,7 +97,7 @@ export default class Appointment extends Component {
       const correctdate = moment(date).format('YYYY-MM-DD');
       (async () => {
         try {
-          const response = await fetch('https://foxstudio.site/api/v2/routes/reception.php', {
+          const response = await fetch('https://notary-nn.ru/api/v2/routes/reception.php', {
             method: 'POST',
             headers: {
               'Accept': 'application/text',
@@ -220,13 +220,13 @@ export default class Appointment extends Component {
               onClick={() => this.handleScreen(SCREEN_CALENDAR)}
               active={screen === SCREEN_CALENDAR ? '1' : '0.5'}
               toggle>
-              <AppointmentProgressLine/>
+              <AppointmentProgressLine />
             </AppointmentProgressLineWrap>
             <AppointmentProgressLineWrap
               active={screen === SCREEN_FORM ? '1' : '0.5'}>
-              <AppointmentProgressLine/>
+              <AppointmentProgressLine />
             </AppointmentProgressLineWrap>
-            
+
           </AppointmentProgress>
         </AppointmentContainer>
       </AppointmentWrapper>

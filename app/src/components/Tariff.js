@@ -24,7 +24,7 @@ export default class Tariff extends Component {
   componentDidMount() {
     (async () => {
       try {
-        const response = await fetch('https://foxstudio.site/api/v2/routes/section.php');
+        const response = await fetch('https://notary-nn.ru/api/v2/routes/section.php');
         if (await response.ok) {
           this.setState({ section: await response.json() })
         }
@@ -38,7 +38,7 @@ export default class Tariff extends Component {
     try {
       (async () => {
         const response = await fetch(
-          `https://foxstudio.site/api/v2/routes/section.php?id=${id}`
+          `https://notary-nn.ru/api/v2/routes/section.php?id=${id}`
         );
         if (await response.ok) {
           this.setState({

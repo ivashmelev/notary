@@ -14,7 +14,7 @@ export default class ServiceList extends Component {
 
   componentDidMount() {
     (async () => {
-      const response = await fetch('https://foxstudio.site/api/v2/routes/service.php');
+      const response = await fetch('https://notary-nn.ru/api/v2/routes/service.php');
       if (response.ok) {
         this.setState({ services: await response.json() })
         if (this.state.services.length > 0) {
