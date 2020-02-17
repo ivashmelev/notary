@@ -58,7 +58,7 @@ export default class Wall extends Component {
 
     const request = async (api, method, id, body) => {
       try {
-        const response = await fetch(`https://foxstudio.site/api/v2/routes/${api}.php`, {
+        const response = await fetch(`https://notary-nn.ru/api/v2/routes/${api}.php`, {
           method: method,
           headers: {
             'Accept': 'application/json',

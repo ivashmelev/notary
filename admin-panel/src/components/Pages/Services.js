@@ -20,7 +20,7 @@ class Services extends Component {
   componentDidMount() {
     try {
       (async () => {
-        const response = await fetch('https://foxstudio.site/api/v2/routes/service.php', { method: 'GET', mode: "cors" });
+        const response = await fetch('https://notary-nn.ru/api/v2/routes/service.php', { method: 'GET', mode: "cors" });
         if (await response.ok) {
           this.setState({ services: await response.json() });
         }

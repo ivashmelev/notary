@@ -22,7 +22,7 @@ export default class Main extends Component {
   componentDidMount() {
     (async () => {
       try {
-        const response = await fetch('https://foxstudio.site/api/v2/routes/contact.php');
+        const response = await fetch('https://notary-nn.ru/api/v2/routes/contact.php');
         if (response.ok) {
           this.setState({ contacts: await response.json() });
         }

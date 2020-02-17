@@ -97,7 +97,7 @@ export default class Appointment extends Component {
       const correctdate = moment(date).format('YYYY-MM-DD');
       (async () => {
         try {
-          const response = await fetch('https://foxstudio.site/api/v2/routes/reception.php', {
+          const response = await fetch('https://notary-nn.ru/api/v2/routes/reception.php', {
             method: 'POST',
             headers: {
               'Accept': 'application/text',

@@ -5,7 +5,7 @@ import devLogo from '../../assets/devLogo.svg'
 export default class Developer extends Component {
     render() {
         return (
-            <DeveloperLink href="https://foxstudio.site" target="_blank">
+            <DeveloperLink href="https://notary-nn.ru" target="_blank">
                 <DeveloperIn>Created in</DeveloperIn>
                 <DeveloperLogo src={devLogo} />
             </DeveloperLink>

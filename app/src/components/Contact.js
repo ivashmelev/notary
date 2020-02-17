@@ -19,7 +19,7 @@ export default class Contact extends Component {
   componentDidMount() {
     (async () => {
       try {
-        const response = await fetch('https://foxstudio.site/api/v2/routes/contact.php');
+        const response = await fetch('https://notary-nn.ru/api/v2/routes/contact.php');
         if (await response.ok) {
           this.setState({ contact: await response.json() })
         }
