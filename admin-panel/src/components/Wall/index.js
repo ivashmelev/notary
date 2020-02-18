@@ -9,7 +9,8 @@ export default class Wall extends Component {
     this.state = {
       data: [],
       title: '',
-      changeText: (e) => { this.setState({ data: this.props.data }); }
+      changeText: (e) => { this.setState({ data: this.props.data }); },
+      showButton: true,
     }
   }
 
@@ -85,19 +86,24 @@ export default class Wall extends Component {
     }
   }
 
+  setShowButton = (status) => {
+    this.setState((state, props) => ({ showButton: status }));
+  }
+
   render() {
     const { data, event } = this.props;
+    const { showButton } = this.state;
     return (
       <WallWrapper>
-        {data.title ? <WallTitle><Element name='title' view='input' text={this.state.data.title} /></WallTitle> : null}
-        {data.subtitle ? <WallSubTitle><Element name='subtitle' view='input' text={this.state.data.subtitle} /></WallSubTitle> : null}
-        {data.tariff ? <WallText><Element name='tariff' view='textarea' text={this.state.data.tariff} /></WallText> : null}
-        {data.price ? <WallText><Element name='price' view='textarea' text={this.state.data.price} /></WallText> : null}
-        {data.description ? <WallText><Element name='description' view='textarea' text={this.state.data.description} /></WallText> : null}
-        {data.address ? <WallText><Element name='address' view='textarea' text={this.state.data.address} /></WallText> : null}
-        {data.phone ? <WallText><Element name='phone' view='input' text={this.state.data.phone} /></WallText> : null}
-        {data.mail ? <WallText><Element name='mail' view='input' text={this.state.data.mail} /></WallText> : null}
-        <WallButton onClick={() => this.sendRequest(event)}>Ok</WallButton>
+        {data.title ? <WallTitle><Element setShowButton={this.setShowButton} name='title' view='input' text={this.state.data.title} /></WallTitle> : null}
+        {data.subtitle ? <WallSubTitle><Element setShowButton={this.setShowButton} name='subtitle' view='input' text={this.state.data.subtitle} /></WallSubTitle> : null}
+        {data.tariff ? <WallText><Element setShowButton={this.setShowButton} name='tariff' view='textarea' text={this.state.data.tariff} /></WallText> : null}
+        {data.price ? <WallText><Element setShowButton={this.setShowButton} name='price' view='textarea' text={this.state.data.price} /></WallText> : null}
+        {data.description ? <WallText><Element setShowButton={this.setShowButton} name='description' view='textarea' text={this.state.data.description} /></WallText> : null}
+        {data.address ? <WallText><Element setShowButton={this.setShowButton} name='address' view='textarea' text={this.state.data.address} /></WallText> : null}
+        {data.phone ? <WallText><Element setShowButton={this.setShowButton} name='phone' view='input' text={this.state.data.phone} /></WallText> : null}
+        {data.mail ? <WallText><Element setShowButton={this.setShowButton} name='mail' view='input' text={this.state.data.mail} /></WallText> : null}
+        {showButton ? <WallButton onClick={() => this.sendRequest(event)}>Ok</WallButton> : null}
       </WallWrapper>
     )
   }

@@ -13,7 +13,7 @@ if (!$connect) {
 
   switch($_SERVER['REQUEST_METHOD']){
     case 'GET':
-      $result = mysqli_query($connect, 'CALL func_api_v1_get_contact()');
+      $result = mysqli_query($connect, 'SELECT * FROM contact');
     break;
     case 'POST':
      //auth($connect);
@@ -22,7 +22,8 @@ if (!$connect) {
      $phone = $_POST['phone'];
      $mail = $_POST['mail'];
       if(isset($_POST['id']) && isset($_POST['address']) && isset($_POST['phone']) && isset($_POST['mail'])){
-        $result = mysqli_query($connect, "CALL func_api_v1_patch_contact_id($id, '$address', '$phone', '$mail')");
+        mysqli_query($connect, "UPDATE contact SET address='$address', phone='$phone', mail='$mail' WHERE id = '$id'");
+        $result = mysqli_query($connect, "SELECT * FROM contact WHERE id='$id'");
       }
     break;
   }

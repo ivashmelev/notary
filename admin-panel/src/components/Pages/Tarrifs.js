@@ -44,7 +44,7 @@ class Tariffs extends Component {
   setActiveSection(value) {
     this.setState({ currentSection: value, view: 'wall' });
     (async () => {
-      const response = await fetch(`http://foxstudio.site/api/v2/routes/section.php?id=${this.state.sections[value].id}`);
+      const response = await fetch(`https://notary-nn.ru/api/v2/routes/section.php?id=${this.state.sections[value].id}`);
       if (await response.ok) {
         this.setState({ tariffs: await response.json() })
       }
@@ -69,9 +69,9 @@ class Tariffs extends Component {
   render() {
     return (
       <TariffsWrapper>
-        <Title 
-          title='Тарифы' 
-          nextTitle={this.state.view === 'wall' ? this.state.sections[this.state.currentSection].title : ''} 
+        <Title
+          title='Тарифы'
+          nextTitle={this.state.view === 'wall' ? this.state.sections[this.state.currentSection].title : ''}
           icon={this.state.view === 'wall' ? 'chevron' : ''}
           onDoThis={this.state.view === 'wall' ? this.unSetActive : null}
           action

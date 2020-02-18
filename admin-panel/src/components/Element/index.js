@@ -37,10 +37,15 @@ export default class Element extends Component {
 
     if (event.key === 'Enter' && event.ctrlKey) {
       this.setState({ view: 'text', value: event.target.value });
-
+      this.props.setShowButton(true);
       // this.sendRequest(event.target.id, event.target.value, 'description');
       document.removeEventListener('keydown', this.onKeyPress);
     }
+  }
+
+  changeView = () => {
+    this.setState((state, props) => ({ view: props.view }));
+    this.props.setShowButton(false);
   }
 
   render() {
@@ -48,7 +53,7 @@ export default class Element extends Component {
     return (
       <ElementWrapper >
         {this.state.view === 'text' ?
-          <ElementText className='wall-input' data-name={name} onClick={() => this.setState({ view: this.props.view })}>{this.state.value}</ElementText> :
+          <ElementText className='wall-input' data-name={name} onClick={() => this.changeView()}>{this.state.value}</ElementText> :
           this.state.view === 'input' ?
             <ElementInput id={id} onKeyPress={this.onKeyPress} type='text' placeholder={this.state.value} onChange={e => this.handleTextChange({ value: e.target.value })} value={this.state.value} /> :
             this.state.view === 'textarea' ?

@@ -13,13 +13,20 @@ if (!$connect) {
 
   switch($_SERVER['REQUEST_METHOD']){
     case 'GET':
-      if(isset($_GET['id'])){
-        $result = mysqli_query($connect, 'CALL func_api_v1_get_section_id('.$_GET['id'].')');
+      $id = $_GET['id'];
+
+      if(isset($id)){
+        $result = mysqli_query($connect, 
+        "SELECT tariff.id, tariff.title, tariff.subtitle, tariff.tariff, tariff.price FROM tariff
+        JOIN section
+        ON tariff.section_id = section.id
+        WHERE tariff.section_id='$id'");
       } else {
-        $result = mysqli_query($connect, 'CALL func_api_v1_get_section()');
+        $result = mysqli_query($connect, "SELECT * FROM section");
       }
     break;
   }
+
 
   if($result == ''){
     die('403 Bad Request');
