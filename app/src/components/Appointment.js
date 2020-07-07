@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 import backgroundImg from '../assets/img/backgroundImgMain.png'
 import closeImg from '../assets/img/close.png'
-// import checkImg from '../assets/img/check.png'
 import responsive from '../responsive'
 import history from '../helpers/history'
 import Calendar from 'react-calendar'
@@ -220,13 +219,13 @@ export default class Appointment extends Component {
               onClick={() => this.handleScreen(SCREEN_CALENDAR)}
               active={screen === SCREEN_CALENDAR ? '1' : '0.5'}
               toggle>
-              <AppointmentProgressLine/>
+              <AppointmentProgressLine />
             </AppointmentProgressLineWrap>
             <AppointmentProgressLineWrap
               active={screen === SCREEN_FORM ? '1' : '0.5'}>
-              <AppointmentProgressLine/>
+              <AppointmentProgressLine />
             </AppointmentProgressLineWrap>
-            
+
           </AppointmentProgress>
         </AppointmentContainer>
       </AppointmentWrapper>

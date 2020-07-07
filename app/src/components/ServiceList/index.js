@@ -90,7 +90,7 @@ const ServiceListTitle = styled.div`
   height: 780px;
   overflow: auto;
   padding: 90px 40px 90px 100px;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   align-items: flex-end;
   background: #2D2D2D;
@@ -99,12 +99,12 @@ const ServiceListTitle = styled.div`
     padding: 90px 40px 90px 30px;
   }
   @media ${responsive.tabletB} {
-    padding: 60px 30px 0 30px;
+    padding: 60px 30px 60px 30px;
     width: 100%;
     align-items: flex-start;
   }
   @media ${responsive.tablet} {
-    padding: 40px 15px 0 15px;
+    padding: 40px 15px 40px 15px;
     height: 400px;
   }
 `;

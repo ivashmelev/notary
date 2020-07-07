@@ -6,7 +6,6 @@ import backgroundImgMain from '../assets/img/background/main@desktop.jpg'
 import backgroundImgMainMiddle from '../assets/img/background/main@netbook.jpg'
 import backgroundImgMainSmall from '../assets/img/background/main@mobile.jpg'
 
-import Search from './Search'
 import responsive from '../responsive'
 import arrowIco from '../assets/img/arrow.png'
 import history from '../helpers/history'
@@ -36,15 +35,57 @@ export default class Main extends Component {
     const { contacts } = this.state;
     return (
       <MainWrapper>
+        <MainBackgroundButton onClick={() => history.push({ pathname: '/service' })} />
         <MainBackgroundImg>
-          <MainBackgroundButton onClick={() => history.push({ pathname: '/about' })} />
         </MainBackgroundImg>
         <Menu contacts={contacts} />
-        <MainContent>
+        <MainScreen>
           <MainTitleContainer>
             <MainTitle>Нотариус города областного значения Нижнего Новгорода Пережогина А.Ю.</MainTitle>
           </MainTitleContainer>
-          <Search width='720px' />
+        </MainScreen>
+        <MainContent>
+          <MainScreenFake />
+          <SubScreen>
+            <InfoBlock>
+              <p>
+                Лицензия на право нотариальной деятельности № 221 выдана Главным управлением Минюста России по
+                Нижегородской области 23 июня 2004 года
+              </p>
+              <p>
+                Приказ Главного управления Министерства юстиции Российской Федерации по Нижегородской области № 200 от 23
+                июня 2009 года
+              </p>
+              <p>
+                Номер в реестре Министерства юстиции - 52/177-н/52
+              </p>
+            </InfoBlock>
+            <Lawyers>
+              <h2>
+                Сотрудники нотариальной конторы, уполномоченные на совершение нотариальных действий в момент отсутствия нотариуса:
+              </h2>
+              <LawyersItems>
+                <LawyerItem>
+                  <h3>
+                    Кузькина Наталья Анатольевна
+                  </h3>
+                  <h4>
+                    помощник нотариуса
+                  </h4>
+                  <p>Приказ Главного управления Минюста России по Нижегородской области № 142 от 21 марта 2019 года</p>
+                </LawyerItem>
+                <LawyerItem>
+                  <h3>
+                    Сергачев Виталий Сергеевич
+                  </h3>
+                  <h4>
+                    помощник нотариуса
+                  </h4>
+                  <p>Приказ Главного управления Минюста России по Нижегородской области № 90-н от 12 декабря 2015 года</p>
+                </LawyerItem>
+              </LawyersItems>
+            </Lawyers>
+          </SubScreen>
         </MainContent>
         <MainContactBlock>
           {
@@ -57,6 +98,128 @@ export default class Main extends Component {
     )
   }
 }
+
+const LawyerItem = styled.div`
+  padding: 15px;
+  h3 {
+    font-family: Montserrat Bold;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    color: #E6B980;
+    @media ${ responsive.tablet} {
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+  }
+  h4 {
+    font-family: Montserrat Bold;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    @media ${ responsive.tablet} {
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+  }
+  p {
+    font-family: Montserrat Regular;
+    font-size: 18px;
+    line-height: 34px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    @media ${ responsive.notebookB} {
+      font-size: 16px;
+      line-height: 30px;
+    }
+    @media ${ responsive.tablet} {
+      font-size: 16px;
+      line-height: 25px;
+      letter-spacing: 0;
+    }
+  }
+`
+
+const LawyersItems = styled.div`
+  margin-top: 40px;
+  display: flex;
+  @media ${responsive.tablet} {
+    display: block;
+  }
+`
+
+const Lawyers = styled.div`
+  margin-top: 50px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  h2 {
+    max-width: 650px;
+    width: 100%;
+    line-height: 34px;
+    font-family: Montserrat Regular;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    text-align: center;
+    @media ${ responsive.notebookB} {
+      font-size: 22px;
+    }
+    @media ${ responsive.tablet} {
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+  }
+`
+
+const InfoBlock = styled.div`
+  max-width: 600px;
+  width: 100%;
+  p {
+    font-family: Montserrat Regular;
+    font-size: 18px;
+    line-height: 34px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    @media ${ responsive.notebookB} {
+      font-size: 16px;
+      line-height: 30px;
+    }
+    @media ${ responsive.tablet} {
+      font-size: 16px;
+      line-height: 25px;
+      letter-spacing: 0;
+    }
+  }
+`
+
+const SubScreen = styled.div`
+  width: 100%;
+  padding: 20px 60px 100px;
+  background-color: #2D2D2D;
+  box-sizing: border-box;
+  box-shadow: 0px -8px 14px #00000075;
+  @media ${ responsive.tablet} {
+    padding: 10px 15px;
+  }
+`
+
+const MainScreenFake = styled.div`
+  width: 100%;
+  height: 100vh;
+`
+
+const MainScreen = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  @media ${responsive.tablet} {
+    position: relative;
+    height: 55vh;
+    background: #2D2D2D;
+  }
+`
 
 const MainWrapper = styled.div`
   display: flex;
@@ -82,10 +245,9 @@ const MainBackgroundImg = styled.div`
   }
   @media ${responsive.tablet} {
     background-image: url(${backgroundImgMainSmall});
-
     height: 55vh;
-    bottom: 0;
-    filter: brightness(1);
+    top: 0;
+    position: relative;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -102,17 +264,21 @@ const MainBackgroundButton = styled.div`
     border: none;
     background-repeat: no-repeat;
     background-position: center;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index:90;
   }
 `;
 
 const MainContent = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media ${responsive.tablet} {
-    width: 100%;
-    height: 45vh;
-  }
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: auto;
 `;
 
 const MainTitleContainer = styled.div`
@@ -138,9 +304,7 @@ const MainTitleContainer = styled.div`
   @media ${responsive.tablet} {
     width: 100%;
     padding: 15px;
-    height: 100%;
     text-align: right;
-    justify-content: flex-end;
   }
 `;
 

@@ -7,12 +7,11 @@ import Main from './Main'
 import Service from './Service'
 import Tariff from './Tariff'
 import Contact from './Contact'
-import SearchPage from './SearchPage'
 import Appointment from './Appointment'
 
 const wrap = MainComponent => (
   <App>
-    <MainComponent/>
+    <MainComponent />
   </App>
 )
 
@@ -21,11 +20,9 @@ const Site = () => {
     <Router history={history}>
       <Switch>
         <Route exact path="/" render={() => wrap(Main)} />
-        {/* <Route path="/about" render={() => wrap(About)} /> */}
         <Route path="/service" render={() => wrap(Service)} />
         <Route path="/tariff" render={() => wrap(Tariff)} />
         <Route path="/contact" render={() => wrap(Contact)} />
-        <Route path="/search/:query?" render={() => wrap(SearchPage)} />
         <Route path="/appointment" render={() => wrap(Appointment)} />
       </Switch>
     </Router>

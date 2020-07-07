@@ -1,11 +1,26 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import responsive from '../../responsive'
+import Button from '../Button';
+import Privileges from '../Privileges';
 
 export default class TariffElement extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      visiblePrivileges: false
+    }
+  }
+
+  openPrivileges = () => {
+    this.setState({
+      visiblePrivileges: true
+    })
+  }
+  closePrivileges = () => {
+    this.setState({
+      visiblePrivileges: false
+    })
   }
 
   render() {
@@ -24,10 +39,26 @@ export default class TariffElement extends Component {
           <TariffElementTitle>Размер платы за услуги правового и технического характера (УПТХ)</TariffElementTitle>
           <TariffElementText>{price}</TariffElementText>
         </TariffElementBlock>
+        <TariffElementBlock>
+          <ButtonWrapper onClick={this.openPrivileges}>
+            <Button
+              name='Льготы'
+            />
+          </ButtonWrapper>
+        </TariffElementBlock>
+        {
+          this.state.visiblePrivileges ? (
+            <Privileges
+              hundleClose={this.closePrivileges}
+            />
+          ) : null
+        }
       </TariffElementWrapper >
     )
   }
 }
+
+const ButtonWrapper = styled.div``
 
 const TariffElementWrapper = styled.div`
   position: relative;
