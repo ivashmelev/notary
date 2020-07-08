@@ -6,6 +6,8 @@ import backgroundImgMain from '../assets/img/background/main@desktop.jpg'
 import backgroundImgMainMiddle from '../assets/img/background/main@netbook.jpg'
 import backgroundImgMainSmall from '../assets/img/background/main@mobile.jpg'
 
+import { Scrollbar } from './Scrollbar/'
+
 import responsive from '../responsive'
 import arrowIco from '../assets/img/arrow.png'
 import history from '../helpers/history'
@@ -44,48 +46,51 @@ export default class Main extends Component {
             <MainTitle>Нотариус города областного значения Нижнего Новгорода Пережогина А.Ю.</MainTitle>
           </MainTitleContainer>
         </MainScreen>
+
         <MainContent>
-          <MainScreenFake />
-          <SubScreen>
-            <InfoBlock>
-              <p>
-                Лицензия на право нотариальной деятельности № 221 выдана Главным управлением Минюста России по
-                Нижегородской области 23 июня 2004 года
-              </p>
-              <p>
-                Приказ Главного управления Министерства юстиции Российской Федерации по Нижегородской области № 200 от 23
-                июня 2009 года
-              </p>
-              <p>
-                Номер в реестре Министерства юстиции - 52/177-н/52
-              </p>
-            </InfoBlock>
-            <Lawyers>
-              <h2>
-                Сотрудники нотариальной конторы, уполномоченные на совершение нотариальных действий в момент отсутствия нотариуса:
-              </h2>
-              <LawyersItems>
-                <LawyerItem>
-                  <h3>
-                    Кузькина Наталья Анатольевна
-                  </h3>
-                  <h4>
-                    помощник нотариуса
-                  </h4>
-                  <p>Приказ Главного управления Минюста России по Нижегородской области № 142 от 21 марта 2019 года</p>
-                </LawyerItem>
-                <LawyerItem>
-                  <h3>
-                    Сергачев Виталий Сергеевич
-                  </h3>
-                  <h4>
-                    помощник нотариуса
-                  </h4>
-                  <p>Приказ Главного управления Минюста России по Нижегородской области № 90-н от 12 декабря 2015 года</p>
-                </LawyerItem>
-              </LawyersItems>
-            </Lawyers>
-          </SubScreen>
+          <Scrollbar>
+            <MainScreenFake />
+            <SubScreen>
+              <InfoBlock>
+                <p>
+                  Лицензия на право нотариальной деятельности № 221 выдана Главным управлением Минюста России по
+                  Нижегородской области 23 июня 2004 года
+                </p>
+                <p>
+                  Приказ Главного управления Министерства юстиции Российской Федерации по Нижегородской области № 200 от 23
+                  июня 2009 года
+                </p>
+                <p>
+                  Номер в реестре Министерства юстиции - 52/177-н/52
+                </p>
+              </InfoBlock>
+              <Lawyers>
+                <h2>
+                  Сотрудники нотариальной конторы, уполномоченные на совершение нотариальных действий в момент отсутствия нотариуса:
+                </h2>
+                <LawyersItems>
+                  <LawyerItem>
+                    <h3>
+                      Кузькина Наталья Анатольевна
+                    </h3>
+                    <h4>
+                      помощник нотариуса
+                    </h4>
+                    <p>Приказ Главного управления Минюста России по Нижегородской области № 142 от 21 марта 2019 года</p>
+                  </LawyerItem>
+                  <LawyerItem>
+                    <h3>
+                      Сергачев Виталий Сергеевич
+                    </h3>
+                    <h4>
+                      помощник нотариуса
+                    </h4>
+                    <p>Приказ Главного управления Минюста России по Нижегородской области № 90-н от 12 декабря 2015 года</p>
+                  </LawyerItem>
+                </LawyersItems>
+              </Lawyers>
+            </SubScreen>
+          </Scrollbar>
         </MainContent>
         <MainContactBlock>
           {
@@ -198,6 +203,16 @@ const SubScreen = styled.div`
   background-color: #2D2D2D;
   box-sizing: border-box;
   box-shadow: 0px -8px 14px #00000075;
+  position: relative;
+  &:after {
+    content: '↑';
+    color: #E6B980;
+    font-size: 42px;
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%)
+  }
   @media ${ responsive.tablet} {
     padding: 10px 15px;
   }
@@ -205,7 +220,7 @@ const SubScreen = styled.div`
 
 const MainScreenFake = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 99vh;
 `
 
 const MainScreen = styled.div`
