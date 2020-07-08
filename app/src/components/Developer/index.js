@@ -5,7 +5,7 @@ import devLogo from '../../assets/devLogo.svg'
 export default class Developer extends Component {
   render() {
     return (
-      <DeveloperLink href="http://foxstudio.site" target="_blank">
+      <DeveloperLink href="//foxstudio.site" target="_blank">
         <DeveloperIn>Created in</DeveloperIn>
         <DeveloperLogo src={devLogo} />
       </DeveloperLink>
@@ -16,7 +16,6 @@ export default class Developer extends Component {
 const DeveloperLink = styled.a`
   width: 100%;
   background-color: #080808;
-  /* background: linear-gradient(180deg, #2D2D2D 0%, #080808 100%); */
   display: flex;
   justify-content: center;
   align-items: flex-end;
