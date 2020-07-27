@@ -1,0 +1,70 @@
+.layerMain {
+  height: 100vh;
+}
+
+.user {
+  height: 100%;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 0 12px;
+}
+
+.ant-layout-header.header {
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-layout-background {
+  background: #fff;
+}
+
+.cellTextTop {
+  vertical-align: top;
+}
+
+.mb {
+  margin-bottom: 15px;
+}
+
+#components-form-demo-normal-login .login-form {
+  max-width: 300px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+#components-form-demo-normal-login .ant-col-rtl .login-form-forgot {
+  float: left;
+}
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
+}
+
+.containerLoginForm {
+  width: 100%;
+  height: 100vh;
+  background: #001529;;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginForm {
+  width: 320px;
+  background: #fff;
+  padding: 30px 30px 6px;
+  border-radius: 8px;
+}
+
+.login-form-button {
+  width: 100%;
+}

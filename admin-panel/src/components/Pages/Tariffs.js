@@ -1,12 +1,17 @@
 import React, { useRef, useContext } from 'react';
 import { PageContainer } from './PageContainer';
-import { Table, Input, Button, Space, Typography } from 'antd';
+import { Table, Input, Select, Button, Space, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import { ServicesContext } from '../../context/servicesContext';
-const { Text } = Typography;
+import { SectionsContext } from '../../context/sectionsContext';
+import { TariffsContext } from '../../context/tariffsContext';
 
-export const Services = (props) => {
-  const { data, isLoading, updateService } = useContext(ServicesContext);
+const { Text } = Typography;
+const { Option } = Select;
+
+export const Tariffs = (props) => {
+  const { sections, selectID, isLoading, updateIdSection } = useContext(SectionsContext);
+  const { data, isLoadingTariffs, updateTariffs } = useContext(TariffsContext);
+
   const searchInput = useRef(null);
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -59,8 +64,12 @@ export const Services = (props) => {
       ...record,
       [key]: str
     }
-    updateService(obj)
+    updateTariffs(obj)
   };
+
+  function onChangeSelect(value) {
+    updateIdSection(value)
+  }
 
   const columns = [
     {
@@ -68,32 +77,70 @@ export const Services = (props) => {
       align: 'top',
       className: 'cellTextTop',
       dataIndex: 'title',
-      width: 350,
+      width: 300,
       ...getColumnSearchProps('title'),
       render: (text, record) => (
         <Text editable={{ onChange: onChange.bind(this, record, 'title') }}>{text}</Text>
       )
     },
     {
-      title: 'Описание',
+      title: 'Подзаголовок',
       align: 'top',
       className: 'cellTextTop',
-      dataIndex: 'description',
+      dataIndex: 'subtitle',
       render: (text, record) => (
-        <Text editable={{ onChange: onChange.bind(this, record, 'description') }}>{text}</Text>
+        <Text editable={{ onChange: onChange.bind(this, record, 'subtitle') }}>{text}</Text>
       )
-    }
+    },
+    {
+      title: 'Тариф',
+      align: 'top',
+      className: 'cellTextTop',
+      dataIndex: 'tariff',
+      render: (text, record) => (
+        <Text editable={{ onChange: onChange.bind(this, record, 'tariff') }}>{text}</Text>
+      )
+    },
+    {
+      title: 'Размер платы УПТХ',
+      align: 'top',
+      className: 'cellTextTop',
+      dataIndex: 'price',
+      render: (text, record) => (
+        <Text editable={{ onChange: onChange.bind(this, record, 'price') }}>{text}</Text>
+      )
+    },
   ];
 
   return (
     <PageContainer
-      title="Услуги"
+      title="Тарифы"
     >
-      <Table
-        columns={columns}
-        dataSource={data}
-        loading={isLoading}
-      />
+      <Space direction="vertical">
+        <Select
+          showSearch
+          style={{ width: 350 }}
+          placeholder="Выберите раздел"
+          optionFilterProp="children"
+          value={selectID}
+          onChange={onChangeSelect}
+          loading={isLoading}
+          filterOption={(input, option) =>
+            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
+        >
+          {
+            sections.map(item => (
+              <Option key={item.id} value={item.id}>{item.title}</Option>
+            ))
+          }
+        </Select>
+        <Table
+          columns={columns}
+          dataSource={data}
+          loading={isLoadingTariffs}
+        />
+      </Space>
     </PageContainer>
   )
 }

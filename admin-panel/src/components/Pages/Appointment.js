@@ -1,48 +1,41 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
-import Title from '../Header/Title'
-import InfoLine from '../CommonUI/InfoLine'
+import React, { useContext } from 'react';
+import { PageContainer } from './PageContainer';
+import { Table } from 'antd';
+import { AppointmentContext } from '../../context/appointmentContext';
 
-class Appointment extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: []
-    }
-  }
+export const Appointment = (props) => {
+  const { data, isLoading } = useContext(AppointmentContext);
 
-  componentDidMount() {
-    try {
-      (async () => {
-        const response = await fetch('https://notary-nn.ru/api/v2/routes/reception.php');
-        if (await response.ok) {
-          this.setState({ users: await response.json() })
-        }
-      })();
-    } catch (err) {
-      throw err;
-    }
-  }
+  const columns = [
+    {
+      title: 'Имя',
+      dataIndex: 'name',
+    },
+    {
+      title: 'Дата',
+      dataIndex: 'date',
+    },
+    {
+      title: 'Номер телефона',
+      dataIndex: 'phone',
+    },
+    {
+      title: 'Почта',
+      dataIndex: 'mail',
+      render: (mail) => (<a href={`mailto:${mail}`}>{mail}</a>)
+    },
+  ]
 
-  render() {
-    const { users } = this.state
-    return (
-      <AppointmentWrapper>
-        <Title title='Записи на прием' nextTitle='' icon='' onDoThis />
-        <AppointmentContainer>
-          <InfoLine page='appointment' infoLine={users} />
-        </AppointmentContainer>
-      </AppointmentWrapper>
-    );
-  }
+  return (
+    <PageContainer
+      title="Записи на прием"
+    >
+      <Table
+        columns={columns}
+        dataSource={data}
+        ellipsis
+        loading={isLoading}
+      />
+    </PageContainer>
+  )
 }
-
-export default Appointment
-
-const AppointmentContainer = styled.div`
-  width: 100%;
-  padding: 15px 0;
-`
-const AppointmentWrapper = styled.div`
-  width: 100%;
-`

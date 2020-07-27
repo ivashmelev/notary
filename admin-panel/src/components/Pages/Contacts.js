@@ -1,93 +1,57 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
-import Title from '../Header/Title'
-import Sidebar from '../Sidebar'
-import Wall from '../Wall'
-import _ from 'lodash'
-import { UPDATE_CONTACT } from '../../helpers/constants'
+import React, { useContext } from 'react';
+import { PageContainer } from './PageContainer';
+import { Table, Typography } from 'antd';
+import { ContactsContext } from '../../context/contactsContext';
+const { Text } = Typography;
 
-class Contacts extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      contacts: [],
-      current: 0
+export const Contacts = (props) => {
+  const { data, isLoading, updateContact } = useContext(ContactsContext);
+  const onChange = (record, key, str) => {
+    const obj = {
+      ...record,
+      [key]: str
     }
-    this.setActive = this.setActive.bind(this);
-    this.handleChangeContacts = this.handleChangeContacts.bind(this);
-  }
+    updateContact(obj)
+  };
 
-  componentDidMount() {
-    try {
-      (async () => {
-        const response = await fetch('https://notary-nn.ru/api/v2/routes/contact.php');
-        if (await response.ok) {
-          this.setState({ contacts: await response.json() });
-        }
-      })();
-    } catch (err) {
-      throw err;
-    }
-  }
+  const columns = [
+    {
+      title: 'Адрес',
+      dataIndex: 'address',
+      render: (text, record) => (
+        text && (
+          <Text editable={{ onChange: onChange.bind(this, record, 'address') }}>{text}</Text>
+        )
+      )
+    },
+    {
+      title: 'Почта',
+      dataIndex: 'mail',
+      render: (text, record) => (
+        <Text editable={{ onChange: onChange.bind(this, record, 'mail') }}>{text}</Text>
+      )
+    },
+    {
+      title: 'Номер телефона',
+      dataIndex: 'phone',
+      render: (text, record) => (
+        <Text editable={{ onChange: onChange.bind(this, record, 'phone') }}>{text}</Text>
+      )
+    },
+  ]
 
-  handleChangeContacts(data, current) {
-    const newContacts = [...this.state.contacts];
-    newContacts[current] = data;
-    this.setState((state, props) => {
-      return {
-        contacts: newContacts
-      }
-    });
-  }
 
-  setActive(value) {
-    this.setState({ current: value });
-  }
+  return (
+    <PageContainer
+      title="Контакты"
+    >
+      <Table
+        columns={columns}
+        dataSource={data}
+        ellipsis
+        loading={isLoading}
+      />
 
-  render() {
-    return (
-      <ContactsWrapper>
-        <Title title='Контакты' nextTitle='' icon='' onDoThis />
-        <ContactsContainer>
-          <ContactsContainerSidebar>
-            {this.state.contacts.map((element, index) =>
-              <Sidebar active={this.state.current === index ? true : false} key={index} id={index} title={`Контакты часть ${index + 1}`} onSetActive={this.setActive} />
-            )}
-          </ContactsContainerSidebar>
-          <ContactsContainerWall>
-            {!_.isEmpty(this.state.contacts) ?
-              <Wall
-                event={UPDATE_CONTACT}
-                data={this.state.contacts[this.state.current]}
-                onHandleChangeServices={this.handleChangeContacts}
-                current={this.state.current}
-              /> : null
-            }
-          </ContactsContainerWall>
-        </ContactsContainer>
-      </ContactsWrapper>
-    );
-  }
+    </PageContainer>
+  )
 }
-
-export default Contacts
-
-const ContactsWrapper = styled.div`
-  width: 100%;
-`
-const ContactsContainer = styled.div`
-  display: flex;
-`;
-
-const ContactsContainerSidebar = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 0 1 315px;
-`;
-
-const ContactsContainerWall = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-  padding: 5px 0;
-`;
