@@ -90,7 +90,7 @@ const ServiceListTitle = styled.div`
   height: 780px;
   overflow: auto;
   padding: 90px 40px 90px 100px;
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   align-items: flex-end;
   background: #2D2D2D;
