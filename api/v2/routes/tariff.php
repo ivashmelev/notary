@@ -34,12 +34,12 @@ if (!$connect) {
 
       if(isset($_POST['id']) && isset($_POST['title']) && isset($_POST['subtitle']) && isset($_POST['tariff']) && isset($_POST['price'])){
         mysqli_query($connect, 
-        "UPDATE tariff SET title='$title', subtitle='$subtitle', tariff='$tariff', price='$price' WHERE 'tariff.id' = '$id'");
+        "UPDATE tariff SET title='$title', subtitle='$subtitle', tariff='$tariff', price='$price' WHERE 'id' = '$id'");
         
         $result = mysqli_query($connect, 
         "SELECT 'tariff.id', 'tariff.title', 'tariff.subtitle', 'tariff.tariff', 'tariff.price'
         FROM tariff
-        WHERE 'tariff.id' = '$id'")
+        WHERE 'tariff.id' = '$id'");
       }
     break;
   }
