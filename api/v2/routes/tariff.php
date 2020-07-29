@@ -1,6 +1,9 @@
 <?php
 // Получить тариф по id и изменить тариф
+header('Access-Control-Allow-Headers: Content-Type');
+header("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS,PATCH");
 header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Credentials: true');
 
 require_once ('../../../modules/sql/config.php');
 require_once ('../../../modules/sql/auth.php');
