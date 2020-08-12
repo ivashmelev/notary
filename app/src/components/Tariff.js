@@ -7,6 +7,7 @@ import TariffList from './TariffList'
 import styled from 'styled-components'
 import responsive from '../responsive'
 import { Scrollbar } from './Scrollbar'
+import history from '../helpers/history'
 
 
 export default class Tariff extends Component {
@@ -74,7 +75,6 @@ export default class Tariff extends Component {
                 <TariffButtonContainer>
                   {this.state.section.map((element, index) =>
                     <ButtonWrapper key={index} onClick={() => this.getTariff(element.id, element.title)}>
-                      {/* // <ButtonWrapper key={index} onClick={() => this.returnBack(true)}> */}
                       <Button
                         name={element.title}
                         size='big'
@@ -82,6 +82,13 @@ export default class Tariff extends Component {
                       />
                     </ButtonWrapper>
                   )}
+                  <ButtonWrapper onClick={() => history.push({ pathname: '/privileges' })}>
+                    <Button
+                      name="Льготы"
+                      size='big'
+                      link=''
+                    />
+                  </ButtonWrapper>
                 </TariffButtonContainer>
                 <Navigation title='КОНТАКТЫ' subtitle='СЛЕДУЮЩИЙ РАЗДЕЛ' />
               </TariffContainer>

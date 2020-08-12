@@ -171,7 +171,6 @@ const ServiceListTitleElement = styled.span`
   text-align: right;
   letter-spacing: 0.05em;
   color: white;
-  display: flex;
   align-items: center;
   justify-content: flex-end;
   margin-bottom: 30px;

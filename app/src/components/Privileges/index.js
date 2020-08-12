@@ -3,17 +3,13 @@ import styled from 'styled-components'
 import responsive from '../../responsive'
 import ellipse from '../../assets/img/ellipse.png'
 
-export default class Privileges extends Component {
+export default class PrivilegesItems extends Component {
   render() {
-    const { hundleClose } = this.props;
     return (
       <PrivilegesContainer>
-        <CloseWindow
-          onClick={hundleClose}
-        />
+
         <PrivilegesBox>
           <TariffListNote>
-            <TariffListNoteTitle>Льготы</TariffListNoteTitle>
             <TariffListNoteUl>
 
               <TariffListNoteTitleLi>В соответствии со ст.  333.38  НК РФ от уплаты государственной пошлины за совершение нотариальных действий освобождаются:</TariffListNoteTitleLi>
@@ -91,15 +87,6 @@ export default class Privileges extends Component {
   }
 }
 
-const CloseWindow = styled.div`
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-`
-
 const TariffListNoteUl = styled.ul`
   font-family: Montserrat Regular;
   font-size: 16px;
@@ -139,49 +126,29 @@ const TariffListNote = styled.div`
   max-width: 1155px;
   width: 100%;
   margin: auto;
-  padding: 20px 0 20px 0;
   display: flex;
   flex-direction: column;
-`;
-
-const TariffListNoteTitle = styled.span`
-  font-family: Montserrat Bold;
-  font-size: 20px;
-  line-height: 34px;
-  text-align: center;
-  letter-spacing: 0.05em;
-  color: #2D2D2D;
-  margin-bottom: 20px; 
-  @media ${responsive.tablet} {
-    font-size: 16px;
-    line-height: 25px;
-    letter-spacing: 0;
-    margin-bottom: 20px;
-  }
 `;
 
 const PrivilegesBox = styled.div`
   width: 900px;
   max-width: 100%;
-  padding: 15px;
+  padding: 0 15px;
   background-color: #fff;
   box-sizing: border-box;
   position: relative;
   z-index: 2;
+  @media ${responsive.tablet} {
+    padding: 0;
+  }
 `
 
 const PrivilegesContainer = styled.div`
   width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #000000ad;
-  z-index: 99;
   display: flex;
   flex-flow: column;
   align-items: center;
-  padding: 15px;
+  padding: 0 15px;
+  padding-bottom: 40px;
   box-sizing: border-box;
-  overflow: auto;
 `

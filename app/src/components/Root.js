@@ -8,6 +8,7 @@ import Service from './Service'
 import Tariff from './Tariff'
 import Contact from './Contact'
 import Appointment from './Appointment'
+import Privileges from './Privileges'
 
 const wrap = MainComponent => (
   <App>
@@ -23,6 +24,7 @@ const Site = () => {
         <Route path="/service" render={() => wrap(Service)} />
         <Route path="/tariff" render={() => wrap(Tariff)} />
         <Route path="/contact" render={() => wrap(Contact)} />
+        <Route path="/privileges" render={() => wrap(Privileges)} />
         <Route path="/appointment" render={() => wrap(Appointment)} />
       </Switch>
     </Router>
