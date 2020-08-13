@@ -13,13 +13,10 @@ File Encoding         : 65001
 Date: 2019-08-10 22:11:52
 */
 
-SET FOREIGN_KEY_CHECKS
-=0;
 
 -- ----------------------------
 -- Table structure for admin
 -- ----------------------------
-DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin`
 (
   `id` int
@@ -47,7 +44,6 @@ VALUES
 -- ----------------------------
 -- Table structure for contact
 -- ----------------------------
-DROP TABLE IF EXISTS `contact`;
 CREATE TABLE `contact`
 (
   `id` int
@@ -77,7 +73,6 @@ VALUES
 -- ----------------------------
 -- Table structure for reception
 -- ----------------------------
-DROP TABLE IF EXISTS `reception`;
 CREATE TABLE `reception`
 (
   `id` int
@@ -100,7 +95,6 @@ CREATE TABLE `reception`
 -- ----------------------------
 -- Table structure for section
 -- ----------------------------
-DROP TABLE IF EXISTS `section`;
 CREATE TABLE `section`
 (
   `id` int
@@ -117,7 +111,6 @@ CREATE TABLE `section`
 -- ----------------------------
 -- Table structure for service
 -- ----------------------------
-DROP TABLE IF EXISTS `service`;
 CREATE TABLE `service`
 (
   `id` int
@@ -137,7 +130,6 @@ CREATE TABLE `service`
 -- ----------------------------
 -- Table structure for tariff
 -- ----------------------------
-DROP TABLE IF EXISTS `tariff`;
 CREATE TABLE `tariff`
 (
   `id` int
@@ -173,7 +165,6 @@ DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Procedure structure for func_api_v1_admin_auth
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `func_api_v1_admin_auth`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_admin_auth`
 (arg_login VARCHAR
@@ -189,7 +180,6 @@ DELIMITER ;
 -- ----------------------------
 -- Procedure structure for func_api_v1_get_contact
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `func_api_v1_get_contact`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_contact`
 ()
@@ -203,7 +193,6 @@ DELIMITER ;
 -- ----------------------------
 -- Procedure structure for func_api_v1_get_reception
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `func_api_v1_get_reception`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_reception`
 ()
@@ -217,7 +206,6 @@ DELIMITER ;
 -- ----------------------------
 -- Procedure structure for func_api_v1_get_section
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `func_api_v1_get_section`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_section`
 ()
@@ -231,7 +219,6 @@ DELIMITER ;
 -- ----------------------------
 -- Procedure structure for func_api_v1_get_section_id
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `func_api_v1_get_section_id`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_section_id`
 (arg_id int)
@@ -248,7 +235,6 @@ DELIMITER ;
 -- ----------------------------
 -- Procedure structure for func_api_v1_get_service
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `func_api_v1_get_service`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_service`
 ()
@@ -263,7 +249,6 @@ DELIMITER ;
 -- ----------------------------
 -- Procedure structure for func_api_v1_get_service_id
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `func_api_v1_get_service_id`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_service_id`
 (arg_id int)
@@ -278,7 +263,6 @@ DELIMITER ;
 -- ----------------------------
 -- Procedure structure for func_api_v1_get_tariff_id
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `func_api_v1_get_tariff_id`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_get_tariff_id`
 (arg_id int)
@@ -293,7 +277,6 @@ DELIMITER ;
 -- ----------------------------
 -- Procedure structure for func_api_v1_patch_admin_login
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `func_api_v1_patch_admin_login`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_patch_admin_login`
 (arg_login varchar
@@ -312,7 +295,6 @@ DELIMITER ;
 -- ----------------------------
 -- Procedure structure for func_api_v1_patch_contact_id
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `func_api_v1_patch_contact_id`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_patch_contact_id`
 (arg_id int, arg_address varchar
@@ -331,7 +313,6 @@ DELIMITER ;
 -- ----------------------------
 -- Procedure structure for func_api_v1_patch_service_id
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `func_api_v1_patch_service_id`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_patch_service_id`
 (arg_id int, arg_title varchar
@@ -349,7 +330,6 @@ DELIMITER ;
 -- ----------------------------
 -- Procedure structure for func_api_v1_patch_tariff_id
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `func_api_v1_patch_tariff_id`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_patch_tariff_id`
 (arg_id int, arg_title varchar
@@ -369,7 +349,6 @@ DELIMITER ;
 -- ----------------------------
 -- Procedure structure for func_api_v1_post_admin
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `func_api_v1_post_admin`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_post_admin`
 (arg_login varchar
@@ -389,8 +368,7 @@ DELIMITER
   -- ----------------------------
   -- Procedure structure for func_api_v1_post_reception
   -- ----------------------------
-  DROP PROCEDURE IF EXISTS
-`func_api_v1_post_reception`;
+
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `func_api_v1_post_reception`
 (arg_date date, arg_name varchar
