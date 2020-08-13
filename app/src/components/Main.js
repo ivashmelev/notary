@@ -43,7 +43,7 @@ export default class Main extends Component {
         <Menu contacts={contacts} />
         <MainScreen>
           <MainTitleContainer>
-            <MainTitle>Нотариус города областного значения Нижнего Новгорода Пережогина А.Ю.</MainTitle>
+            <MainTitle>Пережогина Ангелина Юрьевна<br />нотариус города областного значения Нижнего Новгорода</MainTitle>
           </MainTitleContainer>
         </MainScreen>
 
