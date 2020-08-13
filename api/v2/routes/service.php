@@ -20,10 +20,12 @@ if (!$connect) {
   switch($_SERVER['REQUEST_METHOD']){
     case 'GET':
       
+      $id = $_GET['id'];
+
       if(isset($_GET['id'])){
-        $result = mysqli_query($connect, 'CALL func_api_v1_get_service_id('.$_GET['id'].')');
+        $result = mysqli_query($connect, "SELECT * FROM service WHERE id = '$id'");
       } else {
-        $result = mysqli_query($connect, 'CALL func_api_v1_get_service()');
+        $result = mysqli_query($connect, "SELECT * FROM service order by id");
       }
     break;
     case 'POST':
@@ -33,7 +35,7 @@ if (!$connect) {
       $description = $_POST['description'];
 
       if(isset($_POST['id']) && isset($_POST['title']) && isset($_POST['description'])){
-        $result = mysqli_query($connect, "CALL func_api_v1_patch_service_id($id, '$title', '$description')");
+        $result = mysqli_query($connect, "UPDATE service SET title='$title', description='$description' WHERE id='$id'");
       }
     break;
   }

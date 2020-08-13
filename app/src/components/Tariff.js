@@ -6,6 +6,8 @@ import Navigation from './Navigation'
 import TariffList from './TariffList'
 import styled from 'styled-components'
 import responsive from '../responsive'
+import { Scrollbar } from './Scrollbar'
+import history from '../helpers/history'
 
 
 export default class Tariff extends Component {
@@ -59,36 +61,51 @@ export default class Tariff extends Component {
   render() {
     return (
       <TariffWrapper>
-        <Header backgroundImg='tariff' />
-        <Title text={this.state.title} />
-        {this.state.sectionView ?
-          <TariffContainer>
-            <TariffList tariff={this.state.tariff} onReturnBack={this.returnBack} />
-            <Navigation title='НАЗАД' onReturnBack={this.returnBack} />
-          </TariffContainer>
-          :
-          <TariffContainer>
-            <TariffButtonContainer>
-              {this.state.section.map((element, index) =>
-                <ButtonWrapper key={index} onClick={() => this.getTariff(element.id, element.title)}>
-                  {/* // <ButtonWrapper key={index} onClick={() => this.returnBack(true)}> */}
-                  <Button
-                    name={element.title}
-                    size='big'
-                    link=''
-                  />
-                </ButtonWrapper>
-              )}
-            </TariffButtonContainer>
-            <Navigation title='КОНТАКТЫ' subtitle='СЛЕДУЮЩИЙ РАЗДЕЛ' />
-          </TariffContainer>
-        }
+        <Scrollbar>
+          <TariffContent>
+            <Header backgroundImg='tariff' />
+            <Title text={this.state.title} />
+            {this.state.sectionView ?
+              <TariffContainer>
+                <TariffList tariff={this.state.tariff} onReturnBack={this.returnBack} />
+                <Navigation title='НАЗАД' onReturnBack={this.returnBack} />
+              </TariffContainer>
+              :
+              <TariffContainer>
+                <TariffButtonContainer>
+                  {this.state.section.map((element, index) =>
+                    <ButtonWrapper key={index} onClick={() => this.getTariff(element.id, element.title)}>
+                      <Button
+                        name={element.title}
+                        size='big'
+                        link=''
+                      />
+                    </ButtonWrapper>
+                  )}
+                  <ButtonWrapper onClick={() => history.push({ pathname: '/privileges' })}>
+                    <Button
+                      name="Льготы"
+                      size='big'
+                      link=''
+                    />
+                  </ButtonWrapper>
+                </TariffButtonContainer>
+                <Navigation title='КОНТАКТЫ' subtitle='СЛЕДУЮЩИЙ РАЗДЕЛ' />
+              </TariffContainer>
+            }
+          </TariffContent>
+        </Scrollbar>
       </TariffWrapper>
     )
   }
 }
 
-const TariffWrapper = styled.div``
+const TariffContent = styled.div``
+
+const TariffWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+`
 
 const TariffButtonContainer = styled.div`
   display: flex;

@@ -14,7 +14,7 @@ export default class TariffList extends Component {
   }
 
   componentDidMount() {
-    if (this.props.tariff.length > 0){
+    if (this.props.tariff.length > 0) {
       this.setState({ current: this.props.tariff[0].id })
     }
   }
@@ -162,13 +162,13 @@ const TariffListTitle = styled.div`
     padding: 90px 40px 90px 30px;
   }
   @media ${responsive.tabletB} {
-    padding: 60px 30px 0 30px;
+    padding: 60px 30px 60px 30px;
     width: 100%;
     height: 400px;
     align-items: flex-start;
   }
   @media ${responsive.tablet} {
-    padding: 40px 15px 0 15px;
+    padding: 40px 15px 40px 15px;
     height: 400px;
   }
 `;
@@ -249,7 +249,7 @@ const TariffListTitleElement = styled.span`
   text-align: right;
   letter-spacing: 0.05em;
   color: white;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: flex-end;
   margin-bottom: 30px;

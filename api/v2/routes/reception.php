@@ -20,12 +20,13 @@ if (!$connect) {
       $mail = $_POST['mail'];
 
       if(isset($_POST['date']) && isset($_POST['name']) && isset($_POST['phone']) && isset($_POST['mail'])){
-        $result = mysqli_query($connect, "CALL func_api_v1_post_reception('$date', '$name', '$phone', '$mail')");
+        mysqli_query($connect, "INSERT INTO reception VALUES(NULL, '$date', '$name', '$phone', '$mail')");
+        $result = mysqli_query($connect, "SELECT * FROM reception order by id desc limit 1");
       }
     break;
     case 'GET':
      //auth($connect);
-      $result = mysqli_query($connect, 'CALL func_api_v1_get_reception()');
+      $result = mysqli_query($connect, "SELECT * FROM reception");
   }
 
   if($result == ''){

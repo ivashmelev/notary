@@ -1,293 +1,169 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
-import { validateEmail, isFieldNotEmpty } from '../../helpers'
-import _ from 'lodash'
+import React, { useEffect, useContext } from 'react';
+import { Form, Input, Button, Space } from 'antd';
+import { UsersContext } from '../../context/usersContext';
 
-const USERS_VIEW_PAGE = 'USERS_VIEW_PAGE'
+export const FormUsers = (props) => {
+  const { id, setUserId, onClose } = props;
+  const { data, createUser, updateUser } = useContext(UsersContext);
+  const allLogin = data.map(item => item.login);
+  const [form] = Form.useForm();
 
-class Form extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: '',
-      name: '',
-      sername: '',
-      mail: '',
-      login: '',
-      password: '',
-      passwordReplay: '',
-      localErrors: {}
+  useEffect(() => {
+    if (id && id.length > 0) {
+      const user = data.filter((item) => item.id === id)[0];
+      const initial = {
+        name: user.name.split(' ')[0],
+        surname: user.name.split(' ')[1],
+        email: user.mail,
+        login: user.login,
+        password: ''
+      };
+      form.setFieldsValue(initial);
     }
-    this.handleTextChange = this.handleTextChange.bind(this)
-  }
+  }, [id, data, form])
 
-  componentDidMount() {
-    if (this.props.data) {
-      const copyState = { ...this.state }
-      const { id, name, mail, login, password } = this.props.data[this.props.editIndex]
-      copyState.id = id
-      copyState.name = name.split(' ')[0]
-      copyState.sername = name.split(' ')[1]
-      copyState.mail = mail
-      copyState.login = login
-      copyState.password = ''
-      copyState.passwordReplay = ''
-      this.setState(copyState)
-
+  const onFinish = values => {
+    const obj = {
+      id: id || '',
+      name: `${values.name} ${values.surname}`,
+      login: values.login,
+      mail: values.email,
+      password: values.password,
     }
-  }
-
-  handleTextChange(e) {
-    this.setState(e)
-  }
-
-  validateNewUserInfo() {
-    let errors = {}
-    const { name, sername, mail, login, password, passwordReplay } = this.state
-    if (!isFieldNotEmpty(name)) {
-      errors = { ...errors, nameError: 'Введите имя' }
-    }
-    if (!isFieldNotEmpty(sername)) {
-      errors = { ...errors, sernameError: 'Введите фамилию' }
-    }
-    if (!isFieldNotEmpty(mail)) {
-      errors = { ...errors, mailError: 'Введите email' }
-    } else if (!validateEmail(mail)) {
-      errors = { ...errors, mailError: 'Введите корректный email' }
-    }
-    if (!isFieldNotEmpty(login)) {
-      errors = { ...errors, loginError: 'Введите логин' }
-    }
-    if (!isFieldNotEmpty(password)) {
-      errors = { ...errors, passwordError: 'Введите пароль' }
-    }
-    if (!isFieldNotEmpty(passwordReplay)) {
-      errors = { ...errors, passwordReplayError: 'Повторите пароль' }
-    }
-    if (password !== passwordReplay) {
-      errors = { ...errors, passwordError: 'Пароли не совпадают', passwordReplayError: 'Пароли не совпадают' }
-    }
-    return errors
-  }
-
-  async handleNewUserInfo(e) {
-    const localErrors = this.validateNewUserInfo()
-    if (_.isEmpty(localErrors)) {
-      if (!_.isEmpty(this.state.localErrors)) {
-        this.setState({ localErrors: {} })
-      }
-      const { id, name, sername, mail, login, password } = this.state
-      const newUserInfo = {
-        id: id,
-        name: `${name} ${sername}`,
-        mail: mail,
-        login: login,
-        password: password
-      }
-      this.props.onAddNewUser(newUserInfo)
-      this.props.onDoThis(USERS_VIEW_PAGE)
-      // alert(`К отправке данные ${newUserInfo.name}, ${newUserInfo.mail}, ${newUserInfo.login}, ${newUserInfo.password}`)
+    if (id && id.length > 0) {
+      updateUser(obj);
     } else {
-      this.setState({ localErrors })
+      createUser(obj);
     }
+    setUserId('');
+    form.resetFields();
+    onClose();
+  };
+
+  const stopForm = () => {
+    form.resetFields();
+    onClose()
   }
 
-  async handleEditUserInfo(e) {
-    const localErrors = this.validateNewUserInfo()
-    if (_.isEmpty(localErrors)) {
-      if (!_.isEmpty(this.state.localErrors)) {
-        this.setState({ localErrors: {} })
-      }
-      const { id, name, sername, mail, login, password } = this.state
-      const newUserInfo = {
-        id: id,
-        name: `${name} ${sername}`,
-        mail: mail,
-        login: login,
-        password: password
-      }
-      this.props.onEditUser(newUserInfo, this.props.editIndex)
-      this.props.onDoThis(USERS_VIEW_PAGE)
-      // alert(`К отправке данные ${newUserInfo.name}, ${newUserInfo.mail}, ${newUserInfo.login}, ${newUserInfo.password}`)
-    } else {
-      this.setState({ localErrors })
-    }
-  }
+  return (
+    <Form
+      layout="vertical"
+      form={form}
+      onFinish={onFinish}
+    >
+      <Form.Item
+        name="name"
+        label="Имя"
+        rules={[{ required: true, message: 'Введите имя' }]}
+        hasFeedback
+      >
+        <Input placeholder="Введите имя" />
+      </Form.Item>
+      <Form.Item
+        name="surname"
+        label="Фамилия"
+        rules={[{ required: true, message: 'Введите фамилию' }]}
+        hasFeedback
+      >
+        <Input placeholder="Введите фамилию" />
+      </Form.Item>
+      <Form.Item
+        name="email"
+        label="Почта"
+        rules={[
+          {
+            type: 'email',
+            message: 'Некорректная почта',
+          },
+          {
+            required: true,
+            message: 'Введите почту',
+          },
+        ]}
+        hasFeedback
+      >
+        <Input placeholder="Введите электронную почту" />
+      </Form.Item>
+      <Form.Item
+        name="login"
+        label="Логин"
+        rules={[
+          {
+            required: true,
+            message: 'Введите логин',
+          },
+          () => ({
+            validator(rule, value) {
+              if (!id) {
+                if (!allLogin.includes(value)) {
+                  return Promise.resolve();
+                } else {
+                  return Promise.reject('Логин уже используется');
+                }
+              } else {
+                if (!data.filter((item) => item.id !== id).map(item => item.login).includes(value)) {
+                  return Promise.resolve();
+                } else {
+                  return Promise.reject('Логин уже используется');
+                }
+              }
+            },
+          }),
+        ]}
+        hasFeedback
+      >
+        <Input placeholder="Введите логин" />
+      </Form.Item>
+      <Form.Item
+        name="password"
+        label="Пароль"
+        rules={[{ required: true, message: 'Введите пароль' }]}
+        hasFeedback
 
-  render() {
-    const { name, sername, mail, login, password, passwordReplay, localErrors } = this.state
-    // const { onEditUser } = this.props
-    return (
-      <FormWrapper>
-        <FormTitle>
-          {this.props.title}
-        </FormTitle>
-        <FormConatainer>
-          <FormInputError>
-            {
-              localErrors.nameError ? (
-                localErrors.nameError
-              ) : null
-            }
-          </FormInputError>
-          <FormInput
-            value={name}
-            placeholder='Имя'
-            onChange={e => this.handleTextChange({ name: e.target.value })}
-            type='text'
-            name='name'
-            required
-          />
-          <FormInputError>
-            {
-              localErrors.sernameError ? (
-                localErrors.sernameError
-              ) : null
-            }
-          </FormInputError>
-          <FormInput
-            value={sername}
-            placeholder='Фамилия'
-            onChange={e => this.handleTextChange({ sername: e.target.value })}
-            type='text'
-            name='sername'
-            required
-          />
-          <FormInputError>
-            {
-              localErrors.mailError ? (
-                localErrors.mailError
-              ) : null
-            }
-          </FormInputError>
-          <FormInput
-            value={mail}
-            placeholder='E-mail'
-            onChange={e => this.handleTextChange({ mail: e.target.value })}
-            type='mail'
-            name='mail'
-            required
-          />
-          <FormInputError>
-            {
-              localErrors.loginError ? (
-                localErrors.loginError
-              ) : null
-            }
-          </FormInputError>
-          <FormInput
-            value={login}
-            placeholder='Логин'
-            onChange={e => this.handleTextChange({ login: e.target.value })}
-            type='text'
-            name='login'
-            required
-          />
-          <FormInputError>
-            {
-              localErrors.passwordError ? (
-                localErrors.passwordError
-              ) : null
-            }
-          </FormInputError>
-          <FormInput
-            value={password}
-            placeholder='Пароль'
-            onChange={e => this.handleTextChange({ password: e.target.value })}
-            type='password'
-            name='password'
-            required
-          />
-          <FormInputError>
-            {
-              localErrors.passwordReplayError ? (
-                localErrors.passwordReplayError
-              ) : null
-            }
-          </FormInputError>
-          <FormInput
-            value={passwordReplay}
-            placeholder='Повторите пароль'
-            onChange={e => this.handleTextChange({ passwordReplay: e.target.value })}
-            type='password'
-            name='passwordReplay'
-            required
-          />
-        </FormConatainer>
-        <FormButtonWrapper>
-          <FormButton
-            onClick={this.props.edit ? () => this.handleEditUserInfo() : () => this.handleNewUserInfo()}
-          >
+      >
+        <Input.Password placeholder="Введите новый пароль" />
+      </Form.Item>
+      <Form.Item
+        name="confirm"
+        label="Подтвердите пароль"
+        rules={[
+          {
+            required: true,
+            message: 'Подтвердите новый пароль',
+          },
+          ({ getFieldValue }) => ({
+            validator(rule, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+
+              return Promise.reject('Пароли не совпадают');
+            },
+          }),
+        ]}
+        dependencies={['password']}
+        hasFeedback
+      >
+        <Input.Password placeholder="Повторите новый пароль" />
+      </Form.Item>
+      <Form.Item
+        wrapperCol={{
+          offset: 8,
+          span: 16,
+        }}
+        style={{
+          textAlign: 'right',
+        }}
+      >
+        <Space style={{ marginTop: 16 }}>
+          <Button onClick={stopForm}>
+            Отмена
+          </Button>
+          <Button type="primary" htmlType="submit">
             Сохранить
-          </FormButton>
-        </FormButtonWrapper>
-      </FormWrapper>
-    )
-  }
+          </Button>
+        </Space>
+      </Form.Item>
+    </Form>
+  )
 }
-
-export default Form
-
-const FormInputError = styled.div`
-  height: 10px;
-  font-size: 8px;
-  letter-spacing: 0.05em;
-  color: #ff6363;
-  display: flex;
-  align-items: center;
-`
-const FormButton = styled.div`
-  width: 140px;
-  height: 40px;
-  font-size: 16px;
-  line-height: 19px;
-  color: #000000;
-  background: #FFFFFF;
-  border-radius: 12px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
-  &:hover {
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
-  }
-`
-const FormButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 40px 0 0 0;
-`
-const FormInput = styled.input`
-  /* max-width: 320px; */
-  width: 100%;
-  height: 35px;
-  font-size: 16px;
-  line-height: 19px;
-  color: #2D2D2D;
-  display: flex;
-  background: transparent;
-  margin: 0 0 20px 0;
-  border: none;
-  outline: none;
-  ::placeholder,
-  ::-webkit-input-placeholder {}
-  :-ms-input-placeholder {}
-`
-const FormConatainer = styled.div`
-  width: 100%;
-`
-const FormTitle = styled.div`
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 19px;
-  color: #000000;
-  margin: 0 0 25px 0;
-`
-const FormWrapper = styled.div`
-  width: 300px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
-  background: #FFFFFF;
-  border-radius: 12px;
-  padding: 15px;
-`

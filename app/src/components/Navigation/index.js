@@ -14,22 +14,22 @@ export default class Navigation extends Component {
           <NavigationLink
             onClick={
               title === 'НАЗАД' ? () => {
-                this.props.onReturnBack(false) 
+                this.props.onReturnBack(false)
                 window.scrollTo(0, 0)
               } :
-              title === 'ДЕЙСТВИЯ' ? () => {
-                history.push({ pathname: '/service' })
-                window.scrollTo(0, 0)
-              } :
-              title === 'ТАРИФЫ' ? () => {
-                history.push({ pathname: '/tariff' })
-                window.scrollTo(0, 0)
-              } :
-              title === 'КОНТАКТЫ' ? () => {
-                history.push({ pathname: '/contact' })
-                window.scrollTo(0, 0)
-              } :
-              null
+                title === 'НОТАРИАЛЬНЫЕ ДЕЙСТВИЯ' ? () => {
+                  history.push({ pathname: '/service' })
+                  window.scrollTo(0, 0)
+                } :
+                  title === 'ТАРИФЫ' ? () => {
+                    history.push({ pathname: '/tariff' })
+                    window.scrollTo(0, 0)
+                  } :
+                    title === 'КОНТАКТЫ' ? () => {
+                      history.push({ pathname: '/contact' })
+                      window.scrollTo(0, 0)
+                    } :
+                      null
             }
           >
             <NavigationSubTitle>{subtitle}</NavigationSubTitle>

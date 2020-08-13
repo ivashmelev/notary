@@ -4,6 +4,7 @@ import Title from './Title'
 import Navigation from './Navigation'
 import ServiceList from './ServiceList'
 import styled from 'styled-components'
+import { Scrollbar } from './Scrollbar'
 
 
 export default class Service extends Component {
@@ -17,13 +18,25 @@ export default class Service extends Component {
   render() {
     return (
       <ServiceWrapper>
-        <Header backgroundImg='service' />
-        <Title text='НОТАРИАЛЬНЫЕ ДЕЙСТВИЯ' />
-        <ServiceList />
-        <Navigation title='ТАРИФЫ' subtitle='СЛЕДУЮЩИЙ РАЗДЕЛ' />
+        <Scrollbar>
+          <ServiceContent>
+            <Header backgroundImg='service' />
+            <Title text='НОТАРИАЛЬНЫЕ ДЕЙСТВИЯ' />
+            <ServiceList />
+            <Navigation title='ТАРИФЫ' subtitle='СЛЕДУЮЩИЙ РАЗДЕЛ' />
+          </ServiceContent>
+        </Scrollbar>
       </ServiceWrapper>
     )
   }
 }
 
-const ServiceWrapper = styled.div``;
+const ServiceContent = styled.div`
+  width: 100%;
+`
+
+const ServiceWrapper = styled.div`
+  width: 100%;
+  position: relative;
+  height:  100vh;
+`;

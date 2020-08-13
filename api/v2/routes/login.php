@@ -10,7 +10,7 @@ mysqli_set_charset($connect, 'utf8');
 
 if(!isset($_SESSION['auth'])){
   $phpAuthUser = $_POST['login'];
-  $result = mysqli_query($connect, 'CALL func_api_v1_admin_auth('.'"'.$phpAuthUser.'"'.')');
+  $result = mysqli_query($connect, "SELECT * FROM admin WHERE login='$phpAuthUser'");
   $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
   $password = $data[0]['password'];
 

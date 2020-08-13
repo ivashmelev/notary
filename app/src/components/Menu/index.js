@@ -30,16 +30,15 @@ export default class Menu extends Component {
             <MenuHamburgerBoxLine />
           </MenuHamburgerBox>
         </MenuHamburger>
-        { contacts.length > 0 ? (
-            <MenuNumberPhone href={`tel:+7${cleanPhone(contacts[0].phone)}`}>
-              {contacts[0].phone}
-            </MenuNumberPhone>
-          ) : null
+        {contacts.length > 0 ? (
+          <MenuNumberPhone href={`tel:+7${cleanPhone(contacts[0].phone)}`}>
+            {contacts[0].phone}
+          </MenuNumberPhone>
+        ) : null
         }
         <MenuLinkWrapper>
           <MenuLink onClick={() => history.push({ pathname: '/' })}>Главная</MenuLink>
-          {/* <MenuLink onClick={() => history.push({ pathname: '/about' })}>Нотариус</MenuLink> */}
-          <MenuLink onClick={() => history.push({ pathname: '/service' })}>Нот.&nbsp;действия</MenuLink>
+          <MenuLink onClick={() => history.push({ pathname: '/service' })}>Нотариальные действия</MenuLink>
           <MenuLink onClick={() => history.push({ pathname: '/tariff' })}>Тарифы</MenuLink>
           <MenuLink onClick={() => history.push({ pathname: '/contact' })}>Контакты</MenuLink>
           <MenuButton onClick={() => history.push({ pathname: '/appointment' })}>
@@ -174,14 +173,6 @@ const MenuLinkWrapper = styled.div`
   margin: 30px 0 0 0;
 
   @media ${responsive.tablet} {
-    /* position: relative;
-    z-index: -1;
-    flex-direction: column; */
-    /* max-width: 678px; */
-    /* width: 100%;
-    align-items: flex-end;
-    opacity: 0; */
-    /* transition: .5s cubic-bezier(0.18, 0.89, 0.32, 1.28); */
     width: 100%;
     height: 0;
     background: #2D2D2D;
@@ -199,7 +190,6 @@ const MenuLinkWrapper = styled.div`
     .${MenuWrapper.componentStyle.componentId}.open &{
       height: 100%;
       padding: 115px 0 30px 0;
-      /* transition: 1s cubic-bezier(0.18, 0.89, 0.32, 1.28); */
     }
   }
 `;
@@ -221,6 +211,7 @@ const MenuLink = styled.a`
   @media ${responsive.tablet} {
     padding: 15px 30px;
     font-size: 24px;
+    text-align: left;
   }
 `;
 
