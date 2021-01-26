@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import responsive from '../../responsive'
-import Button from '../Button'
+// import Button from '../Button'
 import history from '../../helpers/history'
 import { cleanPhone } from '../../helpers/format'
 
@@ -41,9 +41,9 @@ export default class Menu extends Component {
           <MenuLink onClick={() => history.push({ pathname: '/service' })}>Нотариальные действия</MenuLink>
           <MenuLink onClick={() => history.push({ pathname: '/tariff' })}>Тарифы</MenuLink>
           <MenuLink onClick={() => history.push({ pathname: '/contact' })}>Контакты</MenuLink>
-          <MenuButton onClick={() => history.push({ pathname: '/appointment' })}>
+          {/*<MenuButton onClick={() => history.push({ pathname: '/appointment' })}>
             <Button name="Запись на прием" link="" color="grey" size="small" />
-          </MenuButton>
+          </MenuButton>*/}
           <MenuLinkContactWrap>
             {
               contacts.length > 0 ? (
@@ -215,19 +215,19 @@ const MenuLink = styled.a`
   }
 `;
 
-const MenuButton = styled.div`
-  margin: 0 0 0 15px;
-  transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
-  &:hover{
-    box-shadow: 0 0 12px 2px #4a4a4a;
-  }
-  @media ${responsive.tablet} {
-    margin: 0;
-    position: absolute;
-    top: 15px;
-  }
+// const MenuButton = styled.div`
+//   margin: 0 0 0 15px;
+//   transition: .3s cubic-bezier(0.77, 0, 0.175, 1);
+//   &:hover{
+//     box-shadow: 0 0 12px 2px #4a4a4a;
+//   }
+//   @media ${responsive.tablet} {
+//     margin: 0;
+//     position: absolute;
+//     top: 15px;
+//   }
 
-  @media ${responsive.mobileS} {
-    margin-top: 0;
-  }
-`;
+//   @media ${responsive.mobileS} {
+//     margin-top: 0;
+//   }
+// `;

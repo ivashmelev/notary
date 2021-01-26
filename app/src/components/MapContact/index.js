@@ -57,35 +57,37 @@ export default class MapContact extends Component {
 }
 
 const MapWrapper = styled.div`
-  width: 55vw;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   @media ${responsive.notebookS} {
+    flex-direction: column;
     width: 100%;
   }
 `
 
 const MapContainer = styled.div`
-  width: 100%;
-  height: 800px;
+  width: 50%;
+  height: 100%;
   @media ${responsive.notebookS} {
-    height: 550px;
-  }
-  @media ${responsive.tabletB} {
-    height: 350px;
+    width: 100%;
+    height: 250px;
   }
 `
 
 const MapInfo = styled.div`
-  width: 100%;
+  width: 50%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   background: #E6B980;
   padding: 20px 10px 20px 20px;
   box-sizing: border-box;
-
+  @media ${responsive.notebookS} {
+    width: 100%;
+  }
   @media ${responsive.tablet} {
+    width: 100%;
     height: unset;
   }
   

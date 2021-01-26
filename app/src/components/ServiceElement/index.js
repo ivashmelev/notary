@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Button from '../Button'
+// import Button from '../Button'
 import styled from 'styled-components'
 import responsive from '../../responsive'
 
@@ -17,9 +17,9 @@ export default class ServiceElement extends Component {
           {title}
         </ServiceElementTitle>
         <ServiceElementText>{description}</ServiceElementText>
-        <ServiceElementButton>
+        {/*<ServiceElementButton>
           <Button name='Запись на прием' link />
-        </ServiceElementButton>
+        </ServiceElementButton>*/}
       </ServiceElementWrapper >
     )
   }
@@ -82,11 +82,11 @@ const ServiceElementText = styled.span`
   }
 `;
 
-const ServiceElementButton = styled.div`
-  margin-top: 40px;
+// const ServiceElementButton = styled.div`
+//   margin-top: 40px;
 
-  @media ${responsive.tablet} {
-    display: flex;
-    justify-content: flex-start;
-  }
-`;
+//   @media ${responsive.tablet} {
+//     display: flex;
+//     justify-content: flex-start;
+//   }
+// `;

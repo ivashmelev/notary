@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import responsive from '../responsive'
 import Header from './Header'
 import Title from './Title'
-import Form from './Form'
+// import Form from './Form'
 import MapContact from './MapContact'
 import Developer from './Developer'
 import { Scrollbar } from './Scrollbar'
@@ -40,7 +40,7 @@ export default class Contact extends Component {
             <Title text='КОНТАКТЫ' />
             <ContactPageWrap>
               <ContactContainer>
-                <Form />
+                {/* <Form /> */}
                 <MapContact contact={this.state.contact} />
               </ContactContainer>
               <ContactLinkContainer>
@@ -51,7 +51,7 @@ export default class Contact extends Component {
                   </ContactNotaryName>
                   <ContactLink href='https://yandex.ru/maps/47/nizhny-novgorod/house/alekseyevskaya_ulitsa_13/YE0YdgdkSkYDQFtsfX9zc3VhbQ==/?ll=44.004690%2C56.322644&sll=44.005986%2C56.326887&sspn=0.821228%2C0.324659&z=16.44' target='_blank'>
                     <svg width="24" height="24" style={{ marginRight: '15px' }} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 23.3276L12.6577 22.7533C18.1887 17.9237 21 13.7068 21 10C21 4.75066 16.9029 1 12 1C7.09705 1 3 4.75066 3 10C3 13.7068 5.81131 17.9237 11.3423 22.7533L12 23.3276ZM12 20.6634C7.30661 16.4335 5 12.8492 5 10C5 5.8966 8.16411 3 12 3C15.8359 3 19 5.8966 19 10C19 12.8492 16.6934 16.4335 12 20.6634ZM12 5C14.7614 5 17 7.23858 17 10C17 12.7614 14.7614 15 12 15C9.23858 15 7 12.7614 7 10C7 7.23858 9.23858 5 12 5ZM9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10Z" fill="black" />
+                      <path fillRule="evenodd" clipRule="evenodd" d="M12 23.3276L12.6577 22.7533C18.1887 17.9237 21 13.7068 21 10C21 4.75066 16.9029 1 12 1C7.09705 1 3 4.75066 3 10C3 13.7068 5.81131 17.9237 11.3423 22.7533L12 23.3276ZM12 20.6634C7.30661 16.4335 5 12.8492 5 10C5 5.8966 8.16411 3 12 3C15.8359 3 19 5.8966 19 10C19 12.8492 16.6934 16.4335 12 20.6634ZM12 5C14.7614 5 17 7.23858 17 10C17 12.7614 14.7614 15 12 15C9.23858 15 7 12.7614 7 10C7 7.23858 9.23858 5 12 5ZM9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10Z" fill="black" />
                     </svg>
                     улица Алексеевская, дом 13, город Нижний Новгород
                   </ContactLink>
@@ -68,7 +68,7 @@ export default class Contact extends Component {
                   </ContactNotaryName>
                   <ContactLink href='https://yandex.ru/maps/47/nizhny-novgorod/house/varvarskaya_ulitsa_12/YE0YdgdpQUEOQFtsfX9zcnRgYw==/?ll=44.009849%2C56.323837&sll=44.004690%2C56.322644&sspn=0.018917%2C0.007479&z=17.15' target='_blank'>
                     <svg width="24" height="24" style={{ marginRight: '15px' }} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 23.3276L12.6577 22.7533C18.1887 17.9237 21 13.7068 21 10C21 4.75066 16.9029 1 12 1C7.09705 1 3 4.75066 3 10C3 13.7068 5.81131 17.9237 11.3423 22.7533L12 23.3276ZM12 20.6634C7.30661 16.4335 5 12.8492 5 10C5 5.8966 8.16411 3 12 3C15.8359 3 19 5.8966 19 10C19 12.8492 16.6934 16.4335 12 20.6634ZM12 5C14.7614 5 17 7.23858 17 10C17 12.7614 14.7614 15 12 15C9.23858 15 7 12.7614 7 10C7 7.23858 9.23858 5 12 5ZM9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10Z" fill="black" />
+                      <path fillRule="evenodd" clipRule="evenodd" d="M12 23.3276L12.6577 22.7533C18.1887 17.9237 21 13.7068 21 10C21 4.75066 16.9029 1 12 1C7.09705 1 3 4.75066 3 10C3 13.7068 5.81131 17.9237 11.3423 22.7533L12 23.3276ZM12 20.6634C7.30661 16.4335 5 12.8492 5 10C5 5.8966 8.16411 3 12 3C15.8359 3 19 5.8966 19 10C19 12.8492 16.6934 16.4335 12 20.6634ZM12 5C14.7614 5 17 7.23858 17 10C17 12.7614 14.7614 15 12 15C9.23858 15 7 12.7614 7 10C7 7.23858 9.23858 5 12 5ZM9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10Z" fill="black" />
                     </svg>
                     улица Варварская, дом 12, город Нижний Новгород
                   </ContactLink>
